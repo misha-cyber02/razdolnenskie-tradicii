@@ -168,8 +168,11 @@
         .weight-btn { padding: 5px 15px; border: 1px solid var(--light-green); background: transparent; border-radius: 20px; cursor: pointer; font-weight: bold; color: var(--dark-green); transition: all 0.2s; font-size: 14px; }
         .weight-btn.active { background: var(--dark-green); color: var(--white); border-color: var(--dark-green); }
         
-        .price { font-size: 20px; font-weight: bold; color: var(--dark-green); margin-bottom: 15px; }
-        .price span { font-size: 14px; color: #888; font-weight: normal; }
+        /* НОВЫЕ СТИЛИ ДЛЯ ЦЕН СО СКИДКОЙ */
+        .price { margin-bottom: 15px; }
+        .old-price { text-decoration: line-through; color: #999; font-size: 14px; margin-right: 8px; }
+        .new-price { font-size: 20px; font-weight: bold; color: var(--dark-green); }
+        .new-price span { font-size: 14px; color: #888; font-weight: normal; }
 
         /* --- КОНТРОЛЬ КОЛИЧЕСТВА В КАРТОЧКЕ --- */
         .qty-control {
@@ -209,6 +212,15 @@
             pointer-events: none;
         }
 
+        /* Индикатор товара в корзине */
+        .in-cart-indicator {
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: none;
+        }
+
         /* --- БЛОК О НАС --- */
         .about { padding: 80px 0; background-color: var(--white); margin-top: 40px; }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
@@ -235,6 +247,13 @@
         
         .form-cart-summary { display: none; background: var(--kraft-bg); padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; border: 1px dashed var(--light-green); }
         .form-cart-summary strong { display: block; margin-bottom: 5px; color: var(--dark-green); }
+
+        /* НОВЫЕ СТИЛИ ДЛЯ ДОСТАВКИ */
+        .delivery-options { margin-bottom: 20px; background: var(--kraft-bg); padding: 15px; border-radius: 8px; border: 1px dashed var(--light-green); }
+        .delivery-options h4 { margin-bottom: 10px; color: var(--dark-green); }
+        .delivery-options label { display: block; margin-bottom: 8px; font-weight: normal; cursor: pointer; }
+        .delivery-options input[type="radio"] { margin-right: 8px; accent-color: var(--dark-green); }
+        .delivery-info { margin-top: 15px; font-weight: bold; color: var(--dark-green); font-size: 14px; }
 
         .input-group { margin-bottom: 20px; }
         .input-group label { display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px; }
@@ -380,12 +399,9 @@
                 border-radius: 10px;
             }
 
-            .price {
-                font-size: 14px;
-                margin-bottom: 8px;
-            }
-
-            .price span { font-size: 10px; }
+            .new-price { font-size: 14px; }
+            .old-price { font-size: 11px; }
+            .new-price span { font-size: 10px; }
 
             .order-btn {
                 padding: 6px !important;
@@ -405,6 +421,8 @@
             .qty-control { gap: 4px; margin-bottom: 6px; }
             .qty-btn { width: 22px; height: 22px; font-size: 14px; }
             .qty-input { width: 20px; font-size: 14px; }
+
+            .in-cart-indicator { font-size: 10px; margin-bottom: 4px; }
 
             /* ПЛАВНОЕ СВОРАЧИВАНИЕ ШАПКИ */
             .header-top {
@@ -455,7 +473,8 @@
                 </a>
                 
                 <div class="nav-actions-group">
-                    <a href="#order-form" style="color: var(--accent);">
+                    <!-- ССЫЛКА С ID ДЛЯ СМЕНЫ ТЕКСТА -->
+                    <a href="#order-form" style="color: var(--accent);" id="header-order-link">
                         <svg class="svg-icon" style="fill: var(--accent);" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
                         Заказать звонок
                     </a>
@@ -553,13 +572,33 @@
             <p class="subtitle">Оставьте свой номер телефона, и мы перезвоним вам в течение 15 минут для подтверждения заказа и расчета доставки.</p>
             
             <div class="form-wrapper">
-                <h3>Заказать звонок</h3>
+                <h3>Оформление заказа</h3>
                 <form id="callback-form" action="https://formspree.io/f/mvkzyyop" method="POST">
                     <input type="hidden" name="subject" value="Новая заявка с сайта Раздольненские традиции">
                     
                     <textarea name="order_details" id="form-order-details" style="display: none;">Покупатель пока ничего не выбрал.</textarea>
+                    
+                    <!-- Скрытые поля для доставки -->
+                    <input type="hidden" name="delivery_method" id="delivery-method" value="rostov">
+                    <input type="hidden" name="delivery_city" id="delivery-city" value="">
+                    <input type="hidden" name="delivery_cost" id="delivery-cost" value="0">
+                    <input type="hidden" name="total_amount" id="total-amount" value="0">
 
                     <div class="form-cart-summary" id="form-cart-summary"></div>
+
+                    <!-- БЛОК ВЫБОРА ДОСТАВКИ -->
+                    <div class="delivery-options">
+                        <h4>Способ получения</h4>
+                        <label><input type="radio" name="delivery" value="rostov" checked> Доставка по Ростову-на-Дону</label>
+                        <label><input type="radio" name="delivery" value="pickup"> Самовывоз (скидка 5%)</label>
+                        <label><input type="radio" name="delivery" value="other"> Доставка в другой город</label>
+                        
+                        <div id="other-city-block" style="display:none; margin-top:10px;">
+                            <input type="text" id="city-input" placeholder="Укажите ваш город" style="width:100%; padding:8px; border-radius:5px; border:1px solid #ccc;">
+                        </div>
+                        
+                        <div class="delivery-info" id="delivery-info"></div>
+                    </div>
 
                     <div class="input-group">
                         <label for="name">Ваше имя</label>
@@ -578,7 +617,8 @@
                         <label for="consent">Я даю согласие на <a href="#" id="open-privacy">обработку персональных данных</a></label>
                     </div>
 
-                    <button type="submit" class="btn" data-fs-submit-btn>Оформить заказ</button>
+                    <!-- КНОПКА "ОТПРАВИТЬ ЗАЯВКУ" -->
+                    <button type="submit" class="btn" data-fs-submit-btn>Отправить заявку</button>
                     
                     <div class="success-message" data-fs-success>Спасибо! Ваша заявка принята. Мы скоро перезвоним!</div>
                     <div class="form-error" data-fs-error></div>
@@ -709,10 +749,12 @@
                     </div>
                 ` : '';
 
-                const priceDisplay = hasWeights ? `${defaultPrice} ₽ <span>/ ${defaultWeight} ${unit}</span>` : `${defaultPrice} ₽ <span>/ ${unit}</span>`;
+                const priceDisplay = hasWeights 
+                    ? `<span class="old-price">${Math.round(defaultPrice * 1.1)} ₽</span> <span class="new-price">${defaultPrice} ₽ <span>/ ${defaultWeight} ${unit}</span></span>`
+                    : `<span class="old-price">${Math.round(defaultPrice * 1.1)} ₽</span> <span class="new-price">${defaultPrice} ₽ <span>/ ${unit}</span></span>`;
                 
                 return `
-                <div class="product-card" data-id="${categoryKey}_${index}" data-unit="${unit}" data-has-weights="${hasWeights}">
+                <div class="product-card" data-id="${categoryKey}_${index}" data-unit="${unit}" data-has-weights="${hasWeights}" data-product-name="${product.name}">
                     ${badgeHTML}
                     ${imgHTML}
                     <div class="product-info">
@@ -729,6 +771,7 @@
                         </div>
 
                         <button class="btn order-btn" style="padding: 10px; font-size: 14px; margin-top: auto;">В корзину</button>
+                        <div class="in-cart-indicator"></div>
                     </div>
                 </div>
                 `;
@@ -771,7 +814,7 @@
             const weightBtns = card.querySelectorAll('.weight-btn');
             const priceEl = card.querySelector('.price');
             const orderBtn = card.querySelector('.order-btn');
-            const productName = card.querySelector('h3').innerText;
+            const productName = card.dataset.productName;
             
             const unit = card.dataset.unit;
             const hasWeights = card.dataset.hasWeights === 'true';
@@ -779,6 +822,7 @@
             const qtyInput = card.querySelector('.qty-input');
             const qtyPlus = card.querySelector('.qty-plus');
             const qtyMinus = card.querySelector('.qty-minus');
+            const inCartIndicator = card.querySelector('.in-cart-indicator');
 
             let currentWeight = hasWeights ? parseInt(weightBtns[0].dataset.weight) : 1;
             let currentPrice = parseInt(priceEl.dataset.basePrice);
@@ -795,7 +839,10 @@
                         
                         currentPrice = Math.round((basePrice / 30) * currentWeight / 10) * 10;
                         
-                        priceEl.innerHTML = `${currentPrice} ₽ <span>/ ${currentWeight} ${unit}</span>`;
+                        const oldPrice = Math.round(currentPrice * 1.1);
+                        priceEl.innerHTML = `<span class="old-price">${oldPrice} ₽</span> <span class="new-price">${currentPrice} ₽ <span>/ ${currentWeight} ${unit}</span></span>`;
+                        
+                        updateProductCards(); // Обновить счётчик в карточке
                     });
                 });
             }
@@ -825,6 +872,8 @@
                     orderBtn.innerText = originalText;
                     orderBtn.style.backgroundColor = "";
                 }, 1500);
+                
+                updateProductCards(); // Обновить счётчик
             });
         });
 
@@ -839,6 +888,131 @@
             updateCartUI();
         }
 
+        // ОБНОВЛЕНИЕ СЧЁТЧИКОВ В КАРТОЧКАХ
+        function updateProductCards() {
+            document.querySelectorAll('.product-card').forEach(card => {
+                const productName = card.dataset.productName;
+                const unit = card.dataset.unit;
+                const hasWeights = card.dataset.hasWeights === 'true';
+                const inCartIndicator = card.querySelector('.in-cart-indicator');
+                
+                let weight = 1;
+                if (hasWeights) {
+                    const activeBtn = card.querySelector('.weight-btn.active');
+                    if (activeBtn) weight = parseInt(activeBtn.dataset.weight);
+                }
+                
+                const id = unit === 'лист' ? `${productName}` : `${productName}_${weight}${unit}`;
+                const item = cart.find(i => i.id === id);
+                
+                if (item) {
+                    inCartIndicator.textContent = `В корзине: ${item.quantity} шт.`;
+                    inCartIndicator.style.display = 'block';
+                } else {
+                    inCartIndicator.style.display = 'none';
+                }
+            });
+        }
+
+        // ОБНОВЛЕНИЕ ТЕКСТА ССЫЛКИ В ШАПКЕ
+        function updateHeaderLink() {
+            const link = document.getElementById('header-order-link');
+            if (cart.length > 0) {
+                link.innerHTML = `<svg class="svg-icon" style="fill: var(--accent);" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg> Отправить заявку`;
+            } else {
+                link.innerHTML = `<svg class="svg-icon" style="fill: var(--accent);" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg> Заказать звонок`;
+            }
+        }
+
+        // ОБНОВЛЕНИЕ ДОСТАВКИ И ИТОГОВ
+        function updateDeliveryAndTotals() {
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            const deliveryRadios = document.querySelectorAll('input[name="delivery"]');
+            let selectedDelivery = 'rostov';
+            deliveryRadios.forEach(radio => {
+                if (radio.checked) selectedDelivery = radio.value;
+            });
+            
+            const cityInput = document.getElementById('city-input');
+            const otherCityBlock = document.getElementById('other-city-block');
+            const deliveryInfo = document.getElementById('delivery-info');
+            
+            let deliveryCost = 0;
+            let totalAmount = totalPrice;
+            let deliveryText = '';
+            
+            if (selectedDelivery === 'rostov') {
+                if (totalPrice >= 1500) {
+                    deliveryCost = 0;
+                    deliveryText = 'Доставка по Ростову-на-Дону: бесплатно (заказ от 1500 ₽)';
+                } else {
+                    deliveryCost = 300;
+                    deliveryText = 'Доставка по Ростову-на-Дону: 300 ₽ (заказ до 1500 ₽)';
+                }
+                totalAmount = totalPrice + deliveryCost;
+                otherCityBlock.style.display = 'none';
+                cityInput.required = false;
+            } else if (selectedDelivery === 'pickup') {
+                deliveryCost = 0;
+                totalAmount = Math.round(totalPrice * 0.95);
+                deliveryText = 'Самовывоз: скидка 5% на заказ';
+                otherCityBlock.style.display = 'none';
+                cityInput.required = false;
+            } else if (selectedDelivery === 'other') {
+                deliveryCost = 0; // неизвестно
+                totalAmount = totalPrice;
+                deliveryText = 'Доставка в другой город: стоимость уточнит менеджер (оплата на месте)';
+                otherCityBlock.style.display = 'block';
+                cityInput.required = true;
+            }
+            
+            // Обновляем скрытые поля
+            document.getElementById('delivery-method').value = selectedDelivery;
+            document.getElementById('delivery-city').value = selectedDelivery === 'other' ? cityInput.value : '';
+            document.getElementById('delivery-cost').value = deliveryCost;
+            document.getElementById('total-amount').value = totalAmount;
+            
+            // Обновляем информацию
+            deliveryInfo.textContent = deliveryText;
+            
+            // Обновляем предпросмотр заказа в форме
+            if (cart.length > 0) {
+                let orderText = "Ваш заказ:\n";
+                cart.forEach((item, index) => {
+                    const weightDisplay = item.unit === 'лист' ? item.unit : `${item.weight} ${item.unit}`;
+                    orderText += `${index + 1}. ${item.name} (${weightDisplay}) - ${item.quantity} шт. = ${item.price * item.quantity} ₽\n`;
+                });
+                orderText += `------------------------------\n`;
+                orderText += `Сумма товаров: ${totalPrice} ₽\n`;
+                if (selectedDelivery === 'rostov') {
+                    orderText += `Доставка: ${deliveryCost} ₽\n`;
+                } else if (selectedDelivery === 'pickup') {
+                    orderText += `Скидка за самовывоз: -${Math.round(totalPrice * 0.05)} ₽\n`;
+                } else {
+                    orderText += `Доставка: уточнит менеджер\n`;
+                }
+                orderText += `Итого к оплате: ${totalAmount} ₽`;
+                
+                formCartSummary.innerHTML = `<strong>Ваш заказ:</strong><br><span style="white-space: pre-wrap;">${orderText}</span>`;
+                formOrderDetails.value = orderText;
+            } else {
+                formCartSummary.style.display = 'none';
+                formOrderDetails.value = 'Покупатель пока ничего не выбрал.';
+            }
+        }
+
+        // ОБРАБОТЧИКИ РАДИОКНОПОК ДОСТАВКИ
+        document.querySelectorAll('input[name="delivery"]').forEach(radio => {
+            radio.addEventListener('change', updateDeliveryAndTotals);
+        });
+        
+        document.getElementById('city-input').addEventListener('input', function() {
+            document.getElementById('delivery-city').value = this.value;
+            updateDeliveryAndTotals();
+        });
+
+        // ОБНОВЛЕНИЕ КОРЗИНЫ
         function updateCartUI() {
             const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
             const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -849,12 +1023,14 @@
                 cartItemsContainer.innerHTML = '<p style="text-align:center; color:#888; padding: 20px 0;">Корзина пуста</p>';
                 cartTotalEl.innerText = '0';
                 formCartSummary.style.display = 'none';
-                formOrderDetails.value = 'Покупатель пока ничего не выбрал (запрос на консультацию).';
+                formOrderDetails.value = 'Покупатель пока ничего не выбрал.';
+                updateHeaderLink();
+                updateDeliveryAndTotals();
+                updateProductCards();
                 return;
             }
             
             let itemsHTML = '';
-            let orderText = "Ваш заказ:\n";
             
             cart.forEach((item, index) => {
                 const weightDisplay = item.unit === 'лист' ? item.unit : `${item.weight} ${item.unit}`;
@@ -873,17 +1049,14 @@
                         </div>
                     </div>
                 `;
-                orderText += `${index + 1}. ${item.name} (${weightDisplay}) - ${item.quantity} шт. = ${item.price * item.quantity} ₽\n`;
             });
-            
-            orderText += `------------------------------\nИтого: ${totalPrice} ₽`;
             
             cartItemsContainer.innerHTML = itemsHTML;
             cartTotalEl.innerText = totalPrice;
             
-            formCartSummary.style.display = 'block';
-            formCartSummary.innerHTML = `<strong>Ваш заказ:</strong><br><span style="white-space: pre-wrap;">${orderText}</span>`;
-            formOrderDetails.value = orderText;
+            updateHeaderLink();
+            updateDeliveryAndTotals();
+            updateProductCards();
         }
 
         window.changeQty = function(id, diff) {
@@ -907,6 +1080,13 @@
         formspree('initForm', { 
             formElement: '#callback-form', 
             formId: 'mvkzyyop'
+        });
+
+        // ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProductCards();
+            updateHeaderLink();
+            updateDeliveryAndTotals();
         });
     </script>
     <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
