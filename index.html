@@ -21,15 +21,18 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--kraft-bg); color: var(--text-dark); line-height: 1.6; padding-bottom: 60px; /* Отступ для плавающей кнопки */ }
+        body { background-color: var(--kraft-bg); color: var(--text-dark); line-height: 1.6; padding-bottom: 60px; }
         h1, h2, h3 { font-family: 'Georgia', serif; color: var(--dark-green); }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
         /* --- ШАПКА --- */
-        header { background-color: var(--white); padding: 15px 0; border-bottom: 2px solid var(--light-green); text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        header { background-color: var(--white); padding: 10px 0; border-bottom: 2px solid var(--light-green); text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .logo-container { display: flex; align-items: center; justify-content: center; gap: 15px; }
-        .logo-placeholder { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--dark-green); display: flex; align-items: center; justify-content: center; font-size: 24px; }
-        .logo-text { font-size: 28px; font-weight: bold; color: var(--dark-green); letter-spacing: 1px; line-height: 1.1; }
+        
+        /* Стили для вашего логотипа */
+        .site-logo { height: 70px; width: auto; object-fit: contain; }
+        
+        .logo-text { font-size: 28px; font-weight: bold; color: var(--dark-green); letter-spacing: 1px; line-height: 1.1; text-align: left; }
         .logo-subtext { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); font-weight: bold; }
 
         /* --- ГЛАВНЫЙ ЭКРАН --- */
@@ -52,7 +55,7 @@
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .product-card { background-color: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-bottom: 5px solid var(--light-green); transition: transform 0.3s; display: flex; flex-direction: column; }
         .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .product-img { width: 100%; height: 200px; background-color: #eee; background-size: cover; background-position: center; position: relative; }
+        .product-img { width: 100%; height: 220px; background-color: #eee; background-size: cover; background-position: center; position: relative; }
         .product-info { padding: 25px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
         .product-card h3 { font-size: 24px; margin-bottom: 10px; }
         .product-card p { color: #666; margin-bottom: 15px; flex-grow: 1; font-size: 15px; }
@@ -106,7 +109,8 @@
             .about-grid, .delivery-grid { grid-template-columns: 1fr; }
             .about-image { height: 250px; order: -1; }
             .form-wrapper { padding: 20px; }
-            .logo-text { font-size: 22px; }
+            .site-logo { height: 50px; }
+            .logo-text { font-size: 20px; }
             .floating-tg { bottom: 20px; right: 20px; width: 50px; height: 50px; }
         }
     </style>
@@ -116,7 +120,8 @@
     <header>
         <div class="container">
             <div class="logo-container">
-                <div class="logo-placeholder">🏡</div>
+                <!-- ТУТ ВАШ ЛОГОТИП. Убедитесь, что файл logo.png загружен в репозиторий -->
+                <img src="logo.png" alt="Раздольненские традиции" class="site-logo">
                 <div>
                     <div class="logo-text">Раздольненские</div>
                     <div class="logo-subtext">традиции</div>
@@ -150,7 +155,7 @@
             <h2 class="section-title">Наша продукция</h2>
             <div class="product-grid">
                 
-                <!-- Товар 1 -->
+                <!-- Товар 1: Яблочные фрипсы (Фото: сушеные яблоки) -->
                 <div class="product-card">
                     <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1599819457658-8ebc8d0b0d29?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
                     <div class="product-info">
@@ -166,7 +171,7 @@
                     </div>
                 </div>
 
-                <!-- Товар 2 -->
+                <!-- Товар 2: Банановые фрипсы (Фото: банановые чипсы) -->
                 <div class="product-card">
                     <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1608686207856-001b95cf60ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
                     <div class="product-info">
@@ -182,7 +187,7 @@
                     </div>
                 </div>
 
-                <!-- Товар 3 -->
+                <!-- Товар 3: Апельсиновые фрипсы (Фото: сушеные апельсины) -->
                 <div class="product-card">
                     <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1582979512210-99b6a53386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
                     <div class="product-info">
@@ -198,7 +203,7 @@
                     </div>
                 </div>
 
-                <!-- Товар 4 -->
+                <!-- Товар 4: Пастила классическая (Фото: пастила/фруктовая паста) -->
                 <div class="product-card">
                     <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1606313564200-e75d5e30476c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
                     <div class="product-info">
@@ -214,7 +219,7 @@
                     </div>
                 </div>
 
-                <!-- Товар 5 -->
+                <!-- Товар 5: Пастила ягодная (Фото: ягодная пастила) -->
                 <div class="product-card">
                     <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1563292769-4e05b684851a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
                     <div class="product-info">
@@ -230,7 +235,7 @@
                     </div>
                 </div>
 
-                <!-- Товар 6 -->
+                <!-- Товар 6: Сухофрукты (Фото: курага и чернослив) -->
                 <div class="product-card">
                     <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1596484552993-9d1fb66a7a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
                     <div class="product-info">
@@ -285,7 +290,6 @@
                 <h3>Заказать звонок</h3>
                 <form id="callback-form" action="https://formspree.io/f/mvkzyyop" method="POST">
                     <input type="hidden" name="subject" value="Новая заявка с сайта Раздольненские традиции">
-                    <!-- Скрытое поле для передачи выбранного товара -->
                     <input type="hidden" id="selected-product" name="product" value="Не выбран">
 
                     <div class="input-group">
@@ -317,16 +321,13 @@
         </div>
     </footer>
 
-    <!-- ПЛАВАЮЩАЯ КНОПКА TELEGRAM (Обновлена ссылка) -->
     <a href="https://t.me/MiShcko" class="floating-tg" target="_blank" title="Написать в Telegram">
         <svg viewBox="0 0 24 24">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.52-1.4.51-.46-.01-1.35-.26-2.01-.48-.81-.27-1.46-.42-1.4-.88.03-.24.35-.48.96-.73 3.74-1.63 6.23-2.7 7.47-3.23 3.56-1.48 4.3-1.74 4.78-1.75.11 0 .35.03.5.15.13.1.17.24.18.34 0 .07.01.2 0 .32z"/>
         </svg>
     </a>
 
-    <!-- СКРИПТЫ -->
     <script>
-        // 1. Логика выбора веса и обновления цены
         document.querySelectorAll('.product-card').forEach(card => {
             const weightBtns = card.querySelectorAll('.weight-btn');
             const priceEl = card.querySelector('.price');
@@ -344,12 +345,10 @@
                     let newPrice = Math.round((basePrice30 / 30) * weight / 10) * 10;
                     
                     priceEl.innerHTML = `${newPrice} ₽ <span>/ ${weight} г</span>`;
-                    
                     orderBtn.dataset.product = `${productName} ${weight}г`;
                 });
             });
 
-            // 2. Обработка клика по кнопке "Заказать"
             orderBtn.addEventListener('click', (e) => {
                 const selectedProduct = e.target.dataset.product;
                 document.getElementById('selected-product').value = selectedProduct;
@@ -357,7 +356,6 @@
             });
         });
 
-        // 3. Инициализация Formspree
         window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
         formspree('initForm', { 
             formElement: '#callback-form', 
