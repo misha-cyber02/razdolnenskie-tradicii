@@ -106,6 +106,14 @@
         .input-group label { display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px; }
         .input-group input { width: 100%; padding: 15px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; background-color: var(--kraft-bg); }
         .input-group input:focus { outline: none; border-color: var(--dark-green); border-width: 2px; }
+        
+        /* Чекбокс согласия */
+        .checkbox-group { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; }
+        .checkbox-group input[type="checkbox"] { width: 18px; height: 18px; margin-top: 3px; cursor: pointer; accent-color: var(--dark-green); }
+        .checkbox-group label { font-size: 13px; color: #555; cursor: pointer; line-height: 1.4; font-weight: normal; margin-bottom: 0; }
+        .checkbox-group a { color: var(--dark-green); text-decoration: underline; font-weight: bold; }
+        .checkbox-group a:hover { color: var(--accent); }
+
         .form-wrapper .btn { width: 100%; border-radius: 8px; background-color: var(--dark-green); }
         .form-wrapper .btn:hover { background-color: var(--light-green); }
 
@@ -118,18 +126,16 @@
         footer p { margin-bottom: 5px; opacity: 0.8; }
 
         /* --- ПЛАВАЮЩИЕ КНОПКИ --- */
-        /* Telegram */
         .floating-tg { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background-color: #0088cc; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1000; transition: transform 0.3s, background 0.3s; text-decoration: none; }
         .floating-tg:hover { transform: scale(1.1); background-color: #006699; }
         .floating-tg svg { width: 35px; height: 35px; fill: white; }
 
-        /* Корзина */
         .floating-cart { position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px; background-color: var(--dark-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1000; cursor: pointer; transition: transform 0.3s, background 0.3s; border: none; }
         .floating-cart:hover { transform: scale(1.1); background-color: var(--accent); }
         .floating-cart svg { width: 30px; height: 30px; fill: white; }
         .cart-badge { position: absolute; top: -5px; right: -5px; background: #d9534f; color: white; border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
 
-        /* Модальное окно корзины */
+        /* --- МОДАЛЬНЫЕ ОКНА (Корзина и Политика) --- */
         .cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; align-items: center; justify-content: center; }
         .cart-modal.active { display: flex; }
         .cart-content { background: var(--white); width: 90%; max-width: 500px; border-radius: 15px; padding: 30px; position: relative; max-height: 80vh; display: flex; flex-direction: column; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
@@ -146,6 +152,14 @@
         .cart-qty-btn:hover { background: var(--light-green); color: white; border-color: var(--light-green); }
         .cart-item-remove { background: none; border: none; color: #d9534f; cursor: pointer; font-size: 24px; line-height: 1; margin-left: 5px; }
         .cart-total { text-align: right; font-size: 22px; font-weight: bold; margin-bottom: 20px; color: var(--dark-green); border-top: 2px solid var(--light-green); padding-top: 15px; }
+
+        /* Стили для модального окна политики */
+        #privacy-modal .cart-content { max-width: 700px; text-align: left; }
+        #privacy-modal h3 { font-size: 20px; margin-bottom: 15px; }
+        .privacy-text { overflow-y: auto; max-height: 60vh; padding-right: 10px; font-size: 14px; line-height: 1.6; color: #444; }
+        .privacy-text p { margin-bottom: 10px; }
+        .privacy-text ul { margin-bottom: 10px; padding-left: 20px; }
+        .privacy-text a { color: var(--dark-green); font-weight: bold; }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 32px; }
@@ -176,8 +190,9 @@
                 </div>
             </div>
             <nav class="nav-menu">
+                <!-- НОВАЯ ИКОНКА: ЦЕЛОЕ ЯБЛОКО -->
                 <a href="#frips">
-                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.56-1.702z"/></svg>
+                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12,2C11.45,2 11,2.45 11,3C11,3.55 11.45,4 12,4C12.55,4 13,3.55 13,3C13,2.45 12.55,2 12,2M15.5,5C13.5,5 12,6.5 12,8.5C12,6.5 10.5,5 8.5,5C5.5,5 3,8 3,12C3,16 5.5,20 8.5,20C10.5,20 11.5,19 12,19C12.5,19 13.5,20 15.5,20C18.5,20 21,16 21,12C21,8 18.5,5 15.5,5Z"/></svg>
                     Фрипсы
                 </a>
                 <a href="#pastila">
@@ -207,7 +222,8 @@
     <div class="container">
         <section id="frips" class="category-section">
             <h2 class="category-title">
-                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.56-1.702z"/></svg>
+                <!-- НОВАЯ ИКОНКА: ЦЕЛОЕ ЯБЛОКО -->
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12,2C11.45,2 11,2.45 11,3C11,3.55 11.45,4 12,4C12.55,4 13,3.55 13,3C13,2.45 12.55,2 12,2M15.5,5C13.5,5 12,6.5 12,8.5C12,6.5 10.5,5 8.5,5C5.5,5 3,8 3,12C3,16 5.5,20 8.5,20C10.5,20 11.5,19 12,19C12.5,19 13.5,20 15.5,20C18.5,20 21,16 21,12C21,8 18.5,5 15.5,5Z"/></svg>
                 Наши фрипсы
             </h2>
             <div class="product-grid" id="grid-frips"></div>
@@ -278,10 +294,8 @@
                 <form id="callback-form" action="https://formspree.io/f/mvkzyyop" method="POST">
                     <input type="hidden" name="subject" value="Новая заявка с сайта Раздольненские традиции">
                     
-                    <!-- Скрытое поле для отправки состава корзины -->
                     <textarea name="order_details" id="form-order-details" style="display: none;">Покупатель пока ничего не выбрал.</textarea>
 
-                    <!-- Блок предпросмотра заказа в форме -->
                     <div class="form-cart-summary" id="form-cart-summary"></div>
 
                     <div class="input-group">
@@ -296,6 +310,12 @@
                         <span class="error-msg" data-fs-error="phone"></span>
                     </div>
                     
+                    <!-- ЧЕКБОКС СОГЛАСИЯ -->
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="consent" name="consent" value="Да" required>
+                        <label for="consent">Я даю согласие на <a href="#" id="open-privacy">обработку персональных данных</a></label>
+                    </div>
+
                     <button type="submit" class="btn" data-fs-submit-btn>Оформить заказ</button>
                     
                     <div class="success-message" data-fs-success>Спасибо! Ваша заявка принята. Мы скоро перезвоним!</div>
@@ -313,7 +333,7 @@
         </div>
     </footer>
 
-    <!-- КНОПКА КОРЗИНЫ (Плавающая слева) -->
+    <!-- КНОПКА КОРЗИНЫ -->
     <button class="floating-cart" id="cart-btn" title="Открыть корзину">
         <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
         <span class="cart-badge" id="cart-count">0</span>
@@ -329,6 +349,29 @@
             </div>
             <div class="cart-total">Итого: <span id="cart-total-price">0</span> ₽</div>
             <button class="btn" id="checkout-btn" style="width: 100%;">Перейти к оформлению</button>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ПОЛИТИКИ КОНФИДЕНЦИАЛЬНОСТИ -->
+    <div class="cart-modal" id="privacy-modal">
+        <div class="cart-content">
+            <button class="close-cart" id="close-privacy">&times;</button>
+            <h3>Согласие на обработку персональных данных</h3>
+            <div class="privacy-text">
+                <p>Настоящим в соответствии с Федеральным законом № 152-ФЗ «О персональных данных» от 27.07.2006 года свободно, своей волей и в своем интересе выражаю свое безусловное согласие на обработку моих персональных данных, зарегистрированным в соответствии с законодательством РФ по адресу: (далее по тексту - Оператор).</p>
+                <p>1. Согласие дается на обработку одной, нескольких или всех категорий персональных данных, не являющихся специальными или биометрическими, предоставляемых мною, которые могут включать:</p>
+                <ul>
+                    <li>Имя;</li>
+                    <li>Телефон;</li>
+                    <li>IP-адрес.</li>
+                </ul>
+                <p>2. Оператор может совершать следующие действия: сбор; запись; систематизация; накопление; хранение; уточнение (обновление, изменение); извлечение; использование; блокирование; удаление; уничтожение.</p>
+                <p>3. Способы обработки: как с использованием средств автоматизации, так и без их использования.</p>
+                <p>4. Цель обработки: предоставление мне услуг/работ, включая, направление в мой адрес уведомлений, касающихся предоставляемых услуг/работ, подготовка и направление ответов на мои запросы, направление в мой адрес информации о мероприятиях/товарах/услугах/работах Оператора.</p>
+                <p>5. В связи с тем, что Оператор может осуществлять обработку моих персональных данных посредством программы для ЭВМ «1С-Битрикс24», я даю свое согласие Оператору на осуществление соответствующего поручения ООО «1С-Битрикс», (ОГРН 5077746476209), зарегистрированному по адресу: 109544, г. Москва, б-р Энтузиастов, д. 2, эт.13, пом. 8-19.</p>
+                <p>6. Настоящее согласие действует до момента его отзыва путем направления соответствующего уведомления на электронный адрес <a href="mailto:Info@frips61.ru">Info@frips61.ru</a> или направления по адресу.</p>
+                <p>7. В случае отзыва мною согласия на обработку персональных данных Оператор вправе продолжить обработку персональных данных без моего согласия при наличии оснований, предусмотренных Федеральным законом №152-ФЗ «О персональных данных» от 27.07.2006 г.</p>
+            </div>
         </div>
     </div>
 
@@ -379,11 +422,8 @@
                 ).join('');
                 const defaultPrice = Math.round((product.price30 / 30) * defaultWeight / 10) * 10;
                 
-                // Уникальный ID для карточки, чтобы потом передать в корзину
-                const productId = `${categoryKey}_${index}`;
-
                 return `
-                <div class="product-card" data-id="${productId}">
+                <div class="product-card" data-id="${categoryKey}_${index}">
                     ${badgeHTML}
                     ${imgHTML}
                     <div class="product-info">
@@ -406,8 +446,6 @@
 
         // 3. ЛОГИКА КОРЗИНЫ
         let cart = [];
-
-        // Элементы DOM
         const cartModal = document.getElementById('cart-modal');
         const cartItemsContainer = document.getElementById('cart-items');
         const cartCountEl = document.getElementById('cart-count');
@@ -415,16 +453,23 @@
         const formOrderDetails = document.getElementById('form-order-details');
         const formCartSummary = document.getElementById('form-cart-summary');
 
-        // Открытие/закрытие корзины
         document.getElementById('cart-btn').addEventListener('click', () => cartModal.classList.add('active'));
         document.getElementById('close-cart').addEventListener('click', () => cartModal.classList.remove('active'));
         cartModal.addEventListener('click', (e) => { if(e.target === cartModal) cartModal.classList.remove('active'); });
         
-        // Переход к оформлению из корзины
         document.getElementById('checkout-btn').addEventListener('click', () => {
             cartModal.classList.remove('active');
             document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
         });
+
+        // Логика модального окна политики
+        const privacyModal = document.getElementById('privacy-modal');
+        document.getElementById('open-privacy').addEventListener('click', (e) => {
+            e.preventDefault();
+            privacyModal.classList.add('active');
+        });
+        document.getElementById('close-privacy').addEventListener('click', () => privacyModal.classList.remove('active'));
+        privacyModal.addEventListener('click', (e) => { if(e.target === privacyModal) privacyModal.classList.remove('active'); });
 
         // Добавление в корзину
         document.querySelectorAll('.product-card').forEach(card => {
@@ -435,7 +480,6 @@
             let currentWeight = parseInt(weightBtns[0].dataset.weight);
             let currentPrice = parseInt(priceEl.innerText);
 
-            // Переключение веса
             weightBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     weightBtns.forEach(b => b.classList.remove('active'));
@@ -447,10 +491,8 @@
                 });
             });
 
-            // Клик по кнопке "В корзину"
             orderBtn.addEventListener('click', () => {
                 addToCart(productName, currentWeight, currentPrice);
-                // Визуальный отклик
                 const originalText = orderBtn.innerText;
                 orderBtn.innerText = "Добавлено ✓";
                 orderBtn.style.backgroundColor = "var(--light-green)";
@@ -464,7 +506,6 @@
         function addToCart(name, weight, price) {
             const id = `${name}_${weight}`;
             const existingItem = cart.find(item => item.id === id);
-            
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
@@ -513,13 +554,11 @@
             cartItemsContainer.innerHTML = itemsHTML;
             cartTotalEl.innerText = totalPrice;
             
-            // Выводим состав заказа в форму
             formCartSummary.style.display = 'block';
             formCartSummary.innerHTML = `<strong>Ваш заказ:</strong><br><span style="white-space: pre-wrap;">${orderText}</span>`;
             formOrderDetails.value = orderText;
         }
 
-        // Глобальные функции для кнопок корзины
         window.changeQty = function(id, diff) {
             const item = cart.find(i => i.id === id);
             if (item) {
