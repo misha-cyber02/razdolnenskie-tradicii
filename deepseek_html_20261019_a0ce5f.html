@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Раздольненские традиции | Натуральные продукты</title>
+    <style>
+        /* Цветовая палитра (Крафт и Природа) */
+        :root {
+            --dark-green: #2E4A32;
+            --light-green: #8BA88E;
+            --kraft-bg: #F4F0E6;
+            --text-dark: #1A1A1A;
+            --white: #FFFFFF;
+        }
+
+        /* Базовые настройки */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--kraft-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Georgia', serif; /* Классический шрифт для традиций */
+            color: var(--dark-green);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        header {
+            background-color: var(--white);
+            padding: 20px 0;
+            border-bottom: 2px solid var(--light-green);
+            text-align: center;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--dark-green);
+            letter-spacing: 1px;
+        }
+
+        .logo-subtext {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--light-green);
+        }
+
+        /* Главный экран */
+        .hero {
+            background: linear-gradient(135deg, var(--kraft-bg) 0%, #E8E4D9 100%);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            color: #555;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--dark-green);
+            color: var(--white);
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 18px;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--light-green);
+        }
+
+        /* Блок товаров */
+        .products {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-bottom: 5px solid var(--light-green);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .product-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .product-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--dark-green);
+        }
+
+        /* Форма обратной связи */
+        .contact-form {
+            background-color: var(--dark-green);
+            padding: 80px 0;
+            color: var(--white);
+        }
+
+        .contact-form .section-title {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .contact-form p {
+            text-align: center;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .form-wrapper {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .form-wrapper h3 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: var(--kraft-bg);
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--dark-green);
+        }
+
+        .form-wrapper .btn {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        /* Сообщение об успехе */
+        #success-message {
+            display: none;
+            text-align: center;
+            color: var(--dark-green);
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e8f5e9;
+            border-radius: 8px;
+        }
+
+        /* Подвал */
+        footer {
+            background-color: #1A1A1A;
+            color: var(--white);
+            text-align: center;
+            padding: 30px 0;
+            font-size: 14px;
+        }
+
+        /* Адаптивность для телефонов */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .hero p { font-size: 16px; }
+            .form-wrapper { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header>
+        <div class="container">
+            <!-- Здесь можно заменить текст на картинку логотипа -->
+            <div class="logo-text">Раздольненские традиции</div>
+            <div class="logo-subtext">Натуральные продукты из села</div>
+        </div>
+    </header>
+
+    <!-- Главный экран -->
+    <section class="hero">
+        <div class="container">
+            <h1>Вкус настоящего села<br>с доставкой до вашей двери</h1>
+            <p>Фрипсы, пастила и сухофрукты без сахара, консервантов и красителей. Сделано с любовью и заботой о вашем здоровье.</p>
+            <a href="#order-form" class="btn">Заказать сейчас</a>
+        </div>
+    </section>
+
+    <!-- Товары -->
+    <section class="products">
+        <div class="container">
+            <h2 class="section-title">Наша натуральная продукция</h2>
+            <div class="product-grid">
+                
+                <div class="product-card">
+                    <div class="product-icon">🍎</div>
+                    <h3>Фрипсы</h3>
+                    <p>Хрустящие фруктовые чипсы. Идеальная замена вредному фастфуду. Только фрукты и ягоды.</p>
+                    <div class="price">от 250 ₽ / 100 г</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🍬</div>
+                    <h3>Пастила</h3>
+                    <p>Домашняя пастила по старинным рецептам. Натуральная сладость без добавления сахара.</p>
+                    <div class="price">от 300 ₽ / 100 г</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🍇</div>
+                    <h3>Сухофрукты</h3>
+                    <p>Отборные сухофрукты из собственного сада. Вяленые на солнце, сохраняют все витамины.</p>
+                    <div class="price">от 200 ₽ / 100 г</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма заказа (Обратный звонок) -->
+    <section class="contact-form" id="order-form">
+        <div class="container">
+            <h2 class="section-title">Оформить заказ</h2>
+            <p>Оставьте свой номер телефона, и мы перезвоним вам в течение 15 минут. Поможем выбрать продукты и рассчитаем стоимость доставки.</p>
+            
+            <div class="form-wrapper">
+                <h3>Заказать звонок</h3>
+                <form id="callback-form">
+                    <div class="input-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" placeholder="Например, Иван" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="phone">Номер телефона *</label>
+                        <input type="tel" id="phone" placeholder="+7 (___) ___-__-__" required>
+                    </div>
+                    <button type="submit" class="btn">Жду звонка</button>
+                    <div id="success-message">Спасибо! Ваша заявка принята. Мы скоро перезвоним!</div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Раздольненские традиции. Натуральные продукты из села.</p>
+            <p>ИП Иванов И.И. | Доставка по всей России</p>
+        </div>
+    </footer>
+
+    <!-- Скрипт обработки формы -->
+    <script>
+        document.getElementById('callback-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Отменяем перезагрузку страницы
+            
+            // Получаем данные
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            
+            // В реальном проекте здесь был бы код отправки на сервер или в Telegram
+            console.log("Заявка:", name, phone);
+            
+            // Показываем сообщение об успехе
+            document.getElementById('callback-form').reset();
+            document.getElementById('success-message').style.display = 'block';
+            
+            // Скрываем сообщение через 5 секунд
+            setTimeout(() => {
+                document.getElementById('success-message').style.display = 'none';
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
