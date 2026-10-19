@@ -6,6 +6,11 @@
     <title>Раздольненские традиции | Натуральные продукты с доставкой</title>
     <meta name="description" content="Вкусные и полезные натуральные продукты из села: фрипсы, пастила, сухофрукты без сахара. Доставка по всей России.">
     
+    <!-- Подключаем уютный рукописный шрифт для логотипа -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+
     <!-- Фавикон -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
 
@@ -26,14 +31,23 @@
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
         /* --- ШАПКА --- */
-        header { background-color: var(--white); padding: 10px 0; border-bottom: 2px solid var(--light-green); text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .logo-container { display: flex; align-items: center; justify-content: center; gap: 15px; }
+        header { background-color: var(--white); padding: 15px 0; border-bottom: 2px solid var(--light-green); text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo-container { display: flex; align-items: center; justify-content: center; gap: 20px; }
         
-        /* Стили для вашего логотипа */
-        .site-logo { height: 70px; width: auto; object-fit: contain; }
+        /* Увеличенный логотип */
+        .site-logo { height: 110px; width: auto; object-fit: contain; }
         
-        .logo-text { font-size: 28px; font-weight: bold; color: var(--dark-green); letter-spacing: 1px; line-height: 1.1; text-align: left; }
-        .logo-subtext { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); font-weight: bold; }
+        /* Новый уютный рукописный шрифт */
+        .logo-text { 
+            font-family: 'Caveat', cursive; 
+            font-size: 48px; 
+            font-weight: 700; 
+            color: var(--dark-green); 
+            line-height: 0.9; 
+            text-align: left; 
+            margin-bottom: 5px;
+        }
+        .logo-subtext { font-size: 12px; text-transform: uppercase; letter-spacing: 4px; color: var(--accent); font-weight: bold; }
 
         /* --- ГЛАВНЫЙ ЭКРАН --- */
         .hero { background: linear-gradient(135deg, #E8E4D9 0%, var(--kraft-bg) 100%); padding: 80px 0; text-align: center; }
@@ -42,14 +56,7 @@
         .btn { display: inline-block; background-color: var(--dark-green); color: var(--white); padding: 15px 40px; text-decoration: none; border-radius: 30px; font-size: 18px; transition: all 0.3s; border: none; cursor: pointer; font-weight: bold; }
         .btn:hover { background-color: var(--accent); transform: translateY(-2px); }
 
-        /* --- БЛОК О НАС --- */
-        .about { padding: 60px 0; background-color: var(--white); }
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .about-text h2 { font-size: 36px; margin-bottom: 20px; }
-        .about-text p { margin-bottom: 15px; font-size: 17px; color: #444; }
-        .about-image { width: 100%; height: 350px; background-color: #ddd; border-radius: 15px; background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; border: 5px solid var(--kraft-bg); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-
-        /* --- ТОВАРЫ --- */
+        /* --- ТОВАРЫ (ТЕПЕРЬ ВЫШЕ) --- */
         .products { padding: 80px 0; }
         .section-title { text-align: center; font-size: 36px; margin-bottom: 50px; }
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
@@ -67,10 +74,17 @@
         .price { font-size: 20px; font-weight: bold; color: var(--dark-green); margin-bottom: 15px; }
         .price span { font-size: 14px; color: #888; font-weight: normal; }
 
+        /* --- БЛОК О НАС (ТЕПЕРЬ НИЖЕ) --- */
+        .about { padding: 80px 0; background-color: var(--white); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .about-text h2 { font-size: 36px; margin-bottom: 20px; }
+        .about-text p { margin-bottom: 15px; font-size: 17px; color: #444; }
+        .about-image { width: 100%; height: 350px; background-color: #ddd; border-radius: 15px; background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; border: 5px solid var(--kraft-bg); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
         /* --- ДОСТАВКА И ОПЛАТА --- */
-        .delivery-payment { background-color: var(--white); padding: 60px 0; }
+        .delivery-payment { background-color: var(--kraft-bg); padding: 60px 0; }
         .delivery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .delivery-card { background-color: var(--kraft-bg); padding: 30px; border-radius: 15px; border-left: 5px solid var(--dark-green); }
+        .delivery-card { background-color: var(--white); padding: 30px; border-radius: 15px; border-left: 5px solid var(--dark-green); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .delivery-card h3 { font-size: 24px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
         .delivery-card ul { list-style: none; }
         .delivery-card li { margin-bottom: 10px; font-size: 16px; display: flex; align-items: flex-start; gap: 10px; }
@@ -109,8 +123,9 @@
             .about-grid, .delivery-grid { grid-template-columns: 1fr; }
             .about-image { height: 250px; order: -1; }
             .form-wrapper { padding: 20px; }
-            .site-logo { height: 50px; }
-            .logo-text { font-size: 20px; }
+            .site-logo { height: 70px; }
+            .logo-text { font-size: 32px; }
+            .logo-container { gap: 10px; }
             .floating-tg { bottom: 20px; right: 20px; width: 50px; height: 50px; }
         }
     </style>
@@ -120,7 +135,6 @@
     <header>
         <div class="container">
             <div class="logo-container">
-                <!-- ТУТ ВАШ ЛОГОТИП. Убедитесь, что файл logo.png загружен в репозиторий -->
                 <img src="logo.png" alt="Раздольненские традиции" class="site-logo">
                 <div>
                     <div class="logo-text">Раздольненские</div>
@@ -138,26 +152,15 @@
         </div>
     </section>
 
-    <section class="about">
-        <div class="container about-grid">
-            <div class="about-text">
-                <h2>Сделано с душой в селе Раздольное</h2>
-                <p>Мы — семейная ферма, которая бережно хранит традиции наших бабушек. Мы не используем химикаты, сахар или консерванты. Только отборные фрукты и ягоды, выращенные на родной земле.</p>
-                <p>Наши фрипсы сушатся при низкой температуре, чтобы сохранить максимум витаминов. А пастила готовится по старинным рецептам без добавления сахара. Это идеальный перекус для всей семьи.</p>
-                <a href="#order-form" class="btn" style="margin-top: 15px; padding: 10px 30px; font-size: 16px;">Попробовать вкус детства</a>
-            </div>
-            <div class="about-image" title="Наше село"></div>
-        </div>
-    </section>
-
+    <!-- ТОВАРЫ ПОДНЯТЫ НАВЕРХ -->
     <section class="products" id="catalog">
         <div class="container">
             <h2 class="section-title">Наша продукция</h2>
             <div class="product-grid">
                 
-                <!-- Товар 1: Яблочные фрипсы (Фото: сушеные яблоки) -->
+                <!-- Товар 1 -->
                 <div class="product-card">
-                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1599819457658-8ebc8d0b0d29?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="product-img" style="background-image: url('fripsy_yabloko.jpg');"></div>
                     <div class="product-info">
                         <h3>Фрипсы яблочные</h3>
                         <p>Хрустящие чипсы из спелых яблок. Без сахара и консервантов.</p>
@@ -171,9 +174,9 @@
                     </div>
                 </div>
 
-                <!-- Товар 2: Банановые фрипсы (Фото: банановые чипсы) -->
+                <!-- Товар 2 -->
                 <div class="product-card">
-                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1608686207856-001b95cf60ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="product-img" style="background-image: url('fripsy_banan.jpg');"></div>
                     <div class="product-info">
                         <h3>Фрипсы банановые</h3>
                         <p>Сладкие и питательные снеки из отборных бананов.</p>
@@ -187,9 +190,9 @@
                     </div>
                 </div>
 
-                <!-- Товар 3: Апельсиновые фрипсы (Фото: сушеные апельсины) -->
+                <!-- Товар 3 -->
                 <div class="product-card">
-                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1582979512210-99b6a53386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="product-img" style="background-image: url('fripsy_apelsin.jpg');"></div>
                     <div class="product-info">
                         <h3>Фрипсы апельсиновые</h3>
                         <p>Яркий цитрусовый вкус и аромат. Натуральный источник витамина С.</p>
@@ -203,9 +206,9 @@
                     </div>
                 </div>
 
-                <!-- Товар 4: Пастила классическая (Фото: пастила/фруктовая паста) -->
+                <!-- Товар 4 -->
                 <div class="product-card">
-                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1606313564200-e75d5e30476c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="product-img" style="background-image: url('pastila_klassika.jpg');"></div>
                     <div class="product-info">
                         <h3>Пастила классическая</h3>
                         <p>Домашняя пастила по старинным рецептам. Натуральная сладость.</p>
@@ -219,9 +222,9 @@
                     </div>
                 </div>
 
-                <!-- Товар 5: Пастила ягодная (Фото: ягодная пастила) -->
+                <!-- Товар 5 -->
                 <div class="product-card">
-                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1563292769-4e05b684851a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="product-img" style="background-image: url('pastila_yagoda.jpg');"></div>
                     <div class="product-info">
                         <h3>Пастила ягодная</h3>
                         <p>Нежный вкус лесных ягод. Без добавления сахара.</p>
@@ -235,9 +238,9 @@
                     </div>
                 </div>
 
-                <!-- Товар 6: Сухофрукты (Фото: курага и чернослив) -->
+                <!-- Товар 6 -->
                 <div class="product-card">
-                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1596484552993-9d1fb66a7a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="product-img" style="background-image: url('suhofrukty.jpg');"></div>
                     <div class="product-info">
                         <h3>Сухофрукты</h3>
                         <p>Отборная курага и чернослив. Вяленые на солнце, без химии.</p>
@@ -252,6 +255,19 @@
                 </div>
 
             </div>
+        </div>
+    </section>
+
+    <!-- БЛОК О НАС ТЕПЕРЬ НИЖЕ ТОВАРОВ -->
+    <section class="about">
+        <div class="container about-grid">
+            <div class="about-text">
+                <h2>Сделано с душой в селе Раздольное</h2>
+                <p>Мы — семейная ферма, которая бережно хранит традиции наших бабушек. Мы не используем химикаты, сахар или консерванты. Только отборные фрукты и ягоды, выращенные на родной земле.</p>
+                <p>Наши фрипсы сушатся при низкой температуре, чтобы сохранить максимум витаминов. А пастила готовится по старинным рецептам без добавления сахара. Это идеальный перекус для всей семьи.</p>
+                <a href="#order-form" class="btn" style="margin-top: 15px; padding: 10px 30px; font-size: 16px;">Попробовать вкус детства</a>
+            </div>
+            <div class="about-image" title="Наше село"></div>
         </div>
     </section>
 
