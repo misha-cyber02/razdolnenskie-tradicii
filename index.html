@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 
     <!-- Фавикон -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%232E4A32%22><path d=%22M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22l1-2.3A4.49,4.49 0 0,0 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.5,17 5,17C6.5,17 8,16 9,14C10,12 12,10 14,9C16,8 18,7 17,8Z%22/></svg>">
 
     <style>
         /* --- ЦВЕТОВАЯ ПАЛИТРА --- */
@@ -23,13 +23,16 @@
             --text-dark: #1A1A1A;
             --white: #FFFFFF;
             --accent: #D4A373;
-            --placeholder-bg: #E5DCCB; /* Цвет заглушки для фото */
+            --placeholder-bg: #E5DCCB;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: var(--kraft-bg); color: var(--text-dark); line-height: 1.6; padding-bottom: 60px; scroll-behavior: smooth; }
         h1, h2, h3 { font-family: 'Georgia', serif; color: var(--dark-green); }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* Общие стили для всех SVG-иконок */
+        .svg-icon { width: 24px; height: 24px; fill: currentColor; display: inline-block; vertical-align: middle; }
 
         /* --- ШАПКА И НАВИГАЦИЯ --- */
         header { background-color: var(--white); padding: 10px 0; border-bottom: 2px solid var(--light-green); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
@@ -40,8 +43,9 @@
         
         /* Меню навигации */
         .nav-menu { display: flex; justify-content: center; gap: 30px; border-top: 1px solid #eee; padding-top: 15px; }
-        .nav-menu a { text-decoration: none; color: var(--dark-green); font-weight: bold; font-size: 16px; transition: color 0.3s; }
+        .nav-menu a { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--dark-green); font-weight: bold; font-size: 16px; transition: color 0.3s; }
         .nav-menu a:hover { color: var(--accent); }
+        .nav-menu a:hover .svg-icon { fill: var(--accent); }
 
         /* --- ГЛАВНЫЙ ЭКРАН --- */
         .hero { background: linear-gradient(135deg, #E8E4D9 0%, var(--kraft-bg) 100%); padding: 80px 0; text-align: center; }
@@ -53,11 +57,16 @@
         /* --- КАТАЛОГ ТОВАРОВ --- */
         .category-section { padding: 60px 0 20px; }
         .category-title { font-size: 36px; text-align: center; margin-bottom: 40px; display: flex; align-items: center; justify-content: center; gap: 15px; }
+        .category-title .svg-icon { width: 40px; height: 40px; fill: var(--accent); }
+        
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         
-        .product-card { background-color: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-bottom: 5px solid var(--light-green); transition: transform 0.3s; display: flex; flex-direction: column; }
+        .product-card { background-color: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-bottom: 5px solid var(--light-green); transition: transform 0.3s; display: flex; flex-direction: column; position: relative; }
         .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         
+        /* Бейдж "Хит" для подарочного набора */
+        .badge { position: absolute; top: 15px; right: -30px; background: var(--accent); color: var(--white); padding: 5px 30px; transform: rotate(45deg); font-size: 12px; font-weight: bold; text-transform: uppercase; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+
         /* Временная заглушка для фото */
         .product-img-placeholder { width: 100%; height: 220px; background-color: var(--placeholder-bg); display: flex; align-items: center; justify-content: center; color: #888; font-weight: bold; font-size: 18px; border-bottom: 1px dashed #ccc; }
         
@@ -83,7 +92,8 @@
         .delivery-payment { background-color: var(--kraft-bg); padding: 60px 0; }
         .delivery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
         .delivery-card { background-color: var(--white); padding: 30px; border-radius: 15px; border-left: 5px solid var(--dark-green); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .delivery-card h3 { font-size: 24px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .delivery-card h3 { font-size: 24px; margin-bottom: 15px; display: flex; align-items: center; gap: 12px; }
+        .delivery-card h3 .svg-icon { width: 32px; height: 32px; fill: var(--accent); }
         .delivery-card ul { list-style: none; }
         .delivery-card li { margin-bottom: 10px; font-size: 16px; display: flex; align-items: flex-start; gap: 10px; }
         .delivery-card li::before { content: "✓"; color: var(--dark-green); font-weight: bold; }
@@ -125,6 +135,8 @@
             .logo-text { font-size: 32px; }
             .header-top { gap: 10px; }
             .nav-menu { flex-wrap: wrap; gap: 15px; }
+            .category-title { font-size: 28px; }
+            .category-title .svg-icon { width: 30px; height: 30px; }
             .floating-tg { bottom: 20px; right: 20px; width: 50px; height: 50px; }
         }
     </style>
@@ -141,10 +153,22 @@
                 </div>
             </div>
             <nav class="nav-menu">
-                <a href="#frips">🍎 Фрипсы</a>
-                <a href="#pastila">🍬 Пастила</a>
-                <a href="#suhofrukty">🍇 Сухофрукты</a>
-                <a href="#order-form" style="color: var(--accent);">📞 Заказать звонок</a>
+                <a href="#frips">
+                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.56-1.702z"/></svg>
+                    Фрипсы
+                </a>
+                <a href="#pastila">
+                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/></svg>
+                    Пастила
+                </a>
+                <a href="#suhofrukty">
+                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M16,5A2,2 0 0,1 18,7C18,8.1 17.1,9 16,9A2,2 0 0,1 14,7C14,5.9 14.9,5 16,5M8,5A2,2 0 0,1 10,7C10,8.1 9.1,9 8,9A2,2 0 0,1 6,7C6,5.9 6.9,5 8,5M12,7A2,2 0 0,1 14,9C14,10.1 13.1,11 12,11A2,2 0 0,1 10,9C10,7.9 10.9,7 12,7M16,11A2,2 0 0,1 18,13C18,14.1 17.1,15 16,15A2,2 0 0,1 14,13C14,11.9 14.9,11 16,11M8,11A2,2 0 0,1 10,13C10,14.1 9.1,15 8,15A2,2 0 0,1 6,13C6,11.9 6.9,11 8,11M12,13A2,2 0 0,1 14,15C14,16.1 13.1,17 12,17A2,2 0 0,1 10,15C10,13.9 10.9,13 12,13M12,19A2,2 0 0,1 14,21C14,22.1 13.1,23 12,23A2,2 0 0,1 10,21C10,19.9 10.9,19 12,19Z"/></svg>
+                    Сухофрукты
+                </a>
+                <a href="#order-form" style="color: var(--accent);">
+                    <svg class="svg-icon" style="fill: var(--accent);" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
+                    Заказать звонок
+                </a>
             </nav>
         </div>
     </header>
@@ -157,21 +181,30 @@
         </div>
     </section>
 
-    <!-- КОНТЕЙНЕРЫ ДЛЯ КАТЕГОРИЙ (Заполняются через JS) -->
+    <!-- КОНТЕЙНЕРЫ ДЛЯ КАТЕГОРИЙ -->
     <div class="container">
         
         <section id="frips" class="category-section">
-            <h2 class="category-title">🍎 Наши фрипсы</h2>
+            <h2 class="category-title">
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.56-1.702z"/></svg>
+                Наши фрипсы
+            </h2>
             <div class="product-grid" id="grid-frips"></div>
         </section>
 
         <section id="pastila" class="category-section">
-            <h2 class="category-title">🍬 Наша пастила</h2>
+            <h2 class="category-title">
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/></svg>
+                Наша пастила
+            </h2>
             <div class="product-grid" id="grid-pastila"></div>
         </section>
 
         <section id="suhofrukty" class="category-section">
-            <h2 class="category-title">🍇 Наши сухофрукты</h2>
+            <h2 class="category-title">
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M16,5A2,2 0 0,1 18,7C18,8.1 17.1,9 16,9A2,2 0 0,1 14,7C14,5.9 14.9,5 16,5M8,5A2,2 0 0,1 10,7C10,8.1 9.1,9 8,9A2,2 0 0,1 6,7C6,5.9 6.9,5 8,5M12,7A2,2 0 0,1 14,9C14,10.1 13.1,11 12,11A2,2 0 0,1 10,9C10,7.9 10.9,7 12,7M16,11A2,2 0 0,1 18,13C18,14.1 17.1,15 16,15A2,2 0 0,1 14,13C14,11.9 14.9,11 16,11M8,11A2,2 0 0,1 10,13C10,14.1 9.1,15 8,15A2,2 0 0,1 6,13C6,11.9 6.9,11 8,11M12,13A2,2 0 0,1 14,15C14,16.1 13.1,17 12,17A2,2 0 0,1 10,15C10,13.9 10.9,13 12,13M12,19A2,2 0 0,1 14,21C14,22.1 13.1,23 12,23A2,2 0 0,1 10,21C10,19.9 10.9,19 12,19Z"/></svg>
+                Наши сухофрукты
+            </h2>
             <div class="product-grid" id="grid-suhofrukty"></div>
         </section>
 
@@ -195,7 +228,10 @@
             <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">Доставка и оплата</h2>
             <div class="delivery-grid">
                 <div class="delivery-card">
-                    <h3>🚚 Доставка</h3>
+                    <h3>
+                        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M18,18.5A1.5,1.5 0 0,1 16.5,17A1.5,1.5 0 0,1 18,15.5A1.5,1.5 0 0,1 19.5,17A1.5,1.5 0 0,1 18,18.5M6,18.5A1.5,1.5 0 0,1 4.5,17A1.5,1.5 0 0,1 6,15.5A1.5,1.5 0 0,1 7.5,17A1.5,1.5 0 0,1 6,18.5M20,8H17V4H3C1.89,4 1,4.89 1,6V17H3A3,3 0 0,0 6,20A3,3 0 0,0 9,17H15A3,3 0 0,0 18,20A3,3 0 0,0 21,17H23V12L20,8M19,9.5L21.5,12.5H17V9.5H19Z"/></svg>
+                        Доставка
+                    </h3>
                     <ul>
                         <li><strong>По России:</strong> Почта России или СДЭК (от 300 ₽).</li>
                         <li><strong>По городу:</strong> Курьером — бесплатно при заказе от 1500 ₽.</li>
@@ -204,7 +240,10 @@
                     </ul>
                 </div>
                 <div class="delivery-card">
-                    <h3>💳 Оплата</h3>
+                    <h3>
+                        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg>
+                        Оплата
+                    </h3>
                     <ul>
                         <li><strong>При получении:</strong> Наличными или картой курьеру.</li>
                         <li><strong>Переводом:</strong> На карту Сбербанка или по СБП.</li>
@@ -264,14 +303,21 @@
 
     <!-- БАЗА ДАННЫХ ТОВАРОВ И ЛОГИКА -->
     <script>
-        // 1. Наша база данных товаров (можно легко добавлять новые)
-        // image: сюда вы сможете вписать ссылку на реальное фото, когда оно появится (например: 'fripsy_klubnika.jpg')
         const catalog = {
             frips: [
                 { name: "Яблочные", desc: "Хрустящие чипсы из спелых яблок. Без сахара и консервантов.", price30: 90, image: "" },
                 { name: "Банановые", desc: "Сладкие и питательные снеки из отборных бананов.", price30: 100, image: "" },
                 { name: "Апельсиновые", desc: "Яркий цитрусовый вкус. Источник витамина С.", price30: 120, image: "" },
-                { name: "Клубничные", desc: "Нежный ягодный вкус. Любимый перекус детей.", price30: 150, image: "" }
+                { name: "Клубничные", desc: "Нежный ягодный вкус. Любимый перекус детей.", price30: 150, image: "" },
+                /* Новый товар: Подарочный набор */
+                { 
+                    name: "Подарочный набор Ассорти", 
+                    desc: "5 разных вкусов фрипсов по 30 г в красивой упаковке. Идеальный подарок!", 
+                    price30: 110, 
+                    weights: [30, 150], /* Здесь мы задаем свои варианты веса */
+                    image: "",
+                    badge: "Хит продаж" /* Добавим красивый бейдж */
+                }
             ],
             pastila: [
                 { name: "Классическая", desc: "Домашняя пастила по старинным рецептам. Натуральная сладость.", price30: 110, image: "" },
@@ -287,42 +333,50 @@
             ]
         };
 
-        // 2. Функция генерации карточек
         function renderProducts(categoryKey, containerId) {
             const container = document.getElementById(containerId);
             if (!container) return;
             
             container.innerHTML = catalog[categoryKey].map(product => {
-                // Если фото нет, показываем заглушку
                 const imgHTML = product.image 
                     ? `<div class="product-img" style="background-image: url('${product.image}');"></div>` 
                     : `<div class="product-img-placeholder">Фото скоро</div>`;
 
+                const badgeHTML = product.badge ? `<div class="badge">${product.badge}</div>` : '';
+
+                // Логика генерации кнопок веса
+                const weights = product.weights || [30, 50, 100]; // Если веса не заданы, ставим стандартные
+                const defaultWeight = weights[0];
+                const buttonsHTML = weights.map((w, index) => 
+                    `<button class="weight-btn ${index === 0 ? 'active' : ''}" data-weight="${w}">${w} г</button>`
+                ).join('');
+
+                // Расчет стартовой цены
+                const defaultPrice = Math.round((product.price30 / 30) * defaultWeight / 10) * 10;
+
                 return `
                 <div class="product-card">
+                    ${badgeHTML}
                     ${imgHTML}
                     <div class="product-info">
                         <h3>${product.name}</h3>
                         <p>${product.desc}</p>
                         <div class="weight-selector" data-base-price="${product.price30}">
-                            <button class="weight-btn active" data-weight="30">30 г</button>
-                            <button class="weight-btn" data-weight="50">50 г</button>
-                            <button class="weight-btn" data-weight="100">100 г</button>
+                            ${buttonsHTML}
                         </div>
-                        <div class="price">${product.price30} ₽ <span>/ 30 г</span></div>
-                        <button class="btn order-btn" style="padding: 10px; font-size: 14px; margin-top: auto;" data-product="${product.name} 30г">Заказать</button>
+                        <div class="price">${defaultPrice} ₽ <span>/ ${defaultWeight} г</span></div>
+                        <button class="btn order-btn" style="padding: 10px; font-size: 14px; margin-top: auto;" data-product="${product.name} ${defaultWeight}г">Заказать</button>
                     </div>
                 </div>
                 `;
             }).join('');
         }
 
-        // Запускаем генерацию для всех категорий
         renderProducts('frips', 'grid-frips');
         renderProducts('pastila', 'grid-pastila');
         renderProducts('suhofrukty', 'grid-suhofrukty');
 
-        // 3. Логика выбора веса и отправки
+        // Логика выбора веса и отправки (осталась прежней, но работает с новыми весами)
         document.querySelectorAll('.product-card').forEach(card => {
             const weightBtns = card.querySelectorAll('.weight-btn');
             const priceEl = card.querySelector('.price');
@@ -337,7 +391,6 @@
                     const weight = parseInt(btn.dataset.weight);
                     const basePrice30 = parseInt(card.querySelector('.weight-selector').dataset.basePrice);
                     
-                    // Пересчет цены
                     let newPrice = Math.round((basePrice30 / 30) * weight / 10) * 10;
                     
                     priceEl.innerHTML = `${newPrice} ₽ <span>/ ${weight} г</span>`;
@@ -352,7 +405,6 @@
             });
         });
 
-        // 4. Инициализация Formspree
         window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
         formspree('initForm', { 
             formElement: '#callback-form', 
