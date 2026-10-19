@@ -168,9 +168,8 @@
         .weight-btn { padding: 5px 15px; border: 1px solid var(--light-green); background: transparent; border-radius: 20px; cursor: pointer; font-weight: bold; color: var(--dark-green); transition: all 0.2s; font-size: 14px; }
         .weight-btn.active { background: var(--dark-green); color: var(--white); border-color: var(--dark-green); }
         
-        /* НОВЫЕ СТИЛИ ДЛЯ ЦЕН СО СКИДКОЙ */
+        /* СТИЛИ ДЛЯ ЦЕН (без зачёркивания) */
         .price { margin-bottom: 15px; }
-        .old-price { text-decoration: line-through; color: #999; font-size: 14px; margin-right: 8px; }
         .new-price { font-size: 20px; font-weight: bold; color: var(--dark-green); }
         .new-price span { font-size: 14px; color: #888; font-weight: normal; }
 
@@ -251,7 +250,7 @@
         /* НОВЫЕ СТИЛИ ДЛЯ ДОСТАВКИ */
         .delivery-options { margin-bottom: 20px; background: var(--kraft-bg); padding: 15px; border-radius: 8px; border: 1px dashed var(--light-green); }
         .delivery-options h4 { margin-bottom: 10px; color: var(--dark-green); }
-        .delivery-options label { display: block; margin-bottom: 8px; font-weight: normal; cursor: pointer; }
+        .delivery-options label { display: block; margin-bottom: 8px; font-weight: normal; cursor: pointer; font-size: 14px; }
         .delivery-options input[type="radio"] { margin-right: 8px; accent-color: var(--dark-green); }
         .delivery-info { margin-top: 15px; font-weight: bold; color: var(--dark-green); font-size: 14px; }
 
@@ -400,7 +399,6 @@
             }
 
             .new-price { font-size: 14px; }
-            .old-price { font-size: 11px; }
             .new-price span { font-size: 10px; }
 
             .order-btn {
@@ -589,7 +587,7 @@
                     <!-- БЛОК ВЫБОРА ДОСТАВКИ -->
                     <div class="delivery-options">
                         <h4>Способ получения</h4>
-                        <label><input type="radio" name="delivery" value="rostov" checked> Доставка по Ростову-на-Дону</label>
+                        <label><input type="radio" name="delivery" value="rostov" checked> Доставка по городу (300 ₽, от 1500 ₽ — бесплатно)</label>
                         <label><input type="radio" name="delivery" value="pickup"> Самовывоз (скидка 5%)</label>
                         <label><input type="radio" name="delivery" value="other"> Доставка в другой город</label>
                         
@@ -749,9 +747,10 @@
                     </div>
                 ` : '';
 
+                // ЦЕНА БЕЗ ЗАЧЁРКИВАНИЯ
                 const priceDisplay = hasWeights 
-                    ? `<span class="old-price">${Math.round(defaultPrice * 1.1)} ₽</span> <span class="new-price">${defaultPrice} ₽ <span>/ ${defaultWeight} ${unit}</span></span>`
-                    : `<span class="old-price">${Math.round(defaultPrice * 1.1)} ₽</span> <span class="new-price">${defaultPrice} ₽ <span>/ ${unit}</span></span>`;
+                    ? `<span class="new-price">${defaultPrice} ₽ <span>/ ${defaultWeight} ${unit}</span></span>`
+                    : `<span class="new-price">${defaultPrice} ₽ <span>/ ${unit}</span></span>`;
                 
                 return `
                 <div class="product-card" data-id="${categoryKey}_${index}" data-unit="${unit}" data-has-weights="${hasWeights}" data-product-name="${product.name}">
@@ -839,8 +838,8 @@
                         
                         currentPrice = Math.round((basePrice / 30) * currentWeight / 10) * 10;
                         
-                        const oldPrice = Math.round(currentPrice * 1.1);
-                        priceEl.innerHTML = `<span class="old-price">${oldPrice} ₽</span> <span class="new-price">${currentPrice} ₽ <span>/ ${currentWeight} ${unit}</span></span>`;
+                        // ОБНОВЛЕНИЕ ЦЕНЫ БЕЗ ЗАЧЁРКИВАНИЯ
+                        priceEl.innerHTML = `<span class="new-price">${currentPrice} ₽ <span>/ ${currentWeight} ${unit}</span></span>`;
                         
                         updateProductCards(); // Обновить счётчик в карточке
                     });
@@ -945,10 +944,10 @@
             if (selectedDelivery === 'rostov') {
                 if (totalPrice >= 1500) {
                     deliveryCost = 0;
-                    deliveryText = 'Доставка по Ростову-на-Дону: бесплатно (заказ от 1500 ₽)';
+                    deliveryText = 'Доставка по городу: БЕСПЛАТНО (заказ от 1500 ₽)';
                 } else {
                     deliveryCost = 300;
-                    deliveryText = 'Доставка по Ростову-на-Дону: 300 ₽ (заказ до 1500 ₽)';
+                    deliveryText = 'Доставка по городу: 300 ₽ (заказ до 1500 ₽)';
                 }
                 totalAmount = totalPrice + deliveryCost;
                 otherCityBlock.style.display = 'none';
@@ -986,11 +985,11 @@
                 orderText += `------------------------------\n`;
                 orderText += `Сумма товаров: ${totalPrice} ₽\n`;
                 if (selectedDelivery === 'rostov') {
-                    orderText += `Доставка: ${deliveryCost} ₽\n`;
+                    orderText += `Доставка по городу: ${deliveryCost} ₽\n`;
                 } else if (selectedDelivery === 'pickup') {
                     orderText += `Скидка за самовывоз: -${Math.round(totalPrice * 0.05)} ₽\n`;
                 } else {
-                    orderText += `Доставка: уточнит менеджер\n`;
+                    orderText += `Доставка в другой город: уточнит менеджер\n`;
                 }
                 orderText += `Итого к оплате: ${totalAmount} ₽`;
                 
