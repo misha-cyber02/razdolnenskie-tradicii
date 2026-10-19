@@ -38,10 +38,65 @@
         .logo-text { font-family: 'Caveat', cursive; font-size: 42px; font-weight: 700; color: var(--dark-green); line-height: 0.9; text-align: left; margin-bottom: 5px; }
         .logo-subtext { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); font-weight: bold; }
         
-        .nav-menu { display: flex; justify-content: center; gap: 30px; border-top: 1px solid #eee; padding-top: 15px; }
+        .nav-menu { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 30px; border-top: 1px solid #eee; padding-top: 15px; }
         .nav-menu a { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--dark-green); font-weight: bold; font-size: 16px; transition: color 0.3s; }
         .nav-menu a:hover { color: var(--accent); }
         .nav-menu a:hover .svg-icon { fill: var(--accent); }
+
+        /* --- БЛОК С МЕССЕНДЖЕРАМИ --- */
+        .messenger-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-left: 20px;
+            padding-left: 20px;
+            border-left: 1px solid #ddd;
+        }
+
+        .messenger-label {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--dark-green);
+            white-space: nowrap;
+        }
+
+        .messenger-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--kraft-bg);
+            transition: background 0.2s;
+            text-decoration: none;
+        }
+
+        .messenger-icon:hover {
+            background-color: var(--light-green);
+        }
+
+        .messenger-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--dark-green);
+        }
+
+        .messenger-icon:hover svg {
+            fill: white;
+        }
+
+        .messenger-phone {
+            font-weight: bold;
+            color: var(--dark-green);
+            text-decoration: none;
+            font-size: 15px;
+            white-space: nowrap;
+        }
+
+        .messenger-phone:hover {
+            color: var(--accent);
+        }
 
         /* --- ГЛАВНЫЙ ЭКРАН --- */
         .hero { background: linear-gradient(135deg, #E8E4D9 0%, var(--kraft-bg) 100%); padding: 80px 0; text-align: center; }
@@ -167,6 +222,17 @@
             .logo-text { font-size: 32px; }
             .header-top { gap: 10px; }
             .nav-menu { flex-wrap: wrap; gap: 15px; }
+            .messenger-block {
+                margin-left: 0;
+                padding-left: 0;
+                border-left: none;
+                margin-top: 10px;
+                width: 100%;
+                justify-content: center;
+            }
+            .messenger-label {
+                display: none;
+            }
             .category-title { font-size: 28px; }
             .category-title .svg-icon { width: 30px; height: 30px; }
             .floating-tg { bottom: 20px; right: 20px; width: 50px; height: 50px; }
@@ -187,7 +253,6 @@
                 </div>
             </div>
             <nav class="nav-menu">
-                <!-- Иконка Apple -->
                 <a href="#frips">
                     <svg class="svg-icon" viewBox="0 0 448 512"><path d="M224 112c-8.8 0-16-7.2-16-16V80c0-44.2 35.8-80 80-80h16c8.8 0 16 7.2 16 16v16c0 44.2-35.8 80-80 80h-16zM0 288c0-76.3 35.7-160 112-160 27.3 0 59.7 10.3 82.7 19.3 18.8 7.3 39.9 7.3 58.7 0 22.9-8.9 55.4-19.3 82.7-19.3 76.3 0 112 83.7 112 160 0 128-80 224-160 224-16.5 0-38.1-6.6-51.5-11.3-8.1-2.8-16.9-2.8-25 0-13.4 4.7-35 11.3-51.5 11.3C80 512 0 416 0 288z"/></svg>
                     Фрипсы
@@ -204,6 +269,17 @@
                     <svg class="svg-icon" style="fill: var(--accent);" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
                     Заказать звонок
                 </a>
+                <!-- Блок с мессенджерами -->
+                <div class="messenger-block">
+                    <span class="messenger-label">Заказ через мессенджеры:</span>
+                    <a href="https://t.me/MiShcko" target="_blank" class="messenger-icon" title="Telegram">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.52-1.4.51-.46-.01-1.35-.26-2.01-.48-.81-.27-1.46-.42-1.4-.88.03-.24.35-.48.96-.73 3.74-1.63 6.23-2.7 7.47-3.23 3.56-1.48 4.3-1.74 4.78-1.75.11 0 .35.03.5.15.13.1.17.24.18.34 0 .07.01.2 0 .32z"/></svg>
+                    </a>
+                    <a href="https://max.ru/" target="_blank" class="messenger-icon" title="Max">
+                        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+                    </a>
+                    <a href="tel:+79064287571" class="messenger-phone">+7 (906) 428-75-71</a>
+                </div>
             </nav>
         </div>
     </header>
@@ -323,7 +399,6 @@
     <footer>
         <div class="container">
             <p>&copy; 2024 Раздольненские традиции. Натуральные продукты из села.</p>
-            <!-- ЗАМЕНИТЕ "Самозанятый [ФИО]" НА СВОИ ДАННЫЕ -->
             <p>Самозанятый [Ваше ФИО] | Доставка по всей России</p>
             <p>Телефон: +7 (906) 428-75-71</p>
         </div>
@@ -346,7 +421,6 @@
         </div>
     </div>
 
-    <!-- МОДАЛЬНОЕ ОКНО С СОГЛАСИЕМ (ДЛЯ САМОЗАНЯТОГО) -->
     <div class="cart-modal" id="privacy-modal">
         <div class="cart-content">
             <button class="close-cart" id="close-privacy">&times;</button>
@@ -362,7 +436,7 @@
                 
                 <p><strong>4. Способы обработки:</strong> как с использованием средств автоматизации (сервисы приема заявок Formspree, мессенджер Telegram), так и без их использования.</p>
                 
-                <p><strong>5. Срок действия и отзыв согласия:</strong> Согласие действует до момента его отзыва. Я вправе в любой момент отозвать настоящее согласие, направив уведомление на электронную почту <a href="mailto:Info@frips61.ru">Info@frips61.ru</a> или через Telegram.</p>
+                <p><strong>5. Срок действия и отзыв согласия:</strong> Согласие действует до момента его отзыва. Я вправе в любой момент отозвать настоящее согласие, направив уведомление на электронную почту <strong>[Ваш Email]</strong> или через Telegram.</p>
                 
                 <p><strong>6. Подтверждение:</strong> Я подтверждаю, что ознакомлен(а) с настоящим согласием, мне понятны мои права, предусмотренные Федеральным законом № 152-ФЗ, и я согласен(на) с обработкой указанных данных.</p>
             </div>
@@ -374,7 +448,6 @@
     </a>
 
     <script>
-        // 1. БАЗА ДАННЫХ ТОВАРОВ
         const catalog = {
             frips: [
                 { name: "Яблочные", desc: "Хрустящие чипсы из спелых яблок. Без сахара и консервантов.", price30: 90, image: "" },
@@ -397,7 +470,6 @@
             ]
         };
 
-        // 2. ГЕНЕРАЦИЯ КАРТОЧЕК
         function renderProducts(categoryKey, containerId) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -436,7 +508,6 @@
         renderProducts('pastila', 'grid-pastila');
         renderProducts('suhofrukty', 'grid-suhofrukty');
 
-        // 3. ЛОГИКА КОРЗИНЫ
         let cart = [];
         const cartModal = document.getElementById('cart-modal');
         const cartItemsContainer = document.getElementById('cart-items');
@@ -454,7 +525,6 @@
             document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
         });
 
-        // Модальное окно политики
         const privacyModal = document.getElementById('privacy-modal');
         document.getElementById('open-privacy').addEventListener('click', (e) => {
             e.preventDefault();
@@ -463,7 +533,6 @@
         document.getElementById('close-privacy').addEventListener('click', () => privacyModal.classList.remove('active'));
         privacyModal.addEventListener('click', (e) => { if(e.target === privacyModal) privacyModal.classList.remove('active'); });
 
-        // Добавление в корзину
         document.querySelectorAll('.product-card').forEach(card => {
             const weightBtns = card.querySelectorAll('.weight-btn');
             const priceEl = card.querySelector('.price');
@@ -567,7 +636,6 @@
             updateCartUI();
         };
 
-        // 4. ИНИЦИАЛИЗАЦИЯ FORMSPREE
         window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
         formspree('initForm', { 
             formElement: '#callback-form', 
