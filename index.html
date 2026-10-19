@@ -168,7 +168,6 @@
         .weight-btn { padding: 5px 15px; border: 1px solid var(--light-green); background: transparent; border-radius: 20px; cursor: pointer; font-weight: bold; color: var(--dark-green); transition: all 0.2s; font-size: 14px; }
         .weight-btn.active { background: var(--dark-green); color: var(--white); border-color: var(--dark-green); }
         
-        /* СТИЛИ ДЛЯ ЦЕН (без зачёркивания) */
         .price { margin-bottom: 15px; }
         .new-price { font-size: 20px; font-weight: bold; color: var(--dark-green); }
         .new-price span { font-size: 14px; color: #888; font-weight: normal; }
@@ -211,7 +210,6 @@
             pointer-events: none;
         }
 
-        /* Индикатор товара в корзине */
         .in-cart-indicator {
             font-size: 13px;
             color: var(--accent);
@@ -247,7 +245,6 @@
         .form-cart-summary { display: none; background: var(--kraft-bg); padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; border: 1px dashed var(--light-green); }
         .form-cart-summary strong { display: block; margin-bottom: 5px; color: var(--dark-green); }
 
-        /* НОВЫЕ СТИЛИ ДЛЯ ДОСТАВКИ */
         .delivery-options { margin-bottom: 20px; background: var(--kraft-bg); padding: 15px; border-radius: 8px; border: 1px dashed var(--light-green); }
         .delivery-options h4 { margin-bottom: 10px; color: var(--dark-green); }
         .delivery-options label { display: block; margin-bottom: 8px; font-weight: normal; cursor: pointer; font-size: 14px; }
@@ -267,10 +264,9 @@
 
         .form-wrapper .btn { width: 100%; border-radius: 8px; background-color: var(--dark-green); }
         .form-wrapper .btn:hover { background-color: var(--light-green); }
-
-        .error-msg { color: #d9534f; font-size: 13px; margin-top: 5px; display: block; font-weight: bold; }
-        .form-error { color: #d9534f; text-align: center; margin-top: 15px; font-weight: bold; background-color: #f8d7da; padding: 10px; border-radius: 8px; }
+        
         .success-message { display: none; text-align: center; color: var(--dark-green); font-size: 18px; font-weight: bold; margin-top: 20px; padding: 20px; background-color: #e8f5e9; border-radius: 8px; }
+        .error-message { display: none; text-align: center; color: #d9534f; font-size: 16px; font-weight: bold; margin-top: 20px; padding: 20px; background-color: #f8d7da; border-radius: 8px; }
 
         /* --- ПОДВАЛ --- */
         footer { background-color: #1A1A1A; color: var(--white); text-align: center; padding: 30px 0; font-size: 14px; }
@@ -353,29 +349,15 @@
             .floating-cart { bottom: 20px; left: 20px; width: 50px; height: 50px; }
             .cart-badge { width: 20px; height: 20px; font-size: 11px; }
 
-            /* СЕТКА В 2 КОЛОНКИ И УМЕНЬШЕНИЕ КАРТОЧЕК */
             .product-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
             }
             
-            .product-card {
-                border-bottom-width: 3px;
-                border-radius: 10px;
-            }
-
-            .product-img-placeholder {
-                height: 110px;
-                font-size: 12px;
-            }
-
+            .product-card { border-bottom-width: 3px; border-radius: 10px; }
+            .product-img-placeholder { height: 110px; font-size: 12px; }
             .product-info { padding: 10px; }
-
-            .product-card h3 {
-                font-size: 15px;
-                margin-bottom: 5px;
-            }
-
+            .product-card h3 { font-size: 15px; margin-bottom: 5px; }
             .product-card p {
                 font-size: 11px;
                 margin-bottom: 8px;
@@ -386,40 +368,16 @@
                 overflow: hidden;
             }
 
-            .weight-selector {
-                gap: 4px;
-                margin-bottom: 8px;
-                flex-wrap: wrap;
-            }
-
-            .weight-btn {
-                padding: 3px 6px;
-                font-size: 10px;
-                border-radius: 10px;
-            }
-
+            .weight-selector { gap: 4px; margin-bottom: 8px; flex-wrap: wrap; }
+            .weight-btn { padding: 3px 6px; font-size: 10px; border-radius: 10px; }
             .new-price { font-size: 14px; }
             .new-price span { font-size: 10px; }
+            .order-btn { padding: 6px !important; font-size: 11px !important; border-radius: 15px !important; }
+            .badge { font-size: 9px; padding: 3px 8px; top: 5px; left: 5px; transform: none; }
 
-            .order-btn {
-                padding: 6px !important;
-                font-size: 11px !important;
-                border-radius: 15px !important;
-            }
-
-            .badge {
-                font-size: 9px;
-                padding: 3px 8px;
-                top: 5px;
-                left: 5px;
-                transform: none;
-            }
-
-            /* УМЕНЬШЕНИЕ КОНТРОЛЯ КОЛИЧЕСТВА НА МОБИЛЬНЫХ */
             .qty-control { gap: 4px; margin-bottom: 6px; }
             .qty-btn { width: 22px; height: 22px; font-size: 14px; }
             .qty-input { width: 20px; font-size: 14px; }
-
             .in-cart-indicator { font-size: 10px; margin-bottom: 4px; }
 
             /* ПЛАВНОЕ СВОРАЧИВАНИЕ ШАПКИ */
@@ -471,7 +429,6 @@
                 </a>
                 
                 <div class="nav-actions-group">
-                    <!-- ССЫЛКА С ID ДЛЯ СМЕНЫ ТЕКСТА -->
                     <a href="#order-form" style="color: var(--accent);" id="header-order-link">
                         <svg class="svg-icon" style="fill: var(--accent);" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
                         Заказать звонок
@@ -571,20 +528,11 @@
             
             <div class="form-wrapper">
                 <h3>Оформление заказа</h3>
-                <form id="callback-form" action="https://formspree.io/f/mvkzyyop" method="POST">
-                    <input type="hidden" name="subject" value="Новая заявка с сайта Раздольненские традиции">
+                
+                <form id="callback-form">
                     
-                    <textarea name="order_details" id="form-order-details" style="display: none;">Покупатель пока ничего не выбрал.</textarea>
-                    
-                    <!-- Скрытые поля для доставки -->
-                    <input type="hidden" name="delivery_method" id="delivery-method" value="rostov">
-                    <input type="hidden" name="delivery_city" id="delivery-city" value="">
-                    <input type="hidden" name="delivery_cost" id="delivery-cost" value="0">
-                    <input type="hidden" name="total_amount" id="total-amount" value="0">
-
                     <div class="form-cart-summary" id="form-cart-summary"></div>
 
-                    <!-- БЛОК ВЫБОРА ДОСТАВКИ -->
                     <div class="delivery-options">
                         <h4>Способ получения</h4>
                         <label><input type="radio" name="delivery" value="rostov" checked> Доставка по городу (300 ₽, от 1500 ₽ — бесплатно)</label>
@@ -600,26 +548,23 @@
 
                     <div class="input-group">
                         <label for="name">Ваше имя</label>
-                        <input type="text" id="name" name="name" placeholder="Например, Иван" required data-fs-field>
-                        <span class="error-msg" data-fs-error="name"></span>
+                        <input type="text" id="name" name="name" placeholder="Например, Иван" required>
                     </div>
                     
                     <div class="input-group">
                         <label for="phone">Номер телефона *</label>
-                        <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required data-fs-field>
-                        <span class="error-msg" data-fs-error="phone"></span>
+                        <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
                     </div>
                     
                     <div class="checkbox-group">
-                        <input type="checkbox" id="consent" name="consent" value="Да" required>
+                        <input type="checkbox" id="consent" name="consent" required>
                         <label for="consent">Я даю согласие на <a href="#" id="open-privacy">обработку персональных данных</a></label>
                     </div>
 
-                    <!-- КНОПКА "ОТПРАВИТЬ ЗАЯВКУ" -->
-                    <button type="submit" class="btn" data-fs-submit-btn>Отправить заявку</button>
+                    <button type="submit" class="btn" id="submit-btn">Отправить заявку</button>
                     
-                    <div class="success-message" data-fs-success>Спасибо! Ваша заявка принята. Мы скоро перезвоним!</div>
-                    <div class="form-error" data-fs-error></div>
+                    <div class="success-message" id="success-message">Спасибо! Ваша заявка принята. Мы скоро перезвоним!</div>
+                    <div class="error-message" id="error-message">Произошла ошибка при отправке. Пожалуйста, попробуйте позвонить нам напрямую.</div>
                 </form>
             </div>
         </div>
@@ -663,7 +608,7 @@
                 
                 <p><strong>3. Действия с данными:</strong> сбор, запись, систематизация, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, обезличивание, блокирование, удаление и уничтожение персональных данных.</p>
                 
-                <p><strong>4. Способы обработки:</strong> как с использованием средств автоматизации (сервисы приема заявок Formspree, мессенджер Telegram), так и без их использования.</p>
+                <p><strong>4. Способы обработки:</strong> как с использованием средств автоматизации, так и без их использования.</p>
                 
                 <p><strong>5. Срок действия и отзыв согласия:</strong> Согласие действует до момента его отзыва. Я вправе в любой момент отозвать настоящее согласие, направив уведомление на электронную почту <strong>[Ваш Email]</strong> или через Telegram.</p>
                 
@@ -677,7 +622,15 @@
     </a>
 
     <script>
-        // 1. ЛОГИКА СВОРАЧИВАНИЯ ШАПКИ ПРИ СКРОЛЛЕ (ТОЛЬКО НА ТЕЛЕФОНАХ)
+        // ==========================================
+        // НАСТРОЙКИ TELEGRAM (ВАШИ ДАННЫЕ)
+        // ==========================================
+        const TG_BOT_TOKEN = '8957036644:AAGBlIxHz43RI7MgxGQRDtZsQjelMzVDhZs';
+        const TG_CHAT_ID = '650671695';
+        // ==========================================
+
+
+        // 1. ЛОГИКА СВОРАЧИВАНИЯ ШАПКИ
         window.addEventListener('scroll', function() {
             const header = document.getElementById('main-header');
             if (window.innerWidth <= 768) {
@@ -747,7 +700,6 @@
                     </div>
                 ` : '';
 
-                // ЦЕНА БЕЗ ЗАЧЁРКИВАНИЯ
                 const priceDisplay = hasWeights 
                     ? `<span class="new-price">${defaultPrice} ₽ <span>/ ${defaultWeight} ${unit}</span></span>`
                     : `<span class="new-price">${defaultPrice} ₽ <span>/ ${unit}</span></span>`;
@@ -762,7 +714,6 @@
                         ${weightSelectorHTML}
                         <div class="price" data-base-price="${product.price}">${priceDisplay}</div>
                         
-                        <!-- БЛОК ВЫБОРА КОЛИЧЕСТВА -->
                         <div class="qty-control">
                             <button class="qty-btn qty-minus">−</button>
                             <input type="text" class="qty-input" value="1" readonly>
@@ -787,7 +738,6 @@
         const cartItemsContainer = document.getElementById('cart-items');
         const cartCountEl = document.getElementById('cart-count');
         const cartTotalEl = document.getElementById('cart-total-price');
-        const formOrderDetails = document.getElementById('form-order-details');
         const formCartSummary = document.getElementById('form-cart-summary');
 
         document.getElementById('cart-btn').addEventListener('click', () => cartModal.classList.add('active'));
@@ -799,7 +749,6 @@
             document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
         });
 
-        // Модальное окно политики
         const privacyModal = document.getElementById('privacy-modal');
         document.getElementById('open-privacy').addEventListener('click', (e) => {
             e.preventDefault();
@@ -808,7 +757,6 @@
         document.getElementById('close-privacy').addEventListener('click', () => privacyModal.classList.remove('active'));
         privacyModal.addEventListener('click', (e) => { if(e.target === privacyModal) privacyModal.classList.remove('active'); });
 
-        // Обработка карточек
         document.querySelectorAll('.product-card').forEach(card => {
             const weightBtns = card.querySelectorAll('.weight-btn');
             const priceEl = card.querySelector('.price');
@@ -821,12 +769,10 @@
             const qtyInput = card.querySelector('.qty-input');
             const qtyPlus = card.querySelector('.qty-plus');
             const qtyMinus = card.querySelector('.qty-minus');
-            const inCartIndicator = card.querySelector('.in-cart-indicator');
 
             let currentWeight = hasWeights ? parseInt(weightBtns[0].dataset.weight) : 1;
             let currentPrice = parseInt(priceEl.dataset.basePrice);
 
-            // Выбор веса (только если есть кнопки)
             if (hasWeights) {
                 weightBtns.forEach(btn => {
                     btn.addEventListener('click', () => {
@@ -838,27 +784,22 @@
                         
                         currentPrice = Math.round((basePrice / 30) * currentWeight / 10) * 10;
                         
-                        // ОБНОВЛЕНИЕ ЦЕНЫ БЕЗ ЗАЧЁРКИВАНИЯ
                         priceEl.innerHTML = `<span class="new-price">${currentPrice} ₽ <span>/ ${currentWeight} ${unit}</span></span>`;
-                        
-                        updateProductCards(); // Обновить счётчик в карточке
+                        updateProductCards();
                     });
                 });
             }
 
-            // Кнопка "+"
             qtyPlus.addEventListener('click', () => {
                 let val = parseInt(qtyInput.value) || 1;
                 if (val < 99) qtyInput.value = val + 1;
             });
 
-            // Кнопка "-"
             qtyMinus.addEventListener('click', () => {
                 let val = parseInt(qtyInput.value) || 1;
                 if (val > 1) qtyInput.value = val - 1;
             });
 
-            // Добавление в корзину
             orderBtn.addEventListener('click', () => {
                 const qty = parseInt(qtyInput.value) || 1;
                 addToCart(productName, currentWeight, currentPrice, unit, qty);
@@ -872,7 +813,7 @@
                     orderBtn.style.backgroundColor = "";
                 }, 1500);
                 
-                updateProductCards(); // Обновить счётчик
+                updateProductCards();
             });
         });
 
@@ -887,7 +828,6 @@
             updateCartUI();
         }
 
-        // ОБНОВЛЕНИЕ СЧЁТЧИКОВ В КАРТОЧКАХ
         function updateProductCards() {
             document.querySelectorAll('.product-card').forEach(card => {
                 const productName = card.dataset.productName;
@@ -913,7 +853,6 @@
             });
         }
 
-        // ОБНОВЛЕНИЕ ТЕКСТА ССЫЛКИ В ШАПКЕ
         function updateHeaderLink() {
             const link = document.getElementById('header-order-link');
             if (cart.length > 0) {
@@ -923,7 +862,6 @@
             }
         }
 
-        // ОБНОВЛЕНИЕ ДОСТАВКИ И ИТОГОВ
         function updateDeliveryAndTotals() {
             const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
@@ -959,23 +897,15 @@
                 otherCityBlock.style.display = 'none';
                 cityInput.required = false;
             } else if (selectedDelivery === 'other') {
-                deliveryCost = 0; // неизвестно
+                deliveryCost = 0;
                 totalAmount = totalPrice;
                 deliveryText = 'Доставка в другой город: стоимость уточнит менеджер (оплата на месте)';
                 otherCityBlock.style.display = 'block';
                 cityInput.required = true;
             }
             
-            // Обновляем скрытые поля
-            document.getElementById('delivery-method').value = selectedDelivery;
-            document.getElementById('delivery-city').value = selectedDelivery === 'other' ? cityInput.value : '';
-            document.getElementById('delivery-cost').value = deliveryCost;
-            document.getElementById('total-amount').value = totalAmount;
-            
-            // Обновляем информацию
             deliveryInfo.textContent = deliveryText;
             
-            // Обновляем предпросмотр заказа в форме
             if (cart.length > 0) {
                 let orderText = "Ваш заказ:\n";
                 cart.forEach((item, index) => {
@@ -994,24 +924,20 @@
                 orderText += `Итого к оплате: ${totalAmount} ₽`;
                 
                 formCartSummary.innerHTML = `<strong>Ваш заказ:</strong><br><span style="white-space: pre-wrap;">${orderText}</span>`;
-                formOrderDetails.value = orderText;
+                formCartSummary.style.display = 'block';
             } else {
                 formCartSummary.style.display = 'none';
-                formOrderDetails.value = 'Покупатель пока ничего не выбрал.';
             }
         }
 
-        // ОБРАБОТЧИКИ РАДИОКНОПОК ДОСТАВКИ
         document.querySelectorAll('input[name="delivery"]').forEach(radio => {
             radio.addEventListener('change', updateDeliveryAndTotals);
         });
         
         document.getElementById('city-input').addEventListener('input', function() {
-            document.getElementById('delivery-city').value = this.value;
             updateDeliveryAndTotals();
         });
 
-        // ОБНОВЛЕНИЕ КОРЗИНЫ
         function updateCartUI() {
             const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
             const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -1022,7 +948,6 @@
                 cartItemsContainer.innerHTML = '<p style="text-align:center; color:#888; padding: 20px 0;">Корзина пуста</p>';
                 cartTotalEl.innerText = '0';
                 formCartSummary.style.display = 'none';
-                formOrderDetails.value = 'Покупатель пока ничего не выбрал.';
                 updateHeaderLink();
                 updateDeliveryAndTotals();
                 updateProductCards();
@@ -1074,21 +999,106 @@
             updateCartUI();
         };
 
-        // 5. ИНИЦИАЛИЗАЦИЯ FORMSPREE
-        window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-        formspree('initForm', { 
-            formElement: '#callback-form', 
-            formId: 'mvkzyyop'
+
+        // 5. ОТПРАВКА В TELEGRAM
+        document.getElementById('callback-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const successMsg = document.getElementById('success-message');
+            const errorMsg = document.getElementById('error-message');
+            
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const consent = document.getElementById('consent').checked ? 'Да' : 'Нет';
+            
+            const selectedDelivery = document.querySelector('input[name="delivery"]:checked').value;
+            const cityInput = document.getElementById('city-input').value.trim();
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            let deliveryText = '';
+            let totalAmount = totalPrice;
+            
+            if (selectedDelivery === 'rostov') {
+                if (totalPrice >= 1500) {
+                    deliveryText = 'Доставка по городу (бесплатно)';
+                } else {
+                    deliveryText = 'Доставка по городу (300 ₽)';
+                    totalAmount += 300;
+                }
+            } else if (selectedDelivery === 'pickup') {
+                deliveryText = 'Самовывоз (скидка 5%)';
+                totalAmount = Math.round(totalPrice * 0.95);
+            } else if (selectedDelivery === 'other') {
+                deliveryText = `Доставка в другой город (${cityInput}). Стоимость уточнит менеджер.`;
+            }
+            
+            let tgMessage = `<b>🔔 Новая заявка с сайта!</b>\n\n`;
+            tgMessage += `<b>Имя:</b> ${name || 'Не указано'}\n`;
+            tgMessage += `<b>Телефон:</b> <code>${phone}</code>\n\n`;
+            
+            tgMessage += `<b>🛒 Состав заказа:</b>\n`;
+            if (cart.length > 0) {
+                cart.forEach((item, i) => {
+                    const weightDisplay = item.unit === 'лист' ? item.unit : `${item.weight} ${item.unit}`;
+                    tgMessage += `  ${i + 1}. ${item.name} (${weightDisplay}) — ${item.quantity} шт. = ${item.price * item.quantity} ₽\n`;
+                });
+            } else {
+                tgMessage += `  (Корзина пуста, запрос на консультацию)\n`;
+            }
+            
+            tgMessage += `\n<b>🚚 Способ получения:</b> ${deliveryText}\n`;
+            tgMessage += `<b>💰 Итого к оплате:</b> ${totalAmount} ₽\n`;
+            tgMessage += `\n<b>✅ Согласие на обработку:</b> ${consent}`;
+
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = 'Отправка...';
+            submitBtn.disabled = true;
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chat_id: TG_CHAT_ID,
+                        text: tgMessage,
+                        parse_mode: 'HTML'
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.ok) {
+                    successMsg.style.display = 'block';
+                    document.getElementById('callback-form').reset();
+                    cart = [];
+                    updateCartUI();
+                    document.getElementById('other-city-block').style.display = 'none';
+                    
+                    setTimeout(() => { successMsg.style.display = 'none'; }, 7000);
+                } else {
+                    console.error('Telegram API Error:', result);
+                    errorMsg.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Network Error:', error);
+                errorMsg.style.display = 'block';
+            } finally {
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+            }
         });
 
-        // ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ
         document.addEventListener('DOMContentLoaded', function() {
             updateProductCards();
             updateHeaderLink();
             updateDeliveryAndTotals();
         });
     </script>
-    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 </body>
 </html>
