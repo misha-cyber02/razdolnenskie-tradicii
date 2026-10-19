@@ -6,12 +6,10 @@
     <title>Раздольненские традиции | Натуральные продукты с доставкой</title>
     <meta name="description" content="Вкусные и полезные натуральные продукты из села: фрипсы, пастила, сухофрукты без сахара. Доставка по всей России.">
     
-    <!-- Уютный рукописный шрифт -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 
-    <!-- Фавикон -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%232E4A32%22><path d=%22M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22l1-2.3A4.49,4.49 0 0,0 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.5,17 5,17C6.5,17 8,16 9,14C10,12 12,10 14,9C16,8 18,7 17,8Z%22/></svg>">
 
     <style>
@@ -31,7 +29,6 @@
         h1, h2, h3 { font-family: 'Georgia', serif; color: var(--dark-green); }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-        /* Общие стили для всех SVG-иконок */
         .svg-icon { width: 24px; height: 24px; fill: currentColor; display: inline-block; vertical-align: middle; }
 
         /* --- ШАПКА И НАВИГАЦИЯ --- */
@@ -41,7 +38,6 @@
         .logo-text { font-family: 'Caveat', cursive; font-size: 42px; font-weight: 700; color: var(--dark-green); line-height: 0.9; text-align: left; margin-bottom: 5px; }
         .logo-subtext { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); font-weight: bold; }
         
-        /* Меню навигации */
         .nav-menu { display: flex; justify-content: center; gap: 30px; border-top: 1px solid #eee; padding-top: 15px; }
         .nav-menu a { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--dark-green); font-weight: bold; font-size: 16px; transition: color 0.3s; }
         .nav-menu a:hover { color: var(--accent); }
@@ -64,17 +60,14 @@
         .product-card { background-color: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-bottom: 5px solid var(--light-green); transition: transform 0.3s; display: flex; flex-direction: column; position: relative; }
         .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         
-        /* Читаемый бейдж "Хит продаж" */
         .badge { position: absolute; top: 10px; left: 10px; background: var(--accent); color: var(--white); padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; text-transform: uppercase; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
-        /* Временная заглушка для фото */
         .product-img-placeholder { width: 100%; height: 220px; background-color: var(--placeholder-bg); display: flex; align-items: center; justify-content: center; color: #888; font-weight: bold; font-size: 18px; border-bottom: 1px dashed #ccc; }
         
         .product-info { padding: 25px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
         .product-card h3 { font-size: 22px; margin-bottom: 10px; }
         .product-card p { color: #666; margin-bottom: 15px; flex-grow: 1; font-size: 15px; }
         
-        /* Выбор веса и цена */
         .weight-selector { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
         .weight-btn { padding: 5px 15px; border: 1px solid var(--light-green); background: transparent; border-radius: 20px; cursor: pointer; font-weight: bold; color: var(--dark-green); transition: all 0.2s; font-size: 14px; }
         .weight-btn.active { background: var(--dark-green); color: var(--white); border-color: var(--dark-green); }
@@ -104,6 +97,11 @@
         .contact-form .subtitle { text-align: center; margin-bottom: 40px; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto; }
         .form-wrapper { max-width: 500px; margin: 0 auto; background-color: var(--white); padding: 40px; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: var(--text-dark); }
         .form-wrapper h3 { text-align: center; margin-bottom: 30px; }
+        
+        /* Блок с составом заказа в форме */
+        .form-cart-summary { display: none; background: var(--kraft-bg); padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; border: 1px dashed var(--light-green); }
+        .form-cart-summary strong { display: block; margin-bottom: 5px; color: var(--dark-green); }
+
         .input-group { margin-bottom: 20px; }
         .input-group label { display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px; }
         .input-group input { width: 100%; padding: 15px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; background-color: var(--kraft-bg); }
@@ -111,7 +109,6 @@
         .form-wrapper .btn { width: 100%; border-radius: 8px; background-color: var(--dark-green); }
         .form-wrapper .btn:hover { background-color: var(--light-green); }
 
-        /* Сообщения об ошибках и успехе */
         .error-msg { color: #d9534f; font-size: 13px; margin-top: 5px; display: block; font-weight: bold; }
         .form-error { color: #d9534f; text-align: center; margin-top: 15px; font-weight: bold; background-color: #f8d7da; padding: 10px; border-radius: 8px; }
         .success-message { display: none; text-align: center; color: var(--dark-green); font-size: 18px; font-weight: bold; margin-top: 20px; padding: 20px; background-color: #e8f5e9; border-radius: 8px; }
@@ -120,12 +117,36 @@
         footer { background-color: #1A1A1A; color: var(--white); text-align: center; padding: 30px 0; font-size: 14px; }
         footer p { margin-bottom: 5px; opacity: 0.8; }
 
-        /* --- ПЛАВАЮЩАЯ КНОПКА TELEGRAM --- */
+        /* --- ПЛАВАЮЩИЕ КНОПКИ --- */
+        /* Telegram */
         .floating-tg { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background-color: #0088cc; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1000; transition: transform 0.3s, background 0.3s; text-decoration: none; }
         .floating-tg:hover { transform: scale(1.1); background-color: #006699; }
         .floating-tg svg { width: 35px; height: 35px; fill: white; }
 
-        /* --- АДАПТИВНОСТЬ --- */
+        /* Корзина */
+        .floating-cart { position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px; background-color: var(--dark-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1000; cursor: pointer; transition: transform 0.3s, background 0.3s; border: none; }
+        .floating-cart:hover { transform: scale(1.1); background-color: var(--accent); }
+        .floating-cart svg { width: 30px; height: 30px; fill: white; }
+        .cart-badge { position: absolute; top: -5px; right: -5px; background: #d9534f; color: white; border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
+
+        /* Модальное окно корзины */
+        .cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; align-items: center; justify-content: center; }
+        .cart-modal.active { display: flex; }
+        .cart-content { background: var(--white); width: 90%; max-width: 500px; border-radius: 15px; padding: 30px; position: relative; max-height: 80vh; display: flex; flex-direction: column; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .close-cart { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 28px; cursor: pointer; color: #888; line-height: 1; }
+        .close-cart:hover { color: var(--dark-green); }
+        .cart-content h3 { margin-bottom: 20px; font-size: 24px; border-bottom: 2px solid var(--kraft-bg); padding-bottom: 10px; }
+        #cart-items { overflow-y: auto; flex-grow: 1; margin-bottom: 20px; padding-right: 5px; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .cart-item-info { flex-grow: 1; text-align: left; }
+        .cart-item-title { font-weight: bold; font-size: 15px; color: var(--dark-green); }
+        .cart-item-price { color: #666; font-size: 13px; }
+        .cart-item-controls { display: flex; align-items: center; gap: 8px; }
+        .cart-qty-btn { background: var(--kraft-bg); border: 1px solid #ccc; border-radius: 5px; width: 28px; height: 28px; cursor: pointer; font-weight: bold; color: var(--dark-green); font-size: 16px; display: flex; align-items: center; justify-content: center; }
+        .cart-qty-btn:hover { background: var(--light-green); color: white; border-color: var(--light-green); }
+        .cart-item-remove { background: none; border: none; color: #d9534f; cursor: pointer; font-size: 24px; line-height: 1; margin-left: 5px; }
+        .cart-total { text-align: right; font-size: 22px; font-weight: bold; margin-bottom: 20px; color: var(--dark-green); border-top: 2px solid var(--light-green); padding-top: 15px; }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 32px; }
             .about-grid, .delivery-grid { grid-template-columns: 1fr; }
@@ -138,6 +159,8 @@
             .category-title { font-size: 28px; }
             .category-title .svg-icon { width: 30px; height: 30px; }
             .floating-tg { bottom: 20px; right: 20px; width: 50px; height: 50px; }
+            .floating-cart { bottom: 20px; left: 20px; width: 50px; height: 50px; }
+            .cart-badge { width: 20px; height: 20px; font-size: 11px; }
         }
     </style>
 </head>
@@ -153,17 +176,14 @@
                 </div>
             </div>
             <nav class="nav-menu">
-                <!-- Иконка Яблока для фрипсов -->
                 <a href="#frips">
                     <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.56-1.702z"/></svg>
                     Фрипсы
                 </a>
-                <!-- Иконка Конфеты для пастилы -->
                 <a href="#pastila">
                     <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/></svg>
                     Пастила
                 </a>
-                <!-- Иконка Абрикоса для сухофруктов -->
                 <a href="#suhofrukty">
                     <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12,2C9.5,2 7.5,3.5 6.5,5.5C5.5,7.5 5.5,9.5 6,11.5C6.5,13.5 7.5,15.5 9,17C10.5,18.5 12,19 13.5,19C15,19 16.5,18.5 18,17C19.5,15.5 20.5,13.5 21,11.5C21.5,9.5 21.5,7.5 20.5,5.5C19.5,3.5 17.5,2 15,2H12M12,4H15C16.5,4 17.5,5 18,6.5C18.5,8 18.5,9.5 18,11C17.5,12.5 16.5,14 15.5,15C14.5,16 13.5,16.5 12.5,16.5C11.5,16.5 10.5,16 9.5,15C8.5,14 7.5,12.5 7,11C6.5,9.5 6.5,8 7,6.5C7.5,5 8.5,4 10,4H12Z"/></svg>
                     Сухофрукты
@@ -184,9 +204,7 @@
         </div>
     </section>
 
-    <!-- КОНТЕЙНЕРЫ ДЛЯ КАТЕГОРИЙ -->
     <div class="container">
-        
         <section id="frips" class="category-section">
             <h2 class="category-title">
                 <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.56-1.702z"/></svg>
@@ -205,16 +223,13 @@
 
         <section id="suhofrukty" class="category-section">
             <h2 class="category-title">
-                <!-- Иконка Абрикоса -->
                 <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12,2C9.5,2 7.5,3.5 6.5,5.5C5.5,7.5 5.5,9.5 6,11.5C6.5,13.5 7.5,15.5 9,17C10.5,18.5 12,19 13.5,19C15,19 16.5,18.5 18,17C19.5,15.5 20.5,13.5 21,11.5C21.5,9.5 21.5,7.5 20.5,5.5C19.5,3.5 17.5,2 15,2H12M12,4H15C16.5,4 17.5,5 18,6.5C18.5,8 18.5,9.5 18,11C17.5,12.5 16.5,14 15.5,15C14.5,16 13.5,16.5 12.5,16.5C11.5,16.5 10.5,16 9.5,15C8.5,14 7.5,12.5 7,11C6.5,9.5 6.5,8 7,6.5C7.5,5 8.5,4 10,4H12Z"/></svg>
                 Наши сухофрукты
             </h2>
             <div class="product-grid" id="grid-suhofrukty"></div>
         </section>
-
     </div>
 
-    <!-- БЛОК О НАС -->
     <section class="about">
         <div class="container about-grid">
             <div class="about-text">
@@ -232,10 +247,7 @@
             <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">Доставка и оплата</h2>
             <div class="delivery-grid">
                 <div class="delivery-card">
-                    <h3>
-                        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M18,18.5A1.5,1.5 0 0,1 16.5,17A1.5,1.5 0 0,1 18,15.5A1.5,1.5 0 0,1 19.5,17A1.5,1.5 0 0,1 18,18.5M6,18.5A1.5,1.5 0 0,1 4.5,17A1.5,1.5 0 0,1 6,15.5A1.5,1.5 0 0,1 7.5,17A1.5,1.5 0 0,1 6,18.5M20,8H17V4H3C1.89,4 1,4.89 1,6V17H3A3,3 0 0,0 6,20A3,3 0 0,0 9,17H15A3,3 0 0,0 18,20A3,3 0 0,0 21,17H23V12L20,8M19,9.5L21.5,12.5H17V9.5H19Z"/></svg>
-                        Доставка
-                    </h3>
+                    <h3><svg class="svg-icon" viewBox="0 0 24 24"><path d="M18,18.5A1.5,1.5 0 0,1 16.5,17A1.5,1.5 0 0,1 18,15.5A1.5,1.5 0 0,1 19.5,17A1.5,1.5 0 0,1 18,18.5M6,18.5A1.5,1.5 0 0,1 4.5,17A1.5,1.5 0 0,1 6,15.5A1.5,1.5 0 0,1 7.5,17A1.5,1.5 0 0,1 6,18.5M20,8H17V4H3C1.89,4 1,4.89 1,6V17H3A3,3 0 0,0 6,20A3,3 0 0,0 9,17H15A3,3 0 0,0 18,20A3,3 0 0,0 21,17H23V12L20,8M19,9.5L21.5,12.5H17V9.5H19Z"/></svg> Доставка</h3>
                     <ul>
                         <li><strong>По России:</strong> Почта России или СДЭК (от 300 ₽).</li>
                         <li><strong>По городу:</strong> Курьером — бесплатно при заказе от 1500 ₽.</li>
@@ -244,10 +256,7 @@
                     </ul>
                 </div>
                 <div class="delivery-card">
-                    <h3>
-                        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg>
-                        Оплата
-                    </h3>
+                    <h3><svg class="svg-icon" viewBox="0 0 24 24"><path d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg> Оплата</h3>
                     <ul>
                         <li><strong>При получении:</strong> Наличными или картой курьеру.</li>
                         <li><strong>Переводом:</strong> На карту Сбербанка или по СБП.</li>
@@ -262,13 +271,18 @@
     <section class="contact-form" id="order-form">
         <div class="container">
             <h2 class="section-title">Оформить заказ</h2>
-            <p class="subtitle">Оставьте свой номер телефона, и мы перезвоним вам в течение 15 минут. Поможем выбрать продукты и рассчитаем стоимость доставки.</p>
+            <p class="subtitle">Оставьте свой номер телефона, и мы перезвоним вам в течение 15 минут для подтверждения заказа и расчета доставки.</p>
             
             <div class="form-wrapper">
                 <h3>Заказать звонок</h3>
                 <form id="callback-form" action="https://formspree.io/f/mvkzyyop" method="POST">
                     <input type="hidden" name="subject" value="Новая заявка с сайта Раздольненские традиции">
-                    <input type="hidden" id="selected-product" name="product" value="Не выбран">
+                    
+                    <!-- Скрытое поле для отправки состава корзины -->
+                    <textarea name="order_details" id="form-order-details" style="display: none;">Покупатель пока ничего не выбрал.</textarea>
+
+                    <!-- Блок предпросмотра заказа в форме -->
+                    <div class="form-cart-summary" id="form-cart-summary"></div>
 
                     <div class="input-group">
                         <label for="name">Ваше имя</label>
@@ -282,7 +296,7 @@
                         <span class="error-msg" data-fs-error="phone"></span>
                     </div>
                     
-                    <button type="submit" class="btn" data-fs-submit-btn>Жду звонка</button>
+                    <button type="submit" class="btn" data-fs-submit-btn>Оформить заказ</button>
                     
                     <div class="success-message" data-fs-success>Спасибо! Ваша заявка принята. Мы скоро перезвоним!</div>
                     <div class="form-error" data-fs-error></div>
@@ -299,28 +313,40 @@
         </div>
     </footer>
 
+    <!-- КНОПКА КОРЗИНЫ (Плавающая слева) -->
+    <button class="floating-cart" id="cart-btn" title="Открыть корзину">
+        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+        <span class="cart-badge" id="cart-count">0</span>
+    </button>
+
+    <!-- МОДАЛЬНОЕ ОКНО КОРЗИНЫ -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-content">
+            <button class="close-cart" id="close-cart">&times;</button>
+            <h3>Ваша корзина</h3>
+            <div id="cart-items">
+                <p style="text-align:center; color:#888; padding: 20px 0;">Корзина пуста</p>
+            </div>
+            <div class="cart-total">Итого: <span id="cart-total-price">0</span> ₽</div>
+            <button class="btn" id="checkout-btn" style="width: 100%;">Перейти к оформлению</button>
+        </div>
+    </div>
+
+    <!-- КНОПКА TELEGRAM -->
     <a href="https://t.me/MiShcko" class="floating-tg" target="_blank" title="Написать в Telegram">
-        <svg viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.52-1.4.51-.46-.01-1.35-.26-2.01-.48-.81-.27-1.46-.42-1.4-.88.03-.24.35-.48.96-.73 3.74-1.63 6.23-2.7 7.47-3.23 3.56-1.48 4.3-1.74 4.78-1.75.11 0 .35.03.5.15.13.1.17.24.18.34 0 .07.01.2 0 .32z"/>
-        </svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.52-1.4.51-.46-.01-1.35-.26-2.01-.48-.81-.27-1.46-.42-1.4-.88.03-.24.35-.48.96-.73 3.74-1.63 6.23-2.7 7.47-3.23 3.56-1.48 4.3-1.74 4.78-1.75.11 0 .35.03.5.15.13.1.17.24.18.34 0 .07.01.2 0 .32z"/></svg>
     </a>
 
-    <!-- БАЗА ДАННЫХ ТОВАРОВ И ЛОГИКА -->
+    <!-- БАЗА ДАННЫХ И ЛОГИКА -->
     <script>
+        // 1. БАЗА ДАННЫХ ТОВАРОВ
         const catalog = {
             frips: [
                 { name: "Яблочные", desc: "Хрустящие чипсы из спелых яблок. Без сахара и консервантов.", price30: 90, image: "" },
                 { name: "Банановые", desc: "Сладкие и питательные снеки из отборных бананов.", price30: 100, image: "" },
                 { name: "Апельсиновые", desc: "Яркий цитрусовый вкус. Источник витамина С.", price30: 120, image: "" },
                 { name: "Клубничные", desc: "Нежный ягодный вкус. Любимый перекус детей.", price30: 150, image: "" },
-                { 
-                    name: "Подарочный набор Ассорти", 
-                    desc: "5 разных вкусов фрипсов в красивой упаковке. Выберите объем: 150 г (5 вкусов по 30 г) или 300 г (5 вкусов по 60 г).", 
-                    price30: 120, 
-                    weights: [150, 300], /* Набор имеет только два варианта веса */
-                    image: "",
-                    badge: "Хит продаж"
-                }
+                { name: "Подарочный набор Ассорти", desc: "5 разных вкусов фрипсов в красивой упаковке. Выберите объем: 150 г (5 вкусов по 30 г) или 300 г (5 вкусов по 60 г).", price30: 120, weights: [150, 300], image: "", badge: "Хит продаж" }
             ],
             pastila: [
                 { name: "Классическая", desc: "Домашняя пастила по старинным рецептам. Натуральная сладость.", price30: 110, image: "" },
@@ -331,34 +357,33 @@
             suhofrukty: [
                 { name: "Курага", desc: "Отборная сладкая курага, вяленая на солнце.", price30: 80, image: "" },
                 { name: "Чернослив", desc: "Мягкий и сочный чернослив без косточки.", price30: 90, image: "" },
-                { name: "Груша", desc: "Ароматные сушеные груши, сладкие и нежные.", price30: 85, image: "" }, /* Заменили изюм на грушу */
+                { name: "Груша", desc: "Ароматные сушеные груши, сладкие и нежные.", price30: 85, image: "" },
                 { name: "Ассорти", desc: "Микс из любимых сухофруктов для полезного перекуса.", price30: 120, image: "" }
             ]
         };
 
+        // 2. ГЕНЕРАЦИЯ КАРТОЧЕК
         function renderProducts(categoryKey, containerId) {
             const container = document.getElementById(containerId);
             if (!container) return;
             
-            container.innerHTML = catalog[categoryKey].map(product => {
+            container.innerHTML = catalog[categoryKey].map((product, index) => {
                 const imgHTML = product.image 
                     ? `<div class="product-img" style="background-image: url('${product.image}');"></div>` 
                     : `<div class="product-img-placeholder">Фото скоро</div>`;
-
                 const badgeHTML = product.badge ? `<div class="badge">${product.badge}</div>` : '';
-
-                // Логика генерации кнопок веса (если заданы свои, используем их, иначе стандартные)
                 const weights = product.weights || [30, 50, 100];
                 const defaultWeight = weights[0];
-                const buttonsHTML = weights.map((w, index) => 
-                    `<button class="weight-btn ${index === 0 ? 'active' : ''}" data-weight="${w}">${w} г</button>`
+                const buttonsHTML = weights.map((w, i) => 
+                    `<button class="weight-btn ${i === 0 ? 'active' : ''}" data-weight="${w}">${w} г</button>`
                 ).join('');
-
-                // Расчет стартовой цены
                 const defaultPrice = Math.round((product.price30 / 30) * defaultWeight / 10) * 10;
+                
+                // Уникальный ID для карточки, чтобы потом передать в корзину
+                const productId = `${categoryKey}_${index}`;
 
                 return `
-                <div class="product-card">
+                <div class="product-card" data-id="${productId}">
                     ${badgeHTML}
                     ${imgHTML}
                     <div class="product-info">
@@ -368,7 +393,7 @@
                             ${buttonsHTML}
                         </div>
                         <div class="price">${defaultPrice} ₽ <span>/ ${defaultWeight} г</span></div>
-                        <button class="btn order-btn" style="padding: 10px; font-size: 14px; margin-top: auto;" data-product="${product.name} ${defaultWeight}г">Заказать</button>
+                        <button class="btn order-btn" style="padding: 10px; font-size: 14px; margin-top: auto;">В корзину</button>
                     </div>
                 </div>
                 `;
@@ -379,35 +404,139 @@
         renderProducts('pastila', 'grid-pastila');
         renderProducts('suhofrukty', 'grid-suhofrukty');
 
-        // Логика выбора веса и отправки
+        // 3. ЛОГИКА КОРЗИНЫ
+        let cart = [];
+
+        // Элементы DOM
+        const cartModal = document.getElementById('cart-modal');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartCountEl = document.getElementById('cart-count');
+        const cartTotalEl = document.getElementById('cart-total-price');
+        const formOrderDetails = document.getElementById('form-order-details');
+        const formCartSummary = document.getElementById('form-cart-summary');
+
+        // Открытие/закрытие корзины
+        document.getElementById('cart-btn').addEventListener('click', () => cartModal.classList.add('active'));
+        document.getElementById('close-cart').addEventListener('click', () => cartModal.classList.remove('active'));
+        cartModal.addEventListener('click', (e) => { if(e.target === cartModal) cartModal.classList.remove('active'); });
+        
+        // Переход к оформлению из корзины
+        document.getElementById('checkout-btn').addEventListener('click', () => {
+            cartModal.classList.remove('active');
+            document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Добавление в корзину
         document.querySelectorAll('.product-card').forEach(card => {
             const weightBtns = card.querySelectorAll('.weight-btn');
             const priceEl = card.querySelector('.price');
             const orderBtn = card.querySelector('.order-btn');
             const productName = card.querySelector('h3').innerText;
+            let currentWeight = parseInt(weightBtns[0].dataset.weight);
+            let currentPrice = parseInt(priceEl.innerText);
 
+            // Переключение веса
             weightBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     weightBtns.forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
-
-                    const weight = parseInt(btn.dataset.weight);
+                    currentWeight = parseInt(btn.dataset.weight);
                     const basePrice30 = parseInt(card.querySelector('.weight-selector').dataset.basePrice);
-                    
-                    let newPrice = Math.round((basePrice30 / 30) * weight / 10) * 10;
-                    
-                    priceEl.innerHTML = `${newPrice} ₽ <span>/ ${weight} г</span>`;
-                    orderBtn.dataset.product = `${productName} ${weight}г`;
+                    currentPrice = Math.round((basePrice30 / 30) * currentWeight / 10) * 10;
+                    priceEl.innerHTML = `${currentPrice} ₽ <span>/ ${currentWeight} г</span>`;
                 });
             });
 
-            orderBtn.addEventListener('click', (e) => {
-                const selectedProduct = e.target.dataset.product;
-                document.getElementById('selected-product').value = selectedProduct;
-                document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
+            // Клик по кнопке "В корзину"
+            orderBtn.addEventListener('click', () => {
+                addToCart(productName, currentWeight, currentPrice);
+                // Визуальный отклик
+                const originalText = orderBtn.innerText;
+                orderBtn.innerText = "Добавлено ✓";
+                orderBtn.style.backgroundColor = "var(--light-green)";
+                setTimeout(() => {
+                    orderBtn.innerText = originalText;
+                    orderBtn.style.backgroundColor = "";
+                }, 1500);
             });
         });
 
+        function addToCart(name, weight, price) {
+            const id = `${name}_${weight}`;
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ id, name, weight, price, quantity: 1 });
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            cartCountEl.innerText = totalQty;
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="text-align:center; color:#888; padding: 20px 0;">Корзина пуста</p>';
+                cartTotalEl.innerText = '0';
+                formCartSummary.style.display = 'none';
+                formOrderDetails.value = 'Покупатель пока ничего не выбрал (запрос на консультацию).';
+                return;
+            }
+            
+            let itemsHTML = '';
+            let orderText = "Ваш заказ:\n";
+            
+            cart.forEach((item, index) => {
+                itemsHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">${item.name} (${item.weight} г)</div>
+                            <div class="cart-item-price">${item.price} ₽ × ${item.quantity} шт.</div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button class="cart-qty-btn" onclick="changeQty('${item.id}', -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="cart-qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+                            <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">&times;</button>
+                        </div>
+                    </div>
+                `;
+                orderText += `${index + 1}. ${item.name} (${item.weight} г) - ${item.quantity} шт. = ${item.price * item.quantity} ₽\n`;
+            });
+            
+            orderText += `------------------------------\nИтого: ${totalPrice} ₽`;
+            
+            cartItemsContainer.innerHTML = itemsHTML;
+            cartTotalEl.innerText = totalPrice;
+            
+            // Выводим состав заказа в форму
+            formCartSummary.style.display = 'block';
+            formCartSummary.innerHTML = `<strong>Ваш заказ:</strong><br><span style="white-space: pre-wrap;">${orderText}</span>`;
+            formOrderDetails.value = orderText;
+        }
+
+        // Глобальные функции для кнопок корзины
+        window.changeQty = function(id, diff) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.quantity += diff;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+                updateCartUI();
+            }
+        };
+
+        window.removeFromCart = function(id) {
+            cart = cart.filter(i => i.id !== id);
+            updateCartUI();
+        };
+
+        // 4. ИНИЦИАЛИЗАЦИЯ FORMSPREE
         window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
         formspree('initForm', { 
             formElement: '#callback-form', 
