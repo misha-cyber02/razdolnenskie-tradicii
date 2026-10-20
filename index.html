@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Раздольненские традиции | Натуральные продукты с доставкой</title>
-    <meta name="description" content="Вкусные и полезные натуральные продукты из села: фрипсы, пастила, сухофрукты без сахара. Доставка по всей России.">
+    <meta name="description" content="Фрипсы, пастила и сухофрукты без сахара, консервантов и красителей. Сделано с любовью и заботой о вашем здоровье. Доставка по России.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,7 +78,6 @@
         .nav-menu a:hover { color: var(--accent); }
         .nav-menu a:hover .svg-icon { fill: var(--accent); }
 
-        /* Группа "Заказать звонок" + Мессенджеры */
         .nav-actions-group {
             display: flex;
             align-items: center;
@@ -113,19 +112,9 @@
             text-decoration: none;
         }
 
-        .messenger-icon:hover {
-            background-color: var(--light-green);
-        }
-
-        .messenger-icon svg {
-            width: 18px;
-            height: 18px;
-            fill: var(--dark-green);
-        }
-
-        .messenger-icon:hover svg {
-            fill: white;
-        }
+        .messenger-icon:hover { background-color: var(--light-green); }
+        .messenger-icon svg { width: 18px; height: 18px; fill: var(--dark-green); }
+        .messenger-icon:hover svg { fill: white; }
 
         .messenger-phone {
             font-weight: bold;
@@ -134,14 +123,11 @@
             font-size: 15px;
             white-space: nowrap;
         }
-
-        .messenger-phone:hover {
-            color: var(--accent);
-        }
+        .messenger-phone:hover { color: var(--accent); }
 
         /* --- ГЛАВНЫЙ ЭКРАН --- */
         .hero { background: linear-gradient(135deg, #E8E4D9 0%, var(--kraft-bg) 100%); padding: 80px 0; text-align: center; }
-        .hero h1 { font-size: 48px; margin-bottom: 20px; line-height: 1.2; }
+        .hero h1 { font-size: 42px; margin-bottom: 20px; line-height: 1.2; max-width: 900px; margin-left: auto; margin-right: auto; }
         .hero p { font-size: 20px; margin-bottom: 40px; color: #555; max-width: 700px; margin-left: auto; margin-right: auto; }
         .btn { display: inline-block; background-color: var(--dark-green); color: var(--white); padding: 15px 40px; text-decoration: none; border-radius: 30px; font-size: 18px; transition: all 0.3s; border: none; cursor: pointer; font-weight: bold; }
         .btn:hover { background-color: var(--accent); transform: translateY(-2px); }
@@ -173,50 +159,12 @@
         .new-price span { font-size: 14px; color: #888; font-weight: normal; }
 
         /* --- КОНТРОЛЬ КОЛИЧЕСТВА В КАРТОЧКЕ --- */
-        .qty-control {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-        .qty-btn {
-            width: 28px;
-            height: 28px;
-            border: 1px solid var(--light-green);
-            background: transparent;
-            border-radius: 50%;
-            cursor: pointer;
-            font-weight: bold;
-            color: var(--dark-green);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            transition: all 0.2s;
-        }
-        .qty-btn:hover {
-            background: var(--light-green);
-            color: white;
-        }
-        .qty-input {
-            width: 35px;
-            text-align: center;
-            border: none;
-            background: transparent;
-            font-weight: bold;
-            color: var(--dark-green);
-            font-size: 16px;
-            pointer-events: none;
-        }
+        .qty-control { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; }
+        .qty-btn { width: 28px; height: 28px; border: 1px solid var(--light-green); background: transparent; border-radius: 50%; cursor: pointer; font-weight: bold; color: var(--dark-green); display: flex; align-items: center; justify-content: center; font-size: 16px; transition: all 0.2s; }
+        .qty-btn:hover { background: var(--light-green); color: white; }
+        .qty-input { width: 35px; text-align: center; border: none; background: transparent; font-weight: bold; color: var(--dark-green); font-size: 16px; pointer-events: none; }
 
-        .in-cart-indicator {
-            font-size: 13px;
-            color: var(--accent);
-            font-weight: bold;
-            margin-bottom: 8px;
-            display: none;
-        }
+        .in-cart-indicator { font-size: 13px; color: var(--accent); font-weight: bold; margin-bottom: 8px; display: none; }
 
         /* --- БЛОК О НАС --- */
         .about { padding: 80px 0; background-color: var(--white); margin-top: 40px; }
@@ -253,8 +201,8 @@
 
         .input-group { margin-bottom: 20px; }
         .input-group label { display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px; }
-        .input-group input { width: 100%; padding: 15px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; background-color: var(--kraft-bg); }
-        .input-group input:focus { outline: none; border-color: var(--dark-green); border-width: 2px; }
+        .input-group input, .input-group textarea { width: 100%; padding: 15px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; background-color: var(--kraft-bg); font-family: inherit; resize: vertical; }
+        .input-group input:focus, .input-group textarea:focus { outline: none; border-color: var(--dark-green); border-width: 2px; }
         
         .checkbox-group { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; }
         .checkbox-group input[type="checkbox"] { width: 18px; height: 18px; margin-top: 3px; cursor: pointer; accent-color: var(--dark-green); }
@@ -312,20 +260,8 @@
            ========================================= */
         @media (max-width: 900px) {
             .nav-menu { gap: 20px; }
-            .nav-actions-group {
-                flex-direction: column;
-                gap: 15px;
-                width: 100%;
-                justify-content: center;
-            }
-            .messenger-block {
-                padding-left: 0;
-                border-left: none;
-                width: 100%;
-                justify-content: center;
-                padding-top: 15px;
-                border-top: 1px solid #eee;
-            }
+            .nav-actions-group { flex-direction: column; gap: 15px; width: 100%; justify-content: center; }
+            .messenger-block { padding-left: 0; border-left: none; width: 100%; justify-content: center; padding-top: 15px; border-top: 1px solid #eee; }
         }
 
         @media (max-width: 768px) {
@@ -349,24 +285,13 @@
             .floating-cart { bottom: 20px; left: 20px; width: 50px; height: 50px; }
             .cart-badge { width: 20px; height: 20px; font-size: 11px; }
 
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
+            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             
             .product-card { border-bottom-width: 3px; border-radius: 10px; }
             .product-img-placeholder { height: 110px; font-size: 12px; }
             .product-info { padding: 10px; }
             .product-card h3 { font-size: 15px; margin-bottom: 5px; }
-            .product-card p {
-                font-size: 11px;
-                margin-bottom: 8px;
-                line-height: 1.3;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-            }
+            .product-card p { font-size: 11px; margin-bottom: 8px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
             .weight-selector { gap: 4px; margin-bottom: 8px; flex-wrap: wrap; }
             .weight-btn { padding: 3px 6px; font-size: 10px; border-radius: 10px; }
@@ -381,16 +306,8 @@
             .in-cart-indicator { font-size: 10px; margin-bottom: 4px; }
 
             /* ПЛАВНОЕ СВОРАЧИВАНИЕ ШАПКИ */
-            .header-top {
-                max-height: 100px;
-                overflow: hidden;
-                transition: max-height 0.4s ease, opacity 0.4s ease, margin-bottom 0.4s ease;
-            }
-            .nav-menu > a.nav-link {
-                max-height: 40px;
-                overflow: hidden;
-                transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease, margin 0.4s ease;
-            }
+            .header-top { max-height: 100px; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s ease, margin-bottom 0.4s ease; }
+            .nav-menu > a.nav-link { max-height: 40px; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease, margin 0.4s ease; }
 
             header.shrink-header { padding: 5px 0; }
             header.shrink-header .header-top { max-height: 0; opacity: 0; margin-bottom: 0; }
@@ -399,7 +316,6 @@
             header.shrink-header .nav-actions-group { flex-direction: row; justify-content: space-between; align-items: center; gap: 10px; padding-top: 5px; }
             header.shrink-header .messenger-block { padding-top: 0; border-top: none; width: auto; gap: 8px; }
             header.shrink-header .messenger-phone { font-size: 14px; }
-            header.shrink-header .nav-actions-group > a { font-size: 14px; padding: 5px 10px; }
         }
     </style>
 </head>
@@ -429,17 +345,15 @@
                 </a>
                 
                 <div class="nav-actions-group">
-                    <a href="#order-form" style="color: var(--accent);" id="header-order-link">
-                        <svg class="svg-icon" style="fill: var(--accent);" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
-                        Заказать звонок
-                    </a>
+                    <!-- Кнопка "Заказать звонок" убрана по вашему запросу -->
                     
                     <div class="messenger-block">
                         <span class="messenger-label">Заказ через мессенджеры:</span>
                         <a href="https://t.me/MiShcko" target="_blank" class="messenger-icon" title="Telegram">
                             <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.52-1.4.51-.46-.01-1.35-.26-2.01-.48-.81-.27-1.46-.42-1.4-.88.03-.24.35-.48.96-.73 3.74-1.63 6.23-2.7 7.47-3.23 3.56-1.48 4.3-1.74 4.78-1.75.11 0 .35.03.5.15.13.1.17.24.18.34 0 .07.01.2 0 .32z"/></svg>
                         </a>
-                        <a href="https://max.ru/" target="_blank" class="messenger-icon" title="Max">
+                        <!-- Ваша ссылка на MAX -->
+                        <a href="https://max.ru/u/f9LHodD0cOLpSdBpWLR43PqkVcQcaySgZN2YwHq0m8QRS7amARFqKpnJiDY" target="_blank" class="messenger-icon" title="Max">
                             <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
                         </a>
                         <a href="tel:+79064287571" class="messenger-phone">+7 (906) 428-75-71</a>
@@ -451,8 +365,8 @@
 
     <section class="hero">
         <div class="container">
-            <h1>Вкус настоящего села<br>с доставкой до вашей двери</h1>
-            <p>Фрипсы, пастила и сухофрукты без сахара, консервантов и красителей. Сделано с любовью и заботой о вашем здоровье.</p>
+            <h1>Фрипсы, пастила и сухофрукты без сахара, консервантов и красителей.</h1>
+            <p>Сделано с любовью и заботой о вашем здоровье</p>
             <a href="#frips" class="btn">Смотреть каталог</a>
         </div>
     </section>
@@ -489,7 +403,6 @@
                 <h2>Сделано с душой в селе Раздольное</h2>
                 <p>Мы — семейная ферма, которая бережно хранит традиции наших бабушек. Мы не используем химикаты, сахар или консерванты. Только отборные фрукты и ягоды, выращенные на родной земле.</p>
                 <p>Наши фрипсы сушатся при низкой температуре, чтобы сохранить максимум витаминов. А пастила готовится по старинным рецептам без добавления сахара. Это идеальный перекус для всей семьи.</p>
-                <a href="#order-form" class="btn" style="margin-top: 15px; padding: 10px 30px; font-size: 16px;">Попробовать вкус детства</a>
             </div>
             <div class="about-image" title="Наше село"></div>
         </div>
@@ -555,6 +468,12 @@
                         <label for="phone">Номер телефона *</label>
                         <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
                     </div>
+
+                    <!-- НОВОЕ ПОЛЕ: Комментарий -->
+                    <div class="input-group">
+                        <label for="comment">Комментарий</label>
+                        <textarea id="comment" name="comment" rows="3" placeholder="Например: позвонить после 18:00 или уточнить состав"></textarea>
+                    </div>
                     
                     <div class="checkbox-group">
                         <input type="checkbox" id="consent" name="consent" required>
@@ -572,7 +491,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Раздольненские традиции. Натуральные продукты из села.</p>
+            <p>&copy; <span id="current-year">2024</span> Раздольненские традиции. Натуральные продукты из села.</p>
             <p>Самозанятый [Ваше ФИО] | Доставка по всей России</p>
             <p>Телефон: +7 (906) 428-75-71</p>
         </div>
@@ -623,12 +542,14 @@
 
     <script>
         // ==========================================
-        // НАСТРОЙКИ TELEGRAM (ВАШИ ДАННЫЕ)
+        // НАСТРОЙКИ TELEGRAM (ВАШИ ДАННЫЕ - ОСТАВЛЕНО КАК ЕСТЬ)
         // ==========================================
         const TG_BOT_TOKEN = '8957036644:AAGBlIxHz43RI7MgxGQRDtZsQjelMzVDhZs';
         const TG_CHAT_ID = '650671695';
         // ==========================================
 
+        // ДИНАМИЧЕСКИЙ ГОД В ФУТЕРЕ
+        document.getElementById('current-year').textContent = new Date().getFullYear();
 
         // 1. ЛОГИКА СВОРАЧИВАНИЯ ШАПКИ
         window.addEventListener('scroll', function() {
@@ -853,15 +774,6 @@
             });
         }
 
-        function updateHeaderLink() {
-            const link = document.getElementById('header-order-link');
-            if (cart.length > 0) {
-                link.innerHTML = `<svg class="svg-icon" style="fill: var(--accent);" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg> Отправить заявку`;
-            } else {
-                link.innerHTML = `<svg class="svg-icon" style="fill: var(--accent);" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg> Заказать звонок`;
-            }
-        }
-
         function updateDeliveryAndTotals() {
             const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
@@ -948,7 +860,6 @@
                 cartItemsContainer.innerHTML = '<p style="text-align:center; color:#888; padding: 20px 0;">Корзина пуста</p>';
                 cartTotalEl.innerText = '0';
                 formCartSummary.style.display = 'none';
-                updateHeaderLink();
                 updateDeliveryAndTotals();
                 updateProductCards();
                 return;
@@ -956,7 +867,7 @@
             
             let itemsHTML = '';
             
-            cart.forEach((item, index) => {
+            cart.forEach((item) => {
                 const weightDisplay = item.unit === 'лист' ? item.unit : `${item.weight} ${item.unit}`;
                 
                 itemsHTML += `
@@ -978,7 +889,6 @@
             cartItemsContainer.innerHTML = itemsHTML;
             cartTotalEl.innerText = totalPrice;
             
-            updateHeaderLink();
             updateDeliveryAndTotals();
             updateProductCards();
         }
@@ -1000,7 +910,7 @@
         };
 
 
-        // 5. ОТПРАВКА В TELEGRAM
+        // 5. ОТПРАВКА В TELEGRAM (С ВАЛИДАЦИЕЙ И КОММЕНТАРИЕМ)
         document.getElementById('callback-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -1010,7 +920,15 @@
             
             const name = document.getElementById('name').value.trim();
             const phone = document.getElementById('phone').value.trim();
+            const comment = document.getElementById('comment').value.trim();
             const consent = document.getElementById('consent').checked ? 'Да' : 'Нет';
+
+            // ВАЛИДАЦИЯ ТЕЛЕФОНА (минимум 10 цифр)
+            const digits = phone.replace(/\D/g, '');
+            if (digits.length < 10) {
+                alert('Пожалуйста, введите корректный номер телефона (минимум 10 цифр).');
+                return;
+            }
             
             const selectedDelivery = document.querySelector('input[name="delivery"]:checked').value;
             const cityInput = document.getElementById('city-input').value.trim();
@@ -1035,7 +953,11 @@
             
             let tgMessage = `<b>🔔 Новая заявка с сайта!</b>\n\n`;
             tgMessage += `<b>Имя:</b> ${name || 'Не указано'}\n`;
-            tgMessage += `<b>Телефон:</b> <code>${phone}</code>\n\n`;
+            tgMessage += `<b>Телефон:</b> <code>${phone}</code>\n`;
+            if (comment) {
+                tgMessage += `<b>💬 Комментарий:</b> ${comment}\n`;
+            }
+            tgMessage += `\n`;
             
             tgMessage += `<b>🛒 Состав заказа:</b>\n`;
             if (cart.length > 0) {
@@ -1095,7 +1017,6 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             updateProductCards();
-            updateHeaderLink();
             updateDeliveryAndTotals();
         });
     </script>
