@@ -969,7 +969,7 @@
 
             try {
                 // ИСПОЛЬЗУЕМ ПРАВИЛЬНЫЕ ОБРАТНЫЕ КАВЫЧКИ И CORS-ПРОКСИ
-                const response = await fetch(`https://corsproxy.io/?https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+                const response = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`)}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
