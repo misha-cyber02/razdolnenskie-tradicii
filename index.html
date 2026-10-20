@@ -8,8 +8,8 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Добавлен шрифт Playfair Display для красивого заголовка -->
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <!-- Добавлен шрифт Playfair Display (без курсива) -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%232E4A32%22><path d=%22M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22l1-2.3A4.49,4.49 0 0,0 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.5,17 5,17C6.5,17 8,16 9,14C10,12 12,10 14,9C16,8 18,7 17,8Z%22/></svg>">
 
@@ -53,8 +53,18 @@
             transition: all 0.4s ease;
         }
         .site-logo { height: 90px; width: auto; object-fit: contain; }
-        .logo-text { font-family: 'Caveat', cursive; font-size: 42px; font-weight: 700; color: var(--dark-green); line-height: 0.9; text-align: left; margin-bottom: 5px; }
-        .logo-subtext { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); font-weight: bold; }
+        .logo-text { font-family: 'Caveat', cursive; font-size: 42px; font-weight: 700; color: var(--dark-green); line-height: 0.9; text-align: left; margin-bottom: 0px; }
+        
+        /* Измененный шрифт для слова "традиции" */
+        .logo-subtext { 
+            font-family: 'Caveat', cursive; 
+            font-size: 32px; 
+            color: var(--accent); 
+            font-weight: 700; 
+            line-height: 0.8;
+            text-align: left;
+            margin-top: -2px;
+        }
         
         .nav-menu { 
             display: flex; 
@@ -134,29 +144,31 @@
             margin-bottom: 20px; 
             line-height: 1.2; 
             color: var(--dark-green);
-            font-style: italic;
-            white-space: nowrap; /* Запрещаем перенос строки */
+            white-space: nowrap; 
         }
         
         .hero-subtitle { 
-            font-size: clamp(12px, 3.2vw, 20px); 
+            font-family: 'Playfair Display', 'Georgia', serif;
+            font-size: clamp(14px, 3.2vw, 22px); 
             margin-bottom: 10px; 
             color: #555; 
-            white-space: nowrap; /* Запрещаем перенос строки */
+            white-space: nowrap; 
+            font-weight: 400;
         }
         
         .hero-subtitle-small {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: clamp(10px, 2.8vw, 16px);
             margin-bottom: 35px;
             color: #777;
-            white-space: nowrap; /* Запрещаем перенос строки */
+            white-space: nowrap;
         }
 
         .hero-buttons {
             display: flex;
             justify-content: center;
             gap: 15px;
-            flex-wrap: wrap; /* Если не помещаются на телефоне, перенесутся */
+            flex-wrap: wrap;
         }
         
         .btn { 
@@ -225,6 +237,11 @@
         .delivery-card li { margin-bottom: 10px; font-size: 16px; display: flex; align-items: flex-start; gap: 10px; }
         .delivery-card li::before { content: "✓"; color: var(--dark-green); font-weight: bold; }
 
+        /* Запрет переноса для десктопа в блоке доставки */
+        @media (min-width: 769px) {
+            .nowrap-desktop { white-space: nowrap; }
+        }
+
         /* --- ФОРМА --- */
         .contact-form { background-color: var(--dark-green); padding: 80px 0; color: var(--white); }
         .contact-form .section-title { color: var(--white); margin-bottom: 20px; text-align: center; }
@@ -239,7 +256,6 @@
         .delivery-options h4 { margin-bottom: 10px; color: var(--dark-green); }
         .delivery-options label { display: block; margin-bottom: 8px; font-weight: normal; cursor: pointer; font-size: 14px; }
         .delivery-options input[type="radio"] { margin-right: 8px; accent-color: var(--dark-green); }
-        .delivery-info { margin-top: 15px; font-weight: bold; color: var(--dark-green); font-size: 14px; }
 
         .input-group { margin-bottom: 20px; }
         .input-group label { display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px; }
@@ -315,6 +331,7 @@
             .form-wrapper { padding: 20px; }
             .site-logo { height: 60px; }
             .logo-text { font-size: 32px; }
+            .logo-subtext { font-size: 26px; }
             .header-top { gap: 10px; }
             .nav-menu { flex-wrap: wrap; gap: 15px; padding-top: 10px; }
             .messenger-label { display: none; }
@@ -421,7 +438,7 @@
     <!-- ОБНОВЛЕННЫЙ ГЛАВНЫЙ ЭКРАН -->
     <section class="hero">
         <div class="container">
-            <h1 class="hero-title">Фрипсы - пастила - сухофрукты</h1>
+            <h1 class="hero-title">Фрипсы - Пастила - Сухофрукты</h1>
             <p class="hero-subtitle">Натуральная домашняя продукция без сахара, консервантов и красителей</p>
             <p class="hero-subtitle-small">Сделано с любовью и заботой о вашем здоровье</p>
             
@@ -470,7 +487,7 @@
         </div>
     </section>
 
-    <!-- БЛОК ДОСТАВКА И ОПЛАТА С УТОЧНЕНИЯМИ -->
+    <!-- БЛОК ДОСТАВКА И ОПЛАТА -->
     <section class="delivery-payment">
         <div class="container">
             <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">Доставка и оплата</h2>
@@ -479,7 +496,7 @@
                     <h3><svg class="svg-icon" viewBox="0 0 24 24"><path d="M18,18.5A1.5,1.5 0 0,1 16.5,17A1.5,1.5 0 0,1 18,15.5A1.5,1.5 0 0,1 19.5,17A1.5,1.5 0 0,1 18,18.5M6,18.5A1.5,1.5 0 0,1 4.5,17A1.5,1.5 0 0,1 6,15.5A1.5,1.5 0 0,1 7.5,17A1.5,1.5 0 0,1 6,18.5M20,8H17V4H3C1.89,4 1,4.89 1,6V17H3A3,3 0 0,0 6,20A3,3 0 0,0 9,17H15A3,3 0 0,0 18,20A3,3 0 0,0 21,17H23V12L20,8M19,9.5L21.5,12.5H17V9.5H19Z"/></svg> Доставка</h3>
                     <ul>
                         <li><strong>По России:</strong> Почта России или СДЭК (от 300 ₽).</li>
-                        <li><strong>По г. Ростов-на-Дону:</strong> Курьером — 300 ₽, бесплатно при заказе от 1500 ₽.</li>
+                        <li class="nowrap-desktop"><strong>По г. Ростов-на-Дону:</strong> Курьером — 300 ₽, бесплатно при заказе от 1500 ₽.</li>
                         <li><strong>Самовывоз:</strong> Скидка 5% (ул. Миронова 12/7, г. Ростов-на-Дону).</li>
                         <li>Отправка заказов осуществляется в течение 1-2 рабочих дней.</li>
                     </ul>
@@ -518,7 +535,7 @@
                             <input type="text" id="city-input" placeholder="Укажите ваш город" style="width:100%; padding:8px; border-radius:5px; border:1px solid #ccc;">
                         </div>
                         
-                        <div class="delivery-info" id="delivery-info"></div>
+                        <!-- Убрали дублирующийся текст delivery-info -->
                     </div>
 
                     <div class="input-group">
@@ -849,19 +866,15 @@
             
             const cityInput = document.getElementById('city-input');
             const otherCityBlock = document.getElementById('other-city-block');
-            const deliveryInfo = document.getElementById('delivery-info');
             
             let deliveryCost = 0;
             let totalAmount = totalPrice;
-            let deliveryText = '';
             
             if (selectedDelivery === 'rostov') {
                 if (totalPrice >= 1500) {
                     deliveryCost = 0;
-                    deliveryText = 'Доставка по г. Ростов-на-Дону: БЕСПЛАТНО (заказ от 1500 ₽)';
                 } else {
                     deliveryCost = 300;
-                    deliveryText = 'Доставка по г. Ростов-на-Дону: 300 ₽ (заказ до 1500 ₽)';
                 }
                 totalAmount = totalPrice + deliveryCost;
                 otherCityBlock.style.display = 'none';
@@ -869,18 +882,14 @@
             } else if (selectedDelivery === 'pickup') {
                 deliveryCost = 0;
                 totalAmount = Math.round(totalPrice * 0.95);
-                deliveryText = 'Самовывоз (ул. Миронова 12/7): скидка 5% на заказ';
                 otherCityBlock.style.display = 'none';
                 cityInput.required = false;
             } else if (selectedDelivery === 'other') {
                 deliveryCost = 0;
                 totalAmount = totalPrice;
-                deliveryText = 'Доставка в другой город: стоимость уточнит менеджер (оплата на месте)';
                 otherCityBlock.style.display = 'block';
                 cityInput.required = true;
             }
-            
-            deliveryInfo.textContent = deliveryText;
             
             if (cart.length > 0) {
                 let orderText = "Ваш заказ:\n";
@@ -973,7 +982,7 @@
             updateCartUI();
         };
 
-        // 5. ОТПРАВКА В TELEGRAM (С ВАЛИДАЦИЕЙ И КОММЕНТАРИЕМ)
+        // 5. ОТПРАВКА В TELEGRAM
         document.getElementById('callback-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
