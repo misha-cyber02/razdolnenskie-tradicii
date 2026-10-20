@@ -8,7 +8,6 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Добавлен шрифт Playfair Display (без курсива) -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%232E4A32%22><path d=%22M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22l1-2.3A4.49,4.49 0 0,0 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.5,17 5,17C6.5,17 8,16 9,14C10,12 12,10 14,9C16,8 18,7 17,8Z%22/></svg>">
@@ -55,7 +54,6 @@
         .site-logo { height: 90px; width: auto; object-fit: contain; }
         .logo-text { font-family: 'Caveat', cursive; font-size: 42px; font-weight: 700; color: var(--dark-green); line-height: 0.9; text-align: left; margin-bottom: 0px; }
         
-        /* Измененный шрифт для слова "традиции" */
         .logo-subtext { 
             font-family: 'Caveat', cursive; 
             font-size: 32px; 
@@ -89,117 +87,37 @@
         .nav-menu a:hover { color: var(--accent); }
         .nav-menu a:hover .svg-icon { fill: var(--accent); }
 
-        .nav-actions-group {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+        .nav-actions-group { display: flex; align-items: center; gap: 20px; }
 
         /* --- БЛОК С МЕССЕНДЖЕРАМИ --- */
-        .messenger-block {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding-left: 20px;
-            border-left: 1px solid #ddd;
-        }
-
-        .messenger-label {
-            font-size: 14px;
-            font-weight: bold;
-            color: var(--dark-green);
-            white-space: nowrap;
-        }
-
-        .messenger-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-color: transparent;
-            transition: transform 0.2s;
-            text-decoration: none;
-        }
-
+        .messenger-block { display: flex; align-items: center; gap: 12px; padding-left: 20px; border-left: 1px solid #ddd; }
+        .messenger-label { font-size: 14px; font-weight: bold; color: var(--dark-green); white-space: nowrap; }
+        .messenger-icon { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background-color: transparent; transition: transform 0.2s; text-decoration: none; }
         .messenger-icon:hover { transform: scale(1.1); }
         .messenger-icon svg { width: 24px; height: 24px; }
-
-        .messenger-phone {
-            font-weight: bold;
-            color: var(--dark-green);
-            text-decoration: none;
-            font-size: 15px;
-            white-space: nowrap;
-        }
+        .messenger-phone { font-weight: bold; color: var(--dark-green); text-decoration: none; font-size: 15px; white-space: nowrap; }
         .messenger-phone:hover { color: var(--accent); }
 
-        /* --- ОБНОВЛЕННЫЙ ГЛАВНЫЙ ЭКРАН --- */
+        /* --- ГЛАВНЫЙ ЭКРАН --- */
         .hero { background: linear-gradient(135deg, #E8E4D9 0%, var(--kraft-bg) 100%); padding: 60px 0; text-align: center; overflow: hidden; }
+        .hero-title { font-family: 'Playfair Display', 'Georgia', serif; font-size: clamp(24px, 5vw, 52px); margin-bottom: 20px; line-height: 1.2; color: var(--dark-green); white-space: nowrap; }
+        .hero-subtitle { font-family: 'Playfair Display', 'Georgia', serif; font-size: clamp(14px, 3.2vw, 22px); margin-bottom: 10px; color: #555; white-space: nowrap; font-weight: 400; }
+        .hero-subtitle-small { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: clamp(10px, 2.8vw, 16px); margin-bottom: 35px; color: #777; white-space: nowrap; }
         
-        .hero-title { 
-            font-family: 'Playfair Display', 'Georgia', serif; 
-            font-size: clamp(24px, 5vw, 52px); 
-            margin-bottom: 20px; 
-            line-height: 1.2; 
-            color: var(--dark-green);
-            white-space: nowrap; 
-        }
-        
-        .hero-subtitle { 
-            font-family: 'Playfair Display', 'Georgia', serif;
-            font-size: clamp(14px, 3.2vw, 22px); 
-            margin-bottom: 10px; 
-            color: #555; 
-            white-space: nowrap; 
-            font-weight: 400;
-        }
-        
-        .hero-subtitle-small {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: clamp(10px, 2.8vw, 16px);
-            margin-bottom: 35px;
-            color: #777;
-            white-space: nowrap;
-        }
-
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .btn { 
-            display: inline-block; 
-            background-color: var(--dark-green); 
-            color: var(--white); 
-            padding: 15px 30px; 
-            text-decoration: none; 
-            border-radius: 30px; 
-            font-size: 16px; 
-            transition: all 0.3s; 
-            border: none; 
-            cursor: pointer; 
-            font-weight: bold; 
-        }
+        .hero-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn { display: inline-block; background-color: var(--dark-green); color: var(--white); padding: 15px 30px; text-decoration: none; border-radius: 30px; font-size: 16px; transition: all 0.3s; border: none; cursor: pointer; font-weight: bold; }
         .btn:hover { background-color: var(--accent); transform: translateY(-2px); }
 
         /* --- КАТАЛОГ ТОВАРОВ --- */
         .category-section { padding: 60px 0 20px; }
         .category-title { font-size: 36px; text-align: center; margin-bottom: 40px; display: flex; align-items: center; justify-content: center; gap: 15px; }
         .category-title .svg-icon { width: 40px; height: 40px; fill: var(--accent); }
-        
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         
         .product-card { background-color: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-bottom: 5px solid var(--light-green); transition: transform 0.3s; display: flex; flex-direction: column; position: relative; }
         .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        
         .badge { position: absolute; top: 10px; left: 10px; background: var(--accent); color: var(--white); padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; text-transform: uppercase; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-
         .product-img-placeholder { width: 100%; height: 220px; background-color: var(--placeholder-bg); display: flex; align-items: center; justify-content: center; color: #888; font-weight: bold; font-size: 18px; border-bottom: 1px dashed #ccc; }
-        
         .product-info { padding: 25px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
         .product-card h3 { font-size: 22px; margin-bottom: 10px; }
         .product-card p { color: #666; margin-bottom: 15px; flex-grow: 1; font-size: 15px; }
@@ -212,12 +130,11 @@
         .new-price { font-size: 20px; font-weight: bold; color: var(--dark-green); }
         .new-price span { font-size: 14px; color: #888; font-weight: normal; }
 
-        /* --- КОНТРОЛЬ КОЛИЧЕСТВА В КАРТОЧКЕ --- */
+        /* --- КОНТРОЛЬ КОЛИЧЕСТВА --- */
         .qty-control { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; }
         .qty-btn { width: 28px; height: 28px; border: 1px solid var(--light-green); background: transparent; border-radius: 50%; cursor: pointer; font-weight: bold; color: var(--dark-green); display: flex; align-items: center; justify-content: center; font-size: 16px; transition: all 0.2s; }
         .qty-btn:hover { background: var(--light-green); color: white; }
         .qty-input { width: 35px; text-align: center; border: none; background: transparent; font-weight: bold; color: var(--dark-green); font-size: 16px; pointer-events: none; }
-
         .in-cart-indicator { font-size: 13px; color: var(--accent); font-weight: bold; margin-bottom: 8px; display: none; }
 
         /* --- БЛОК О НАС --- */
@@ -227,19 +144,19 @@
         .about-text p { margin-bottom: 15px; font-size: 17px; color: #444; }
         .about-image { width: 100%; height: 350px; background-color: #ddd; border-radius: 15px; background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; border: 5px solid var(--kraft-bg); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
-        /* --- ДОСТАВКА И ОПЛАТА --- */
+        /* --- ДОСТАВКА И ОПЛАТА (ОДИНАКОВЫЙ РАЗМЕР, БЕЗ ПЕРЕНОСОВ) --- */
         .delivery-payment { background-color: var(--kraft-bg); padding: 60px 0; }
-        .delivery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .delivery-card { background-color: var(--white); padding: 30px; border-radius: 15px; border-left: 5px solid var(--dark-green); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .delivery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: stretch; }
+        .delivery-card { background-color: var(--white); padding: 30px; border-radius: 15px; border-left: 5px solid var(--dark-green); box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
         .delivery-card h3 { font-size: 24px; margin-bottom: 15px; display: flex; align-items: center; gap: 12px; }
         .delivery-card h3 .svg-icon { width: 32px; height: 32px; fill: var(--accent); }
-        .delivery-card ul { list-style: none; }
-        .delivery-card li { margin-bottom: 10px; font-size: 16px; display: flex; align-items: flex-start; gap: 10px; }
-        .delivery-card li::before { content: "✓"; color: var(--dark-green); font-weight: bold; }
-
-        /* Запрет переноса для десктопа в блоке доставки */
-        @media (min-width: 769px) {
-            .nowrap-desktop { white-space: nowrap; }
+        .delivery-card ul { list-style: none; flex-grow: 1; }
+        .delivery-card li { margin-bottom: 12px; font-size: 14px; display: flex; align-items: flex-start; gap: 10px; }
+        .delivery-card li::before { content: "✓"; color: var(--dark-green); font-weight: bold; flex-shrink: 0; }
+        
+        /* Запрет переносов текста для ПК (чтобы текст был в одну строку) */
+        @media (min-width: 993px) {
+            .delivery-card li { white-space: nowrap; }
         }
 
         /* --- ФОРМА --- */
@@ -320,13 +237,16 @@
             .nav-menu { gap: 20px; }
             .nav-actions-group { flex-direction: column; gap: 15px; width: 100%; justify-content: center; }
             .messenger-block { padding-left: 0; border-left: none; width: 100%; justify-content: center; padding-top: 15px; border-top: 1px solid #eee; }
+            
+            /* На планшетах и телефонах блоки доставки и оплаты ставим друг под другом */
+            .delivery-grid { grid-template-columns: 1fr; gap: 20px; }
         }
 
         @media (max-width: 768px) {
             .hero { padding: 40px 0; }
             .hero-buttons .btn { padding: 12px 20px; font-size: 14px; }
             
-            .about-grid, .delivery-grid { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; }
             .about-image { height: 250px; order: -1; }
             .form-wrapper { padding: 20px; }
             .site-logo { height: 60px; }
@@ -435,7 +355,6 @@
         </div>
     </header>
 
-    <!-- ОБНОВЛЕННЫЙ ГЛАВНЫЙ ЭКРАН -->
     <section class="hero">
         <div class="container">
             <h1 class="hero-title">Фрипсы - Пастила - Сухофрукты</h1>
@@ -487,7 +406,6 @@
         </div>
     </section>
 
-    <!-- БЛОК ДОСТАВКА И ОПЛАТА -->
     <section class="delivery-payment">
         <div class="container">
             <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">Доставка и оплата</h2>
@@ -496,8 +414,8 @@
                     <h3><svg class="svg-icon" viewBox="0 0 24 24"><path d="M18,18.5A1.5,1.5 0 0,1 16.5,17A1.5,1.5 0 0,1 18,15.5A1.5,1.5 0 0,1 19.5,17A1.5,1.5 0 0,1 18,18.5M6,18.5A1.5,1.5 0 0,1 4.5,17A1.5,1.5 0 0,1 6,15.5A1.5,1.5 0 0,1 7.5,17A1.5,1.5 0 0,1 6,18.5M20,8H17V4H3C1.89,4 1,4.89 1,6V17H3A3,3 0 0,0 6,20A3,3 0 0,0 9,17H15A3,3 0 0,0 18,20A3,3 0 0,0 21,17H23V12L20,8M19,9.5L21.5,12.5H17V9.5H19Z"/></svg> Доставка</h3>
                     <ul>
                         <li><strong>По России:</strong> Почта России или СДЭК (от 300 ₽).</li>
-                        <li class="nowrap-desktop"><strong>По г. Ростов-на-Дону:</strong> Курьером — 300 ₽, бесплатно при заказе от 1500 ₽.</li>
-                        <li><strong>Самовывоз:</strong> Скидка 5% (ул. Миронова 12/7, г. Ростов-на-Дону).</li>
+                        <li><strong>По г. Ростов-на-Дону:</strong> Курьером — 300 ₽, бесплатно от 1500 ₽.</li>
+                        <li><strong>Самовывоз:</strong> Скидка 5% (ул. Миронова 12/7).</li>
                         <li>Отправка заказов осуществляется в течение 1-2 рабочих дней.</li>
                     </ul>
                 </div>
@@ -534,8 +452,6 @@
                         <div id="other-city-block" style="display:none; margin-top:10px;">
                             <input type="text" id="city-input" placeholder="Укажите ваш город" style="width:100%; padding:8px; border-radius:5px; border:1px solid #ccc;">
                         </div>
-                        
-                        <!-- Убрали дублирующийся текст delivery-info -->
                     </div>
 
                     <div class="input-group">
@@ -855,6 +771,7 @@
             });
         }
 
+        // ИСПРАВЛЕННАЯ ФУНКЦИЯ РАСЧЕТА (без ошибки)
         function updateDeliveryAndTotals() {
             const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
@@ -890,6 +807,8 @@
                 otherCityBlock.style.display = 'block';
                 cityInput.required = true;
             }
+            
+            // Строка deliveryInfo.textContent = deliveryText; УДАЛЕНА ОКОНЧАТЕЛЬНО.
             
             if (cart.length > 0) {
                 let orderText = "Ваш заказ:\n";
