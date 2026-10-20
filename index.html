@@ -8,7 +8,8 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Добавлен шрифт Playfair Display для красивого заголовка -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%232E4A32%22><path d=%22M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22l1-2.3A4.49,4.49 0 0,0 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.5,17 5,17C6.5,17 8,16 9,14C10,12 12,10 14,9C16,8 18,7 17,8Z%22/></svg>">
 
@@ -113,8 +114,6 @@
         }
 
         .messenger-icon:hover { transform: scale(1.1); }
-        
-        /* Размер иконок в шапке */
         .messenger-icon svg { width: 24px; height: 24px; }
 
         .messenger-phone {
@@ -126,11 +125,53 @@
         }
         .messenger-phone:hover { color: var(--accent); }
 
-        /* --- ГЛАВНЫЙ ЭКРАН --- */
-        .hero { background: linear-gradient(135deg, #E8E4D9 0%, var(--kraft-bg) 100%); padding: 80px 0; text-align: center; }
-        .hero h1 { font-size: 42px; margin-bottom: 20px; line-height: 1.2; max-width: 900px; margin-left: auto; margin-right: auto; }
-        .hero p { font-size: 20px; margin-bottom: 40px; color: #555; max-width: 700px; margin-left: auto; margin-right: auto; }
-        .btn { display: inline-block; background-color: var(--dark-green); color: var(--white); padding: 15px 40px; text-decoration: none; border-radius: 30px; font-size: 18px; transition: all 0.3s; border: none; cursor: pointer; font-weight: bold; }
+        /* --- ОБНОВЛЕННЫЙ ГЛАВНЫЙ ЭКРАН --- */
+        .hero { background: linear-gradient(135deg, #E8E4D9 0%, var(--kraft-bg) 100%); padding: 60px 0; text-align: center; overflow: hidden; }
+        
+        .hero-title { 
+            font-family: 'Playfair Display', 'Georgia', serif; 
+            font-size: clamp(24px, 5vw, 52px); 
+            margin-bottom: 20px; 
+            line-height: 1.2; 
+            color: var(--dark-green);
+            font-style: italic;
+            white-space: nowrap; /* Запрещаем перенос строки */
+        }
+        
+        .hero-subtitle { 
+            font-size: clamp(12px, 3.2vw, 20px); 
+            margin-bottom: 10px; 
+            color: #555; 
+            white-space: nowrap; /* Запрещаем перенос строки */
+        }
+        
+        .hero-subtitle-small {
+            font-size: clamp(10px, 2.8vw, 16px);
+            margin-bottom: 35px;
+            color: #777;
+            white-space: nowrap; /* Запрещаем перенос строки */
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap; /* Если не помещаются на телефоне, перенесутся */
+        }
+        
+        .btn { 
+            display: inline-block; 
+            background-color: var(--dark-green); 
+            color: var(--white); 
+            padding: 15px 30px; 
+            text-decoration: none; 
+            border-radius: 30px; 
+            font-size: 16px; 
+            transition: all 0.3s; 
+            border: none; 
+            cursor: pointer; 
+            font-weight: bold; 
+        }
         .btn:hover { background-color: var(--accent); transform: translateY(-2px); }
 
         /* --- КАТАЛОГ ТОВАРОВ --- */
@@ -267,8 +308,7 @@
 
         @media (max-width: 768px) {
             .hero { padding: 40px 0; }
-            .hero h1 { font-size: 28px; }
-            .hero p { font-size: 16px; margin-bottom: 25px; }
+            .hero-buttons .btn { padding: 12px 20px; font-size: 14px; }
             
             .about-grid, .delivery-grid { grid-template-columns: 1fr; }
             .about-image { height: 250px; order: -1; }
@@ -349,7 +389,6 @@
                     <div class="messenger-block">
                         <span class="messenger-label">Заказ через мессенджеры:</span>
                         
-                        <!-- Иконка Telegram (Синий круг с белым самолетиком) -->
                         <a href="https://t.me/MiShcko" target="_blank" class="messenger-icon" title="Telegram">
                             <svg viewBox="0 0 100 100">
                                 <circle cx="50" cy="50" r="50" fill="#24A1DE"/>
@@ -357,7 +396,6 @@
                             </svg>
                         </a>
                         
-                        <!-- Иконка MAX (Градиентная капля) -->
                         <a href="https://max.ru/u/f9LHodD0cOLpSdBpWLR43PqkVcQcaySgZN2YwHq0m8QRS7amARFqKpnJiDY" target="_blank" class="messenger-icon" title="Max">
                             <svg viewBox="0 0 100 100">
                                 <defs>
@@ -380,11 +418,18 @@
         </div>
     </header>
 
+    <!-- ОБНОВЛЕННЫЙ ГЛАВНЫЙ ЭКРАН -->
     <section class="hero">
         <div class="container">
-            <h1>Фрипсы, пастила и сухофрукты без сахара, консервантов и красителей.</h1>
-            <p>Сделано с любовью и заботой о вашем здоровье</p>
-            <a href="#frips" class="btn">Смотреть каталог</a>
+            <h1 class="hero-title">Фрипсы - пастила - сухофрукты</h1>
+            <p class="hero-subtitle">Натуральная домашняя продукция без сахара, консервантов и красителей</p>
+            <p class="hero-subtitle-small">Сделано с любовью и заботой о вашем здоровье</p>
+            
+            <div class="hero-buttons">
+                <a href="#frips" class="btn">Каталог фрипсы</a>
+                <a href="#pastila" class="btn">Каталог пастила</a>
+                <a href="#suhofrukty" class="btn">Каталог сухофрукты</a>
+            </div>
         </div>
     </section>
 
@@ -425,6 +470,7 @@
         </div>
     </section>
 
+    <!-- БЛОК ДОСТАВКА И ОПЛАТА С УТОЧНЕНИЯМИ -->
     <section class="delivery-payment">
         <div class="container">
             <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">Доставка и оплата</h2>
@@ -433,8 +479,8 @@
                     <h3><svg class="svg-icon" viewBox="0 0 24 24"><path d="M18,18.5A1.5,1.5 0 0,1 16.5,17A1.5,1.5 0 0,1 18,15.5A1.5,1.5 0 0,1 19.5,17A1.5,1.5 0 0,1 18,18.5M6,18.5A1.5,1.5 0 0,1 4.5,17A1.5,1.5 0 0,1 6,15.5A1.5,1.5 0 0,1 7.5,17A1.5,1.5 0 0,1 6,18.5M20,8H17V4H3C1.89,4 1,4.89 1,6V17H3A3,3 0 0,0 6,20A3,3 0 0,0 9,17H15A3,3 0 0,0 18,20A3,3 0 0,0 21,17H23V12L20,8M19,9.5L21.5,12.5H17V9.5H19Z"/></svg> Доставка</h3>
                     <ul>
                         <li><strong>По России:</strong> Почта России или СДЭК (от 300 ₽).</li>
-                        <li><strong>По городу:</strong> Курьером — бесплатно при заказе от 1500 ₽.</li>
-                        <li><strong>Самовывоз:</strong> Бесплатно (адрес уточняйте у менеджера).</li>
+                        <li><strong>По г. Ростов-на-Дону:</strong> Курьером — 300 ₽, бесплатно при заказе от 1500 ₽.</li>
+                        <li><strong>Самовывоз:</strong> Скидка 5% (ул. Миронова 12/7, г. Ростов-на-Дону).</li>
                         <li>Отправка заказов осуществляется в течение 1-2 рабочих дней.</li>
                     </ul>
                 </div>
@@ -443,7 +489,6 @@
                     <ul>
                         <li><strong>При получении:</strong> Наличными или картой курьеру.</li>
                         <li><strong>Переводом:</strong> На карту Сбербанка или по СБП.</li>
-                        <li><strong>Для юрлиц:</strong> Безналичный расчет (счет на оплату).</li>
                         <li>Все чеки и документы предоставляются по запросу.</li>
                     </ul>
                 </div>
@@ -465,8 +510,8 @@
 
                     <div class="delivery-options">
                         <h4>Способ получения</h4>
-                        <label><input type="radio" name="delivery" value="rostov" checked> Доставка по городу (300 ₽, от 1500 ₽ — бесплатно)</label>
-                        <label><input type="radio" name="delivery" value="pickup"> Самовывоз (скидка 5%)</label>
+                        <label><input type="radio" name="delivery" value="rostov" checked> Доставка по г. Ростов-на-Дону (300 р., от 1500 р. — бесплатно!)</label>
+                        <label><input type="radio" name="delivery" value="pickup"> Самовывоз (скидка 5%) ул. Миронова 12/7</label>
                         <label><input type="radio" name="delivery" value="other"> Доставка в другой город</label>
                         
                         <div id="other-city-block" style="display:none; margin-top:10px;">
@@ -486,7 +531,6 @@
                         <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
                     </div>
 
-                    <!-- Поле Комментарий -->
                     <div class="input-group">
                         <label for="comment">Комментарий</label>
                         <textarea id="comment" name="comment" rows="3" placeholder="Например: позвонить после 18:00 или уточнить состав"></textarea>
@@ -814,10 +858,10 @@
             if (selectedDelivery === 'rostov') {
                 if (totalPrice >= 1500) {
                     deliveryCost = 0;
-                    deliveryText = 'Доставка по городу: БЕСПЛАТНО (заказ от 1500 ₽)';
+                    deliveryText = 'Доставка по г. Ростов-на-Дону: БЕСПЛАТНО (заказ от 1500 ₽)';
                 } else {
                     deliveryCost = 300;
-                    deliveryText = 'Доставка по городу: 300 ₽ (заказ до 1500 ₽)';
+                    deliveryText = 'Доставка по г. Ростов-на-Дону: 300 ₽ (заказ до 1500 ₽)';
                 }
                 totalAmount = totalPrice + deliveryCost;
                 otherCityBlock.style.display = 'none';
@@ -825,7 +869,7 @@
             } else if (selectedDelivery === 'pickup') {
                 deliveryCost = 0;
                 totalAmount = Math.round(totalPrice * 0.95);
-                deliveryText = 'Самовывоз: скидка 5% на заказ';
+                deliveryText = 'Самовывоз (ул. Миронова 12/7): скидка 5% на заказ';
                 otherCityBlock.style.display = 'none';
                 cityInput.required = false;
             } else if (selectedDelivery === 'other') {
@@ -847,7 +891,7 @@
                 orderText += `------------------------------\n`;
                 orderText += `Сумма товаров: ${totalPrice} ₽\n`;
                 if (selectedDelivery === 'rostov') {
-                    orderText += `Доставка по городу: ${deliveryCost} ₽\n`;
+                    orderText += `Доставка по Ростову: ${deliveryCost} ₽\n`;
                 } else if (selectedDelivery === 'pickup') {
                     orderText += `Скидка за самовывоз: -${Math.round(totalPrice * 0.05)} ₽\n`;
                 } else {
@@ -929,7 +973,6 @@
             updateCartUI();
         };
 
-
         // 5. ОТПРАВКА В TELEGRAM (С ВАЛИДАЦИЕЙ И КОММЕНТАРИЕМ)
         document.getElementById('callback-form').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -943,7 +986,6 @@
             const comment = document.getElementById('comment').value.trim();
             const consent = document.getElementById('consent').checked ? 'Да' : 'Нет';
 
-            // ВАЛИДАЦИЯ ТЕЛЕФОНА (минимум 10 цифр)
             const digits = phone.replace(/\D/g, '');
             if (digits.length < 10) {
                 alert('Пожалуйста, введите корректный номер телефона (минимум 10 цифр).');
@@ -959,13 +1001,13 @@
             
             if (selectedDelivery === 'rostov') {
                 if (totalPrice >= 1500) {
-                    deliveryText = 'Доставка по городу (бесплатно)';
+                    deliveryText = 'Доставка по г. Ростов-на-Дону (бесплатно)';
                 } else {
-                    deliveryText = 'Доставка по городу (300 ₽)';
+                    deliveryText = 'Доставка по г. Ростов-на-Дону (300 ₽)';
                     totalAmount += 300;
                 }
             } else if (selectedDelivery === 'pickup') {
-                deliveryText = 'Самовывоз (скидка 5%)';
+                deliveryText = 'Самовывоз (ул. Миронова 12/7) со скидкой 5%';
                 totalAmount = Math.round(totalPrice * 0.95);
             } else if (selectedDelivery === 'other') {
                 deliveryText = `Доставка в другой город (${cityInput}). Стоимость уточнит менеджер.`;
