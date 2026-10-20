@@ -8,6 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Подключение красивых шрифтов -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%232E4A32%22><path d=%22M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22l1-2.3A4.49,4.49 0 0,0 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.5,17 5,17C6.5,17 8,16 9,14C10,12 12,10 14,9C16,8 18,7 17,8Z%22/></svg>">
@@ -771,7 +772,6 @@
             });
         }
 
-        // ИСПРАВЛЕННАЯ ФУНКЦИЯ РАСЧЕТА (без ошибки)
         function updateDeliveryAndTotals() {
             const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
@@ -807,8 +807,6 @@
                 otherCityBlock.style.display = 'block';
                 cityInput.required = true;
             }
-            
-            // Строка deliveryInfo.textContent = deliveryText; УДАЛЕНА ОКОНЧАТЕЛЬНО.
             
             if (cart.length > 0) {
                 let orderText = "Ваш заказ:\n";
