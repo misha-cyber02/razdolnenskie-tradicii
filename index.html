@@ -49,10 +49,10 @@
             justify-content: center; 
             gap: 20px; 
             margin-bottom: 10px; 
-            /* Добавлены стили для плавного сворачивания на ПК */
             max-height: 150px;
             overflow: hidden;
             transition: max-height 0.4s ease, opacity 0.4s ease, margin-bottom 0.4s ease;
+            will-change: max-height, opacity, margin-bottom;
         }
         .site-logo { height: 90px; width: auto; object-fit: contain; }
         .logo-text { font-family: 'Caveat', cursive; font-size: 42px; font-weight: 700; color: var(--dark-green); line-height: 0.9; text-align: left; margin-bottom: 0px; }
@@ -233,7 +233,7 @@
         .privacy-text ul { margin-bottom: 10px; padding-left: 20px; }
         .privacy-text a { color: var(--dark-green); font-weight: bold; }
 
-        /* --- ГЛОБАЛЬНЫЙ КЛАСС СВЕРНУТОЙ ШАПКИ (для ПК и мобильных) --- */
+        /* --- ГЛОБАЛЬНЫЙ КЛАСС СВЕРНУТОЙ ШАПКИ --- */
         header.shrink-header {
             padding: 5px 0;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -293,7 +293,6 @@
             .qty-input { width: 20px; font-size: 14px; }
             .in-cart-indicator { font-size: 10px; margin-bottom: 4px; }
 
-            /* Мобильные настройки при сворачивании */
             header.shrink-header .nav-actions-group { flex-direction: row; justify-content: space-between; align-items: center; gap: 10px; padding-top: 5px; }
             header.shrink-header .messenger-block { padding-top: 0; border-top: none; width: auto; gap: 8px; }
             header.shrink-header .messenger-phone { font-size: 14px; }
@@ -543,14 +542,28 @@
         // ДИНАМИЧЕСКИЙ ГОД В ФУТЕРЕ
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // 1. ЛОГИКА СВОРАЧИВАНИЯ ШАПКИ (ТЕПЕРЬ РАБОТАЕТ НА ПК И ТЕЛЕФОНАХ)
+        // 1. ИСПРАВЛЕННАЯ ЛОГИКА СВОРАЧИВАНИЯ (БЕЗ ТРЯСКИ)
+        let lastScrollTop = 0;
+        const header = document.getElementById('main-header');
+        
         window.addEventListener('scroll', function() {
-            const header = document.getElementById('main-header');
-            if (window.scrollY > 80) { // Порог прокрутки 80px
-                header.classList.add('shrink-header');
+            // Получаем текущую позицию прокрутки
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop) {
+                // Скроллим вниз
+                if (scrollTop > 100) { // Сворачиваем после 100px
+                    header.classList.add('shrink-header');
+                }
             } else {
-                header.classList.remove('shrink-header');
+                // Скроллим вверх
+                if (scrollTop < 50) { // Разворачиваем только когда вернулись выше 50px
+                    header.classList.remove('shrink-header');
+                }
             }
+            
+            // Защита от отрицательного значения (на Mac/iOS)
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
         });
 
         // 2. БАЗА ДАННЫХ ТОВАРОВ
