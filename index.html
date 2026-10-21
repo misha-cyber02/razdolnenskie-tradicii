@@ -203,7 +203,7 @@
         .floating-tg:hover { transform: scale(1.1); background-color: #1c85b9; }
         .floating-tg svg { width: 35px; height: 35px; fill: white; }
 
-        /* --- НОВАЯ ПРЕМИАЛЬНАЯ КНОПКА КОРЗИНЫ --- */
+        /* --- ПРЕМИАЛЬНАЯ КНОПКА КОРЗИНЫ (В ЛЕВОМ НИЖНЕМ УГЛУ) --- */
         .floating-cart { 
             position: fixed; bottom: 30px; left: 30px; 
             background-color: var(--white); 
@@ -226,9 +226,7 @@
         
         .floating-cart svg { width: 24px; height: 24px; fill: var(--dark-green); transition: fill 0.3s; }
         
-        .cart-btn-content {
-            display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1;
-        }
+        .cart-btn-content { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; }
         .cart-btn-qty { font-size: 12px; font-weight: bold; opacity: 0.8; }
         .cart-btn-price { font-size: 16px; font-weight: 900; }
 
@@ -238,9 +236,7 @@
             30% { transform: scale(1.15); }
             100% { transform: scale(1); }
         }
-        .floating-cart.bump {
-            animation: bump 0.3s ease;
-        }
+        .floating-cart.bump { animation: bump 0.3s ease; }
 
         /* --- ВЫДВИЖНАЯ КОРЗИНА --- */
         .cart-overlay {
@@ -250,9 +246,7 @@
             opacity: 0; visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
-        .cart-overlay.active {
-            opacity: 1; visibility: visible;
-        }
+        .cart-overlay.active { opacity: 1; visibility: visible; }
 
         .cart-sidebar {
             position: fixed; top: 0; right: 0; height: 100vh; width: 400px; max-width: 100%;
@@ -263,22 +257,14 @@
             display: flex; flex-direction: column;
             box-shadow: -5px 0 25px rgba(0,0,0,0.15);
         }
-        .cart-sidebar.active {
-            transform: translateX(0);
-        }
+        .cart-sidebar.active { transform: translateX(0); }
 
-        .cart-header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 25px; border-bottom: 1px solid #eee;
-        }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 25px; border-bottom: 1px solid #eee; }
         .cart-header h3 { margin: 0; font-size: 22px; color: var(--dark-green); }
         .close-cart-btn { background: none; border: none; font-size: 30px; cursor: pointer; color: #888; line-height: 1; transition: color 0.2s; }
         .close-cart-btn:hover { color: #d9534f; }
 
-        .cart-body {
-            flex-grow: 1; overflow-y: auto; padding: 20px 25px;
-        }
-        
+        .cart-body { flex-grow: 1; overflow-y: auto; padding: 20px 25px; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; }
         .cart-item-info { flex-grow: 1; text-align: left; padding-right: 15px; }
         .cart-item-title { font-weight: bold; font-size: 15px; color: var(--dark-green); margin-bottom: 4px; }
@@ -289,9 +275,7 @@
         .cart-item-remove { background: none; border: none; color: #d9534f; cursor: pointer; font-size: 24px; line-height: 1; margin-left: 5px; opacity: 0.7; transition: 0.2s; }
         .cart-item-remove:hover { opacity: 1; transform: scale(1.1); }
 
-        .cart-footer {
-            padding: 20px 25px; border-top: 2px solid var(--light-green); background: var(--kraft-bg);
-        }
+        .cart-footer { padding: 20px 25px; border-top: 2px solid var(--light-green); background: var(--kraft-bg); }
         .cart-total { text-align: right; font-size: 22px; font-weight: bold; margin-bottom: 15px; color: var(--dark-green); }
         .cart-footer .btn { width: 100%; border-radius: 8px; }
 
@@ -306,15 +290,9 @@
         .privacy-text a { color: var(--dark-green); font-weight: bold; }
 
         /* --- СВЕРНУТАЯ ШАПКА --- */
-        header.shrink-header {
-            padding: 5px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        header.shrink-header .header-top {
-            max-height: 0; opacity: 0; margin-bottom: 0;
-        }
-        header.shrink-header .nav-menu {
-            padding-top: 0; border-top-color: transparent;
-        }
+        header.shrink-header { padding: 5px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        header.shrink-header .header-top { max-height: 0; opacity: 0; margin-bottom: 0; }
+        header.shrink-header .nav-menu { padding-top: 0; border-top-color: transparent; }
 
         /* =========================================
            МОБИЛЬНАЯ ВЕРСИЯ
@@ -324,8 +302,6 @@
             .nav-actions-group { flex-direction: column; gap: 15px; width: 100%; justify-content: center; }
             .messenger-block { padding-left: 0; border-left: none; width: 100%; justify-content: center; padding-top: 15px; border-top: 1px solid #eee; }
             .delivery-grid { grid-template-columns: 1fr; gap: 20px; }
-            
-            /* Корзина на весь экран на телефонах */
             .cart-sidebar { width: 100%; }
         }
 
@@ -568,7 +544,7 @@
         </div>
     </footer>
 
-    <!-- НОВАЯ ПРЕМИАЛЬНАЯ КНОПКА КОРЗИНЫ -->
+    <!-- ПРЕМИАЛЬНАЯ КНОПКА КОРЗИНЫ -->
     <button class="floating-cart" id="cart-btn" title="Открыть корзину">
         <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
         <div class="cart-btn-content">
@@ -743,14 +719,13 @@
         const cartSidebar = document.getElementById('cart-sidebar');
         const cartOverlay = document.getElementById('cart-overlay');
         const cartItemsContainer = document.getElementById('cart-items');
-        const cartCountEl = document.getElementById('cart-count');
-        const cartTotalEl = document.getElementById('cart-total-price');
-        const formCartSummary = document.getElementById('form-cart-summary');
         
-        // Элементы новой плашки в углу
+        // Элементы для новой кнопки
         const cartBtn = document.getElementById('cart-btn');
         const cartBtnText = document.getElementById('cart-btn-text');
         const cartBtnPrice = document.getElementById('cart-btn-price');
+        const cartTotalEl = document.getElementById('cart-total-price');
+        const formCartSummary = document.getElementById('form-cart-summary');
 
         // Открытие/закрытие корзины
         function openCart() {
@@ -953,8 +928,6 @@
         function updateCartUI() {
             const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
             const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            
-            cartCountEl.innerText = totalQty;
             
             // Обновляем премиальную кнопку в углу
             if (totalQty > 0) {
