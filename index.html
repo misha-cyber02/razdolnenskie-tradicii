@@ -201,7 +201,7 @@
         /* --- ПЛАВАЮЩИЕ КНОПКИ --- */
         .floating-tg { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background-color: #24A1DE; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1000; transition: transform 0.3s, background 0.3s; text-decoration: none; }
         .floating-tg:hover { transform: scale(1.1); background-color: #1c85b9; }
-        .floating-tg svg { width: 35px; height: 35px; fill: white; }
+        .floating-tg svg { width: 60%; height: 60%; margin-left: -2px; }
 
         /* --- ПРЕМИАЛЬНАЯ КНОПКА КОРЗИНЫ (В ЛЕВОМ НИЖНЕМ УГЛУ) --- */
         .floating-cart { 
@@ -302,7 +302,6 @@
             .nav-actions-group { flex-direction: column; gap: 15px; width: 100%; justify-content: center; }
             .messenger-block { padding-left: 0; border-left: none; width: 100%; justify-content: center; padding-top: 15px; border-top: 1px solid #eee; }
             .delivery-grid { grid-template-columns: 1fr; gap: 20px; }
-            .cart-sidebar { width: 100%; }
         }
 
         @media (max-width: 768px) {
@@ -348,6 +347,36 @@
             header.shrink-header .nav-actions-group { flex-direction: row; justify-content: space-between; align-items: center; gap: 10px; padding-top: 5px; }
             header.shrink-header .messenger-block { padding-top: 0; border-top: none; width: auto; gap: 8px; }
             header.shrink-header .messenger-phone { font-size: 14px; }
+
+            /* МОБИЛЬНАЯ КОРЗИНА (КАК ВЫПАДАЮЩИЙ СПИСОК) */
+            .cart-sidebar {
+                position: fixed;
+                bottom: 85px;
+                left: 20px;
+                right: 20px;
+                top: auto;
+                width: auto;
+                height: auto;
+                max-height: 60vh;
+                border-radius: 15px;
+                transform: translateY(20px);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            }
+            .cart-sidebar.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            /* Убираем затемнение фона на мобильных */
+            .cart-overlay { display: none; }
+            
+            .cart-header { padding: 15px; }
+            .cart-header h3 { font-size: 18px; }
+            .cart-body { padding: 15px; max-height: 40vh; }
+            .cart-footer { padding: 15px; }
         }
     </style>
 </head>
@@ -383,7 +412,7 @@
                         <a href="https://t.me/MiShcko" target="_blank" class="messenger-icon" title="Telegram">
                             <svg viewBox="0 0 100 100">
                                 <circle cx="50" cy="50" r="50" fill="#24A1DE"/>
-                                <path d="M 73.5 26.5 L 24.5 45.5 C 22.5 46.3 22.6 47.4 24.2 47.9 L 37.3 52 L 67.5 32.8 C 68.9 31.9 70.2 32.4 69.1 33.5 L 44.6 55.5 L 43.8 68.9 C 45.2 68.9 45.8 68.3 46.6 67.5 L 53.1 61.1 L 67.8 71.9 C 70.3 73.3 72.1 72.5 72.6 69.5 L 78.9 37.9 C 79.7 34.9 77.5 33.5 73.5 26.5 Z" fill="#FFFFFF" transform="translate(0, 2) scale(0.95) translate(2, 0)"/>
+                                <path fill="#FFFFFF" transform="translate(10, 10) scale(3.33)" d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701-.322 4.749c.474 0 .683-.217.949-.474l2.257-2.196 4.711 3.48c.868.48 1.49.233 1.706-.804l3.083-14.52c.316-1.26-.48-1.828-1.366-1.424z"/>
                             </svg>
                         </a>
                         
@@ -593,9 +622,8 @@
     </div>
 
     <a href="https://t.me/MiShcko" class="floating-tg" target="_blank" title="Написать в Telegram">
-        <svg viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="50" fill="#24A1DE"/>
-            <path d="M 73.5 26.5 L 24.5 45.5 C 22.5 46.3 22.6 47.4 24.2 47.9 L 37.3 52 L 67.5 32.8 C 68.9 31.9 70.2 32.4 69.1 33.5 L 44.6 55.5 L 43.8 68.9 C 45.2 68.9 45.8 68.3 46.6 67.5 L 53.1 61.1 L 67.8 71.9 C 70.3 73.3 72.1 72.5 72.6 69.5 L 78.9 37.9 C 79.7 34.9 77.5 33.5 73.5 26.5 Z" fill="#FFFFFF" transform="translate(0, 2) scale(0.95) translate(2, 0)"/>
+        <svg viewBox="0 0 24 24">
+            <path fill="#FFFFFF" d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701-.322 4.749c.474 0 .683-.217.949-.474l2.257-2.196 4.711 3.48c.868.48 1.49.233 1.706-.804l3.083-14.52c.316-1.26-.48-1.828-1.366-1.424z"/>
         </svg>
     </a>
 
@@ -720,18 +748,19 @@
         const cartOverlay = document.getElementById('cart-overlay');
         const cartItemsContainer = document.getElementById('cart-items');
         
-        // Элементы для новой кнопки
         const cartBtn = document.getElementById('cart-btn');
         const cartBtnText = document.getElementById('cart-btn-text');
         const cartBtnPrice = document.getElementById('cart-btn-price');
         const cartTotalEl = document.getElementById('cart-total-price');
         const formCartSummary = document.getElementById('form-cart-summary');
 
-        // Открытие/закрытие корзины
+        // Открытие/закрытие корзины (с учетом мобильной специфики)
         function openCart() {
             cartSidebar.classList.add('active');
-            cartOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; 
+            if (window.innerWidth > 768) {
+                cartOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; 
+            }
         }
 
         function closeCart() {
