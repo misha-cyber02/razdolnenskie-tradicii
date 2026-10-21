@@ -8,7 +8,6 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Современные шрифты: Manrope для текста, Playfair Display для заголовков -->
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%231C1C1C%22><path d=%22M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22l1-2.3A4.49,4.49 0 0,0 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.5,17 5,17C6.5,17 8,16 9,14C10,12 12,10 14,9C16,8 18,7 17,8Z%22/></svg>">
@@ -16,12 +15,11 @@
     <style>
         /* --- СОВРЕМЕННАЯ ЦВЕТОВАЯ ПАЛИТРА --- */
         :root {
-            --bg-color: #F9F8F6; /* Теплый, премиальный белый */
-            --text-main: #1C1C1C; /* Глубокий черный, почти как в Apple */
+            --bg-color: #F9F8F6;
+            --text-main: #1C1C1C;
             --text-muted: #7A7A7A;
-            --accent: #D96B43; /* Терракотовый акцент */
-            --accent-hover: #C05934;
-            --secondary: #4A5D4E; /* Благородный шалфейный зеленый */
+            --accent: #D96B43;
+            --secondary: #3A4A3D;
             --border: #E8E6E1;
             --white: #FFFFFF;
         }
@@ -62,11 +60,12 @@
         
         .header-inner { display: flex; justify-content: space-between; align-items: center; height: 80px; }
         
-        .logo-wrapper { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); }
-        .logo-img { height: 50px; width: auto; }
+        .logo-wrapper { display: flex; align-items: center; gap: 16px; text-decoration: none; color: var(--text-main); }
+        .logo-img { height: 54px; width: auto; mix-blend-mode: multiply; }
+        
         .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
-        .logo-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; letter-spacing: 0.5px; }
-        .logo-sub { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 700; }
+        .logo-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; letter-spacing: 0.5px; }
+        .logo-sub { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); font-weight: 800; }
 
         .nav-links { display: flex; gap: 32px; }
         .nav-links a { 
@@ -80,7 +79,14 @@
         .nav-links a:hover::after { width: 100%; }
 
         .header-contacts { display: flex; align-items: center; gap: 20px; }
-        .header-phone { font-weight: 700; font-size: 15px; text-decoration: none; color: var(--text-main); }
+        
+        /* Телефон в шапке */
+        .header-phone { 
+            font-weight: 800; font-size: 16px; text-decoration: none; color: var(--text-main); 
+            transition: color 0.2s;
+        }
+        .header-phone:hover { color: var(--accent); }
+        
         .messenger-icons { display: flex; gap: 12px; }
         .messenger-icons a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--white); border: 1px solid var(--border); transition: transform 0.2s, border-color 0.2s; }
         .messenger-icons a:hover { transform: scale(1.05); border-color: var(--text-main); }
@@ -102,7 +108,6 @@
         .section-title { text-align: center; font-size: 40px; margin-bottom: 60px; letter-spacing: -0.5px; }
         .category-block { padding: 60px 0; }
         
-        /* Современная сетка */
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 32px; }
         
         .product-card { 
@@ -115,7 +120,6 @@
             box-shadow: 0 24px 48px rgba(0,0,0,0.06); 
         }
         
-        /* Плейсхолдер под фото (красивый градиент) */
         .product-image {
             width: 100%; aspect-ratio: 1/1; border-radius: 16px;
             background: linear-gradient(135deg, #F0EFEA, #E4E2DA);
@@ -132,23 +136,36 @@
 
         .product-info { padding: 0 8px 8px 8px; display: flex; flex-direction: column; flex-grow: 1; }
         .product-title { font-size: 20px; font-weight: 600; margin-bottom: 8px; font-family: 'Playfair Display', serif; }
-        .product-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; flex-grow: 1; line-height: 1.5; }
+        .product-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; flex-grow: 1; line-height: 1.5; }
         
-        /* Селектор веса */
-        .weight-selector { display: flex; gap: 8px; margin-bottom: 20px; }
+        .weight-selector { display: flex; gap: 8px; margin-bottom: 16px; }
         .weight-btn { 
-            flex: 1; padding: 10px 0; border-radius: 12px; border: 1px solid var(--border); 
+            flex: 1; padding: 8px 0; border-radius: 10px; border: 1px solid var(--border); 
             background: transparent; font-size: 13px; font-weight: 600; color: var(--text-muted);
             cursor: pointer; transition: all 0.2s; font-family: inherit;
         }
         .weight-btn:hover { border-color: var(--text-main); color: var(--text-main); }
         .weight-btn.active { background: var(--text-main); color: var(--white); border-color: var(--text-main); }
 
+        .qty-control { 
+            display: flex; align-items: center; justify-content: space-between; 
+            border: 1px solid var(--border); border-radius: 100px; padding: 4px; margin-bottom: 16px; height: 44px;
+        }
+        .qty-btn { 
+            width: 34px; height: 34px; border-radius: 50%; border: none; background: transparent; 
+            cursor: pointer; display: flex; align-items: center; justify-content: center; 
+            font-size: 18px; color: var(--text-main); transition: background 0.2s;
+        }
+        .qty-btn:hover { background: var(--bg-color); }
+        .qty-input { 
+            width: 40px; text-align: center; border: none; background: transparent; 
+            font-weight: 600; font-size: 15px; color: var(--text-main); font-family: inherit;
+        }
+
         .product-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
         .price { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
-        .price span { font-size: 14px; font-weight: 500; color: var(--text-muted); }
+        .price span { font-size: 13px; font-weight: 500; color: var(--text-muted); }
         
-        /* Кнопка добавления (круглая, как в Apple) */
         .add-btn {
             width: 48px; height: 48px; border-radius: 50%; background: var(--bg-color);
             border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
@@ -171,55 +188,53 @@
         /* --- ДОСТАВКА И ОПЛАТА --- */
         .delivery-section { padding: 80px 0; }
         .delivery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-        .delivery-card { 
-            background: var(--white); padding: 40px; border-radius: 24px; 
-        }
-        .delivery-card h3 { font-size: 24px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+        .delivery-card { background: var(--white); padding: 40px; border-radius: 24px; }
+        .delivery-card h3 { font-size: 24px; margin-bottom: 24px; }
         .delivery-card ul { list-style: none; }
-        .delivery-card li { 
-            margin-bottom: 16px; font-size: 15px; color: var(--text-muted); 
-            display: flex; align-items: flex-start; gap: 12px;
-        }
+        .delivery-card li { margin-bottom: 16px; font-size: 15px; color: var(--text-muted); display: flex; align-items: flex-start; gap: 12px; }
         .delivery-card li::before { content: "•"; color: var(--accent); font-size: 24px; line-height: 1; }
 
         /* --- ФОРМА ЗАКАЗА --- */
-        .contact-section { padding: 100px 0; background: var(--secondary); border-radius: 40px 40px 0 0; margin-top: 60px; color: var(--white); }
-        .contact-container { max-width: 600px; margin: 0 auto; text-align: center; }
-        .contact-container h2 { font-size: 40px; margin-bottom: 16px; color: var(--white); }
-        .contact-container p { color: rgba(255,255,255,0.7); margin-bottom: 48px; font-size: 16px; }
+        .contact-section { padding: 100px 0; background: var(--secondary); border-radius: 40px 40px 0 0; margin-top: 60px; }
+        .contact-container { max-width: 600px; margin: 0 auto; padding: 0 24px; }
+        
+        .form-card { 
+            background: var(--white); padding: 40px; border-radius: 24px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .form-card h2 { font-size: 32px; margin-bottom: 12px; text-align: center; color: var(--text-main); }
+        .form-card p { color: var(--text-muted); margin-bottom: 32px; text-align: center; font-size: 15px; }
         
         .form-grid { display: flex; flex-direction: column; gap: 20px; text-align: left; }
-        .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 1px; }
-        .form-group input, .form-group textarea, .form-group select { 
-            width: 100%; padding: 16px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); 
-            background: rgba(255,255,255,0.05); color: var(--white); font-family: inherit; font-size: 16px;
+        
+        .form-group label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-group input, .form-group textarea { 
+            width: 100%; padding: 16px 20px; border-radius: 12px; border: 1px solid var(--border); 
+            background: var(--bg-color); color: var(--text-main); font-family: inherit; font-size: 16px;
             transition: all 0.3s;
         }
-        .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
-        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--white); background: rgba(255,255,255,0.1); }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: #B0B0B0; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--text-main); background: var(--white); }
         
-        /* Кастомные радиокнопки */
-        .radio-group { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
-        .radio-label { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; font-size: 15px; color: rgba(255,255,255,0.9); }
+        .radio-group { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; background: var(--bg-color); padding: 16px; border-radius: 12px; }
+        .radio-label { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; font-size: 15px; color: var(--text-main); }
         .radio-label input[type="radio"] { display: none; }
-        .radio-custom { width: 20px; height: 20px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; transition: all 0.2s; }
-        .radio-label input[type="radio"]:checked + .radio-custom { border-color: var(--white); }
-        .radio-label input[type="radio"]:checked + .radio-custom::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--white); }
+        .radio-custom { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #CCC; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; transition: all 0.2s; }
+        .radio-label input[type="radio"]:checked + .radio-custom { border-color: var(--text-main); }
+        .radio-label input[type="radio"]:checked + .radio-custom::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--text-main); }
 
-        .checkbox-label { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 10px; }
-        .checkbox-label input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--white); cursor: pointer; }
-        .checkbox-label a { color: var(--white); text-decoration: underline; }
+        .checkbox-label { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; font-size: 13px; color: var(--text-muted); margin-top: 10px; }
+        .checkbox-label input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--text-main); cursor: pointer; }
+        .checkbox-label a { color: var(--text-main); text-decoration: underline; font-weight: 600; }
 
-        .contact-section .btn { width: 100%; margin-top: 24px; background: var(--white); color: var(--secondary); }
-        .contact-section .btn:hover { background: var(--bg-color); transform: translateY(-2px); }
+        .form-card .btn { width: 100%; margin-top: 10px; padding: 18px; font-size: 16px; }
 
         /* --- ПОДВАЛ --- */
         footer { background: var(--bg-color); padding: 40px 0; text-align: center; border-top: 1px solid var(--border); }
         footer p { color: var(--text-muted); font-size: 14px; margin-bottom: 8px; }
 
-        /* --- ПЛАВАЮЩИЕ ЭЛЕМЕНТЫ (CART & TELEGRAM) --- */
-        
-        /* Кнопка Telegram */
+        /* --- ПЛАВАЮЩИЕ ЭЛЕМЕНТЫ --- */
         .floating-tg { 
             position: fixed; bottom: 32px; right: 32px; width: 56px; height: 56px; 
             background: #24A1DE; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
@@ -229,7 +244,6 @@
         .floating-tg:hover { transform: scale(1.1) translateY(-4px); }
         .floating-tg svg { width: 26px; height: 26px; fill: #FFFFFF; margin-right: 2px; }
 
-        /* Плавающая корзина (Стильная темная таблетка) */
         .floating-cart {
             position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
             background: var(--text-main); color: var(--white); 
@@ -309,13 +323,38 @@
 
         @media (max-width: 768px) {
             .header-inner { height: 70px; }
-            .logo-img { height: 40px; }
-            .logo-title { font-size: 16px; }
-            .header-phone { display: none; }
+            .logo-img { height: 44px; }
+            .logo-text { display: none; } /* Скрываем текст, оставляем только лого */
+            
+            /* Делаем телефон крупным и заметным */
+            .header-phone { display: block; font-size: 16px; font-weight: 800; }
+            .messenger-icons { display: none; } /* Скрываем иконки в шапке, так как есть плавающая кнопка */
             
             .hero { padding: 120px 0 60px 0; }
             .hero h1 { font-size: 32px; }
             .hero-actions { flex-direction: column; }
+            
+            /* Сетка на мобильных 2x2 */
+            .product-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 12px; 
+            }
+            
+            /* Уменьшаем карточки, чтобы помещались */
+            .product-card { padding: 10px; border-radius: 16px; }
+            .product-image { margin-bottom: 12px; border-radius: 12px; font-size: 10px; }
+            .product-title { font-size: 14px; margin-bottom: 4px; }
+            .product-desc { font-size: 11px; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+            .weight-selector { gap: 4px; margin-bottom: 8px; flex-wrap: wrap; }
+            .weight-btn { padding: 6px 0; font-size: 10px; border-radius: 6px; }
+            .qty-control { height: 32px; margin-bottom: 8px; padding: 2px; }
+            .qty-btn { width: 24px; height: 24px; font-size: 14px; }
+            .qty-input { width: 20px; font-size: 12px; }
+            .product-bottom { gap: 4px; }
+            .price { font-size: 16px; }
+            .price span { font-size: 10px; }
+            .add-btn { width: 32px; height: 32px; }
+            .add-btn svg { width: 16px; height: 16px; }
             
             /* Корзина на мобильных (как Bottom Sheet) */
             .cart-drawer {
@@ -329,6 +368,7 @@
             .floating-tg svg { width: 22px; height: 22px; }
             
             .contact-section { padding: 60px 0; border-radius: 24px 24px 0 0; }
+            .form-card { padding: 24px; }
         }
     </style>
 </head>
@@ -352,6 +392,7 @@
             </nav>
             
             <div class="header-contacts">
+                <a href="tel:+79064287571" class="header-phone">+7 (906) 428-75-71</a>
                 <div class="messenger-icons">
                     <a href="https://t.me/MiShcko" target="_blank" title="Telegram">
                         <svg viewBox="0 0 100 100">
@@ -374,7 +415,6 @@
                         </svg>
                     </a>
                 </div>
-                <a href="tel:+79064287571" class="header-phone">+7 (906) 428-75-71</a>
             </div>
         </div>
     </header>
@@ -447,61 +487,63 @@
     <!-- ФОРМА ЗАКАЗА -->
     <section class="contact-section" id="order-form">
         <div class="container contact-container">
-            <h2>Оформить заказ</h2>
-            <p>Оставьте свой номер телефона, и мы перезвоним вам в течение 15 минут для подтверждения заказа и расчета доставки.</p>
-            
-            <form id="callback-form" class="form-grid">
-                <div class="form-cart-summary" id="form-cart-summary" style="display:none; background: rgba(255,255,255,0.1); padding: 16px; border-radius: 12px; margin-bottom: 20px; font-size: 14px; text-align: left; border: 1px solid rgba(255,255,255,0.1);"></div>
+            <div class="form-card">
+                <h2>Оформить заказ</h2>
+                <p>Оставьте свой номер телефона, и мы перезвоним вам в течение 15 минут для подтверждения заказа.</p>
+                
+                <form id="callback-form" class="form-grid">
+                    <div class="form-cart-summary" id="form-cart-summary" style="display:none; background: var(--bg-color); padding: 16px; border-radius: 12px; margin-bottom: 10px; font-size: 14px; text-align: left; border: 1px solid var(--border);"></div>
 
-                <div class="form-group">
-                    <label>Способ получения</label>
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="delivery" value="rostov" checked>
-                            <span class="radio-custom"></span>
-                            <span>Доставка по г. Ростов-на-Дону (300 р., от 1500 р. — бесплатно)</span>
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="delivery" value="pickup">
-                            <span class="radio-custom"></span>
-                            <span>Самовывоз (скидка 5%) ул. Миронова 12/7</span>
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="delivery" value="other">
-                            <span class="radio-custom"></span>
-                            <span>Доставка в другой город</span>
-                        </label>
+                    <div class="form-group">
+                        <label>Способ получения</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="delivery" value="rostov" checked>
+                                <span class="radio-custom"></span>
+                                <span>Доставка по г. Ростов-на-Дону (300 р., от 1500 р. — бесплатно)</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="delivery" value="pickup">
+                                <span class="radio-custom"></span>
+                                <span>Самовывоз (скидка 5%) ул. Миронова 12/7</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="delivery" value="other">
+                                <span class="radio-custom"></span>
+                                <span>Доставка в другой город</span>
+                            </label>
+                        </div>
+                        <div id="other-city-block" style="display:none; margin-top:12px;">
+                            <input type="text" id="city-input" placeholder="Укажите ваш город">
+                        </div>
                     </div>
-                    <div id="other-city-block" style="display:none; margin-top:16px;">
-                        <input type="text" id="city-input" placeholder="Укажите ваш город">
+
+                    <div class="form-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" name="name" placeholder="Например, Иван" required>
                     </div>
-                </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Номер телефона *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+                    </div>
 
-                <div class="form-group">
-                    <label for="name">Ваше имя</label>
-                    <input type="text" id="name" name="name" placeholder="Например, Иван" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">Номер телефона *</label>
-                    <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
-                </div>
+                    <div class="form-group">
+                        <label for="comment">Комментарий</label>
+                        <textarea id="comment" name="comment" rows="3" placeholder="Например: позвонить после 18:00 или уточнить состав"></textarea>
+                    </div>
+                    
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <span>Я даю согласие на <a href="#" id="open-privacy">обработку персональных данных</a></span>
+                    </label>
 
-                <div class="form-group">
-                    <label for="comment">Комментарий</label>
-                    <textarea id="comment" name="comment" rows="3" placeholder="Например: позвонить после 18:00 или уточнить состав"></textarea>
-                </div>
-                
-                <label class="checkbox-label">
-                    <input type="checkbox" id="consent" name="consent" required>
-                    <span>Я даю согласие на <a href="#" id="open-privacy">обработку персональных данных</a></span>
-                </label>
-
-                <button type="submit" class="btn" id="submit-btn">Отправить заявку</button>
-                
-                <div id="success-message" style="display:none; background: rgba(255,255,255,0.15); color: #fff; padding: 16px; border-radius: 12px; font-weight: 600; text-align: center;">Спасибо! Ваша заявка принята. Мы скоро перезвоним!</div>
-                <div id="error-message" style="display:none; background: rgba(217, 83, 79, 0.2); color: #ffb3b3; padding: 16px; border-radius: 12px; font-weight: 600; text-align: center;">Произошла ошибка при отправке. Пожалуйста, попробуйте позвонить нам напрямую.</div>
-            </form>
+                    <button type="submit" class="btn btn--primary" id="submit-btn">Отправить заявку</button>
+                    
+                    <div id="success-message" style="display:none; background: #E8F5E9; color: #4A5D4E; padding: 16px; border-radius: 12px; font-weight: 600; text-align: center;">Спасибо! Ваша заявка принята. Мы скоро перезвоним!</div>
+                    <div id="error-message" style="display:none; background: #FFEBEE; color: #D9534F; padding: 16px; border-radius: 12px; font-weight: 600; text-align: center;">Произошла ошибка при отправке. Пожалуйста, попробуйте позвонить нам напрямую.</div>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -660,6 +702,13 @@
                         <h3 class="product-title">${product.name}</h3>
                         <p class="product-desc">${product.desc}</p>
                         ${weightSelectorHTML}
+                        
+                        <div class="qty-control">
+                            <button class="qty-btn qty-minus">−</button>
+                            <input type="text" class="qty-input" value="1" readonly>
+                            <button class="qty-btn qty-plus">+</button>
+                        </div>
+
                         <div class="product-bottom">
                             <div class="price" data-base-price="${product.price}">${priceDisplay}</div>
                             <button class="add-btn order-btn" title="Добавить в корзину">
@@ -682,14 +731,12 @@
         const cartOverlay = document.getElementById('cart-overlay');
         const cartItemsContainer = document.getElementById('cart-items');
         
-        // Элементы новой корзины
         const cartBtn = document.getElementById('cart-btn');
         const cartBadge = document.getElementById('cart-badge');
         const cartPriceEl = document.getElementById('cart-price');
         const cartTotalEl = document.getElementById('cart-total');
         const formCartSummary = document.getElementById('form-cart-summary');
 
-        // Открытие/закрытие корзины
         function openCart() {
             cartDrawer.classList.add('active');
             cartOverlay.classList.add('active');
@@ -711,7 +758,6 @@
             document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
         });
 
-        // Модальное окно политики
         const privacyModal = document.getElementById('privacy-modal');
         document.getElementById('open-privacy').addEventListener('click', (e) => {
             e.preventDefault();
@@ -720,7 +766,6 @@
         document.getElementById('close-privacy').addEventListener('click', () => privacyModal.classList.remove('active'));
         privacyModal.addEventListener('click', (e) => { if(e.target === privacyModal) privacyModal.classList.remove('active'); });
 
-        // Обработка выбора веса и добавления
         document.querySelectorAll('.product-card').forEach(card => {
             const weightBtns = card.querySelectorAll('.weight-btn');
             const priceEl = card.querySelector('.price');
@@ -729,6 +774,10 @@
             
             const unit = card.dataset.unit;
             const hasWeights = card.dataset.hasWeights === 'true';
+            
+            const qtyInput = card.querySelector('.qty-input');
+            const qtyPlus = card.querySelector('.qty-plus');
+            const qtyMinus = card.querySelector('.qty-minus');
 
             let currentWeight = hasWeights ? parseInt(weightBtns[0].dataset.weight) : 1;
             let currentPrice = parseInt(priceEl.dataset.basePrice);
@@ -750,10 +799,22 @@
                 });
             }
 
+            qtyPlus.addEventListener('click', () => {
+                let val = parseInt(qtyInput.value) || 1;
+                if (val < 99) qtyInput.value = val + 1;
+            });
+
+            qtyMinus.addEventListener('click', () => {
+                let val = parseInt(qtyInput.value) || 1;
+                if (val > 1) qtyInput.value = val - 1;
+            });
+
             orderBtn.addEventListener('click', () => {
-                addToCart(productName, currentWeight, currentPrice, unit, 1);
+                const qty = parseInt(qtyInput.value) || 1;
+                addToCart(productName, currentWeight, currentPrice, unit, qty);
                 
-                // Визуальная обратная связь на кнопке (галочка)
+                qtyInput.value = 1;
+
                 const originalHTML = orderBtn.innerHTML;
                 orderBtn.innerHTML = '<svg viewBox="0 0 24 24" style="fill:#4A5D4E"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
                 orderBtn.style.background = '#E8F5E9';
@@ -873,7 +934,6 @@
             const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
             const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
-            // Обновляем плавающую кнопку
             cartBadge.innerText = totalQty;
             cartPriceEl.innerText = `${totalPrice} ₽`;
             
@@ -883,7 +943,6 @@
                 cartBtn.classList.remove('show');
             }
             
-            // Отрисовка списка товаров
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = '<p style="text-align:center; color:#888; margin-top:40px;">Ваша корзина пока пуста</p>';
                 cartTotalEl.innerText = '0 ₽';
