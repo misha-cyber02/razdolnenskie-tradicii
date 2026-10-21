@@ -8,601 +8,559 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Современные шрифты: Manrope для текста, Playfair Display для заголовков -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%232E4A32%22><path d=%22M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22l1-2.3A4.49,4.49 0 0,0 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.5,17 5,17C6.5,17 8,16 9,14C10,12 12,10 14,9C16,8 18,7 17,8Z%22/></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%231C1C1C%22><path d=%22M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22l1-2.3A4.49,4.49 0 0,0 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.5,17 5,17C6.5,17 8,16 9,14C10,12 12,10 14,9C16,8 18,7 17,8Z%22/></svg>">
 
     <style>
-        /* --- ЦВЕТОВАЯ ПАЛИТРА --- */
+        /* --- СОВРЕМЕННАЯ ЦВЕТОВАЯ ПАЛИТРА --- */
         :root {
-            --dark-green: #2E4A32;
-            --light-green: #8BA88E;
-            --kraft-bg: #F4F0E6;
-            --text-dark: #1A1A1A;
+            --bg-color: #F9F8F6; /* Теплый, премиальный белый */
+            --text-main: #1C1C1C; /* Глубокий черный, почти как в Apple */
+            --text-muted: #7A7A7A;
+            --accent: #D96B43; /* Терракотовый акцент */
+            --accent-hover: #C05934;
+            --secondary: #4A5D4E; /* Благородный шалфейный зеленый */
+            --border: #E8E6E1;
             --white: #FFFFFF;
-            --accent: #D4A373;
-            --placeholder-bg: #E5DCCB;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--kraft-bg); color: var(--text-dark); line-height: 1.6; padding-bottom: 60px; scroll-behavior: smooth; overflow-anchor: none; }
-        h1, h2, h3 { font-family: 'Georgia', serif; color: var(--dark-green); }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            font-family: 'Manrope', sans-serif; 
+            line-height: 1.6; 
+            overflow-x: hidden;
+            overflow-anchor: none;
+        }
+        
+        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; font-weight: 600; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
 
-        .svg-icon { width: 24px; height: 24px; fill: currentColor; display: inline-block; vertical-align: middle; }
+        /* --- КНОПКИ --- */
+        .btn { 
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 16px 32px; border-radius: 100px; font-size: 15px; font-weight: 600;
+            text-decoration: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+            border: none; cursor: pointer; font-family: inherit;
+        }
+        .btn--primary { background-color: var(--text-main); color: var(--white); }
+        .btn--primary:hover { background-color: var(--accent); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(217, 107, 67, 0.2); }
+        
+        .btn--ghost { background-color: transparent; color: var(--text-main); border: 1px solid var(--border); }
+        .btn--ghost:hover { border-color: var(--text-main); background-color: var(--text-main); color: var(--white); }
 
-        /* --- ШАПКА И НАВИГАЦИЯ --- */
+        /* --- ШАПКА (HEADER) --- */
         header { 
-            background-color: var(--white); 
-            padding: 10px 0; 
-            border-bottom: 2px solid var(--light-green); 
-            position: sticky; 
-            top: 0; 
-            z-index: 100; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
-            transition: padding 0.3s ease, box-shadow 0.3s ease;
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+            background: rgba(249, 248, 246, 0.85); backdrop-filter: blur(12px);
+            border-bottom: 1px solid transparent; transition: all 0.4s ease;
+        }
+        header.scrolled { border-bottom: 1px solid var(--border); background: rgba(249, 248, 246, 0.95); }
+        
+        .header-inner { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        
+        .logo-wrapper { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); }
+        .logo-img { height: 50px; width: auto; }
+        .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+        .logo-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; letter-spacing: 0.5px; }
+        .logo-sub { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 700; }
+
+        .nav-links { display: flex; gap: 32px; }
+        .nav-links a { 
+            text-decoration: none; color: var(--text-main); font-size: 15px; font-weight: 500; 
+            position: relative; transition: color 0.3s;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background-color: var(--text-main); transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        .header-contacts { display: flex; align-items: center; gap: 20px; }
+        .header-phone { font-weight: 700; font-size: 15px; text-decoration: none; color: var(--text-main); }
+        .messenger-icons { display: flex; gap: 12px; }
+        .messenger-icons a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--white); border: 1px solid var(--border); transition: transform 0.2s, border-color 0.2s; }
+        .messenger-icons a:hover { transform: scale(1.05); border-color: var(--text-main); }
+        .messenger-icons svg { width: 18px; height: 18px; }
+
+        /* --- ГЛАВНЫЙ ЭКРАН (HERO) --- */
+        .hero { padding: 160px 0 80px 0; text-align: center; }
+        .hero h1 { 
+            font-size: clamp(40px, 6vw, 76px); line-height: 1.05; margin-bottom: 24px; 
+            letter-spacing: -1px; 
+        }
+        .hero p { 
+            font-size: clamp(16px, 2vw, 22px); color: var(--text-muted); 
+            max-width: 700px; margin: 0 auto 48px auto; font-weight: 400;
+        }
+        .hero-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+        /* --- КАТАЛОГ (PRODUCTS) --- */
+        .section-title { text-align: center; font-size: 40px; margin-bottom: 60px; letter-spacing: -0.5px; }
+        .category-block { padding: 60px 0; }
+        
+        /* Современная сетка */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 32px; }
+        
+        .product-card { 
+            background: var(--white); border-radius: 24px; padding: 16px; 
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+            display: flex; flex-direction: column;
+        }
+        .product-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 24px 48px rgba(0,0,0,0.06); 
         }
         
-        .header-top { 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 20px; 
-            margin-bottom: 10px; 
-            max-height: 120px;
-            overflow: hidden;
-            transition: max-height 0.3s ease, opacity 0.3s ease, margin-bottom 0.3s ease;
-            will-change: max-height, opacity;
-        }
-        .site-logo { height: 90px; width: auto; object-fit: contain; }
-        .logo-text { font-family: 'Caveat', cursive; font-size: 42px; font-weight: 700; color: var(--dark-green); line-height: 0.9; text-align: left; margin-bottom: 0px; }
-        
-        .logo-subtext { 
-            font-family: 'Caveat', cursive; 
-            font-size: 32px; 
-            color: var(--accent); 
-            font-weight: 700; 
-            line-height: 0.8;
-            text-align: left;
-            margin-top: -2px;
+        /* Плейсхолдер под фото (красивый градиент) */
+        .product-image {
+            width: 100%; aspect-ratio: 1/1; border-radius: 16px;
+            background: linear-gradient(135deg, #F0EFEA, #E4E2DA);
+            margin-bottom: 20px; position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted); font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
         }
         
-        .nav-menu { 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            flex-wrap: wrap; 
-            gap: 30px; 
-            border-top: 1px solid #eee; 
-            padding-top: 15px; 
-            transition: padding 0.3s ease, border-color 0.3s ease;
+        .badge {
+            position: absolute; top: 12px; left: 12px; 
+            background: var(--text-main); color: var(--white); 
+            padding: 6px 14px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
         }
-        .nav-menu a { 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-            text-decoration: none; 
-            color: var(--dark-green); 
-            font-weight: bold; 
-            font-size: 16px; 
-            transition: color 0.3s; 
+
+        .product-info { padding: 0 8px 8px 8px; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-title { font-size: 20px; font-weight: 600; margin-bottom: 8px; font-family: 'Playfair Display', serif; }
+        .product-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; flex-grow: 1; line-height: 1.5; }
+        
+        /* Селектор веса */
+        .weight-selector { display: flex; gap: 8px; margin-bottom: 20px; }
+        .weight-btn { 
+            flex: 1; padding: 10px 0; border-radius: 12px; border: 1px solid var(--border); 
+            background: transparent; font-size: 13px; font-weight: 600; color: var(--text-muted);
+            cursor: pointer; transition: all 0.2s; font-family: inherit;
         }
-        .nav-menu a:hover { color: var(--accent); }
-        .nav-menu a:hover .svg-icon { fill: var(--accent); }
+        .weight-btn:hover { border-color: var(--text-main); color: var(--text-main); }
+        .weight-btn.active { background: var(--text-main); color: var(--white); border-color: var(--text-main); }
 
-        .nav-actions-group { display: flex; align-items: center; gap: 20px; }
-
-        /* --- БЛОК С МЕССЕНДЖЕРАМИ --- */
-        .messenger-block { display: flex; align-items: center; gap: 12px; padding-left: 20px; border-left: 1px solid #ddd; }
-        .messenger-label { font-size: 14px; font-weight: bold; color: var(--dark-green); white-space: nowrap; }
-        .messenger-icon { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background-color: transparent; transition: transform 0.2s; text-decoration: none; }
-        .messenger-icon:hover { transform: scale(1.1); }
-        .messenger-icon svg { width: 24px; height: 24px; }
-        .messenger-phone { font-weight: bold; color: var(--dark-green); text-decoration: none; font-size: 15px; white-space: nowrap; }
-        .messenger-phone:hover { color: var(--accent); }
-
-        /* --- ГЛАВНЫЙ ЭКРАН --- */
-        .hero { background: linear-gradient(135deg, #E8E4D9 0%, var(--kraft-bg) 100%); padding: 60px 0; text-align: center; overflow: hidden; }
-        .hero-title { font-family: 'Playfair Display', 'Georgia', serif; font-size: clamp(28px, 5vw, 52px); margin-bottom: 15px; line-height: 1.2; color: var(--dark-green); white-space: nowrap; }
-        .hero-subtitle { font-family: 'Playfair Display', 'Georgia', serif; font-size: clamp(14px, 3.2vw, 22px); margin-bottom: 10px; color: #555; white-space: nowrap; font-weight: 400; }
-        .hero-subtitle-small { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: clamp(10px, 2.8vw, 16px); margin-bottom: 35px; color: #777; white-space: nowrap; }
+        .product-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+        .price { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+        .price span { font-size: 14px; font-weight: 500; color: var(--text-muted); }
         
-        .hero-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .btn { display: inline-block; background-color: var(--dark-green); color: var(--white); padding: 15px 40px; text-decoration: none; border-radius: 30px; font-size: 16px; transition: all 0.3s; border: none; cursor: pointer; font-weight: bold; }
-        .btn:hover { background-color: var(--accent); transform: translateY(-2px); }
-
-        /* --- КАТАЛОГ ТОВАРОВ --- */
-        .category-section { padding: 60px 0 20px; }
-        .category-title { font-size: 36px; text-align: center; margin-bottom: 40px; display: flex; align-items: center; justify-content: center; gap: 15px; }
-        .category-title .svg-icon { width: 40px; height: 40px; fill: var(--accent); }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        
-        .product-card { background-color: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-bottom: 5px solid var(--light-green); transition: transform 0.3s; display: flex; flex-direction: column; position: relative; }
-        .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .badge { position: absolute; top: 10px; left: 10px; background: var(--accent); color: var(--white); padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; text-transform: uppercase; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        .product-img-placeholder { width: 100%; height: 220px; background-color: var(--placeholder-bg); display: flex; align-items: center; justify-content: center; color: #888; font-weight: bold; font-size: 18px; border-bottom: 1px dashed #ccc; }
-        .product-info { padding: 25px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
-        .product-card h3 { font-size: 22px; margin-bottom: 10px; }
-        .product-card p { color: #666; margin-bottom: 15px; flex-grow: 1; font-size: 15px; }
-        
-        .weight-selector { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
-        .weight-btn { padding: 5px 15px; border: 1px solid var(--light-green); background: transparent; border-radius: 20px; cursor: pointer; font-weight: bold; color: var(--dark-green); transition: all 0.2s; font-size: 14px; }
-        .weight-btn.active { background: var(--dark-green); color: var(--white); border-color: var(--dark-green); }
-        
-        .price { margin-bottom: 15px; }
-        .new-price { font-size: 20px; font-weight: bold; color: var(--dark-green); }
-        .new-price span { font-size: 14px; color: #888; font-weight: normal; }
-
-        /* --- КОНТРОЛЬ КОЛИЧЕСТВА --- */
-        .qty-control { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; }
-        .qty-btn { width: 28px; height: 28px; border: 1px solid var(--light-green); background: transparent; border-radius: 50%; cursor: pointer; font-weight: bold; color: var(--dark-green); display: flex; align-items: center; justify-content: center; font-size: 16px; transition: all 0.2s; }
-        .qty-btn:hover { background: var(--light-green); color: white; }
-        .qty-input { width: 35px; text-align: center; border: none; background: transparent; font-weight: bold; color: var(--dark-green); font-size: 16px; pointer-events: none; }
-        .in-cart-indicator { font-size: 13px; color: var(--accent); font-weight: bold; margin-bottom: 8px; display: none; }
+        /* Кнопка добавления (круглая, как в Apple) */
+        .add-btn {
+            width: 48px; height: 48px; border-radius: 50%; background: var(--bg-color);
+            border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .add-btn svg { width: 20px; height: 20px; fill: var(--text-main); transition: fill 0.2s; }
+        .add-btn:hover { background: var(--text-main); transform: scale(1.05); }
+        .add-btn:hover svg { fill: var(--white); }
 
         /* --- БЛОК О НАС --- */
-        .about { padding: 80px 0; background-color: var(--white); margin-top: 40px; }
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .about-text h2 { font-size: 36px; margin-bottom: 20px; }
-        .about-text p { margin-bottom: 15px; font-size: 17px; color: #444; }
-        
-        .about-image { width: 100%; height: 350px; background-color: var(--light-green); border-radius: 15px; background-size: cover; background-position: center; border: 5px solid var(--kraft-bg); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .about-section { padding: 100px 0; background: var(--white); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-text h2 { font-size: 44px; margin-bottom: 24px; line-height: 1.1; }
+        .about-text p { font-size: 18px; color: var(--text-muted); margin-bottom: 20px; }
+        .about-image { 
+            width: 100%; height: 500px; border-radius: 32px; 
+            background: linear-gradient(135deg, #E8E6E1, #D1CFC7); 
+        }
 
         /* --- ДОСТАВКА И ОПЛАТА --- */
-        .delivery-payment { background-color: var(--kraft-bg); padding: 40px 0 60px 0; }
-        .delivery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: stretch; }
-        .delivery-card { background-color: var(--white); padding: 30px; border-radius: 15px; border-left: 5px solid var(--dark-green); box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
-        .delivery-card h3 { font-size: 24px; margin-bottom: 15px; display: flex; align-items: center; gap: 12px; }
-        .delivery-card h3 .svg-icon { width: 32px; height: 32px; fill: var(--accent); }
-        .delivery-card ul { list-style: none; flex-grow: 1; }
-        .delivery-card li { margin-bottom: 12px; font-size: 14px; display: flex; align-items: flex-start; gap: 10px; }
-        .delivery-card li::before { content: "✓"; color: var(--dark-green); font-weight: bold; flex-shrink: 0; }
-        
-        @media (min-width: 993px) {
-            .delivery-card li { white-space: nowrap; }
+        .delivery-section { padding: 80px 0; }
+        .delivery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+        .delivery-card { 
+            background: var(--white); padding: 40px; border-radius: 24px; 
         }
+        .delivery-card h3 { font-size: 24px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+        .delivery-card ul { list-style: none; }
+        .delivery-card li { 
+            margin-bottom: 16px; font-size: 15px; color: var(--text-muted); 
+            display: flex; align-items: flex-start; gap: 12px;
+        }
+        .delivery-card li::before { content: "•"; color: var(--accent); font-size: 24px; line-height: 1; }
 
-        /* --- ФОРМА --- */
-        .contact-form { background-color: var(--dark-green); padding: 80px 0; color: var(--white); }
-        .contact-form .section-title { color: var(--white); margin-bottom: 20px; text-align: center; }
-        .contact-form .subtitle { text-align: center; margin-bottom: 40px; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .form-wrapper { max-width: 500px; margin: 0 auto; background-color: var(--white); padding: 40px; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: var(--text-dark); }
-        .form-wrapper h3 { text-align: center; margin-bottom: 30px; }
+        /* --- ФОРМА ЗАКАЗА --- */
+        .contact-section { padding: 100px 0; background: var(--secondary); border-radius: 40px 40px 0 0; margin-top: 60px; color: var(--white); }
+        .contact-container { max-width: 600px; margin: 0 auto; text-align: center; }
+        .contact-container h2 { font-size: 40px; margin-bottom: 16px; color: var(--white); }
+        .contact-container p { color: rgba(255,255,255,0.7); margin-bottom: 48px; font-size: 16px; }
         
-        .form-cart-summary { display: none; background: var(--kraft-bg); padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; border: 1px dashed var(--light-green); }
-        .form-cart-summary strong { display: block; margin-bottom: 5px; color: var(--dark-green); }
-
-        .delivery-options { margin-bottom: 20px; background: var(--kraft-bg); padding: 15px; border-radius: 8px; border: 1px dashed var(--light-green); }
-        .delivery-options h4 { margin-bottom: 10px; color: var(--dark-green); }
-        .delivery-options label { display: block; margin-bottom: 8px; font-weight: normal; cursor: pointer; font-size: 14px; }
-        .delivery-options input[type="radio"] { margin-right: 8px; accent-color: var(--dark-green); }
-
-        .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px; }
-        .input-group input, .input-group textarea { width: 100%; padding: 15px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; background-color: var(--kraft-bg); font-family: inherit; resize: vertical; }
-        .input-group input:focus, .input-group textarea:focus { outline: none; border-color: var(--dark-green); border-width: 2px; }
+        .form-grid { display: flex; flex-direction: column; gap: 20px; text-align: left; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 1px; }
+        .form-group input, .form-group textarea, .form-group select { 
+            width: 100%; padding: 16px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); 
+            background: rgba(255,255,255,0.05); color: var(--white); font-family: inherit; font-size: 16px;
+            transition: all 0.3s;
+        }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--white); background: rgba(255,255,255,0.1); }
         
-        .checkbox-group { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; }
-        .checkbox-group input[type="checkbox"] { width: 18px; height: 18px; margin-top: 3px; cursor: pointer; accent-color: var(--dark-green); }
-        .checkbox-group label { font-size: 13px; color: #555; cursor: pointer; line-height: 1.4; font-weight: normal; margin-bottom: 0; }
-        .checkbox-group a { color: var(--dark-green); text-decoration: underline; font-weight: bold; }
-        .checkbox-group a:hover { color: var(--accent); }
+        /* Кастомные радиокнопки */
+        .radio-group { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+        .radio-label { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; font-size: 15px; color: rgba(255,255,255,0.9); }
+        .radio-label input[type="radio"] { display: none; }
+        .radio-custom { width: 20px; height: 20px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; transition: all 0.2s; }
+        .radio-label input[type="radio"]:checked + .radio-custom { border-color: var(--white); }
+        .radio-label input[type="radio"]:checked + .radio-custom::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--white); }
 
-        .form-wrapper .btn { width: 100%; border-radius: 8px; background-color: var(--dark-green); }
-        .form-wrapper .btn:hover { background-color: var(--light-green); }
-        
-        .success-message { display: none; text-align: center; color: var(--dark-green); font-size: 18px; font-weight: bold; margin-top: 20px; padding: 20px; background-color: #e8f5e9; border-radius: 8px; }
-        .error-message { display: none; text-align: center; color: #d9534f; font-size: 16px; font-weight: bold; margin-top: 20px; padding: 20px; background-color: #f8d7da; border-radius: 8px; }
+        .checkbox-label { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 10px; }
+        .checkbox-label input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--white); cursor: pointer; }
+        .checkbox-label a { color: var(--white); text-decoration: underline; }
+
+        .contact-section .btn { width: 100%; margin-top: 24px; background: var(--white); color: var(--secondary); }
+        .contact-section .btn:hover { background: var(--bg-color); transform: translateY(-2px); }
 
         /* --- ПОДВАЛ --- */
-        footer { background-color: #1A1A1A; color: var(--white); text-align: center; padding: 30px 0; font-size: 14px; }
-        footer p { margin-bottom: 5px; opacity: 0.8; }
+        footer { background: var(--bg-color); padding: 40px 0; text-align: center; border-top: 1px solid var(--border); }
+        footer p { color: var(--text-muted); font-size: 14px; margin-bottom: 8px; }
 
-        /* --- ПЛАВАЮЩИЕ КНОПКИ --- */
-        .floating-tg { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background-color: #24A1DE; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1000; transition: transform 0.3s, background 0.3s; text-decoration: none; }
-        .floating-tg:hover { transform: scale(1.1); background-color: #1c85b9; }
-        .floating-tg svg { width: 60%; height: 60%; margin-left: -2px; }
-
-        /* --- ПРЕМИАЛЬНАЯ КНОПКА КОРЗИНЫ (В ЛЕВОМ НИЖНЕМ УГЛУ) --- */
-        .floating-cart { 
-            position: fixed; bottom: 30px; left: 30px; 
-            background-color: var(--white); 
-            color: var(--dark-green);
-            border-radius: 50px; 
-            padding: 10px 20px 10px 15px;
-            display: flex; align-items: center; gap: 10px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15); 
-            z-index: 1000; cursor: pointer; 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-            border: 2px solid var(--dark-green);
-            font-family: inherit;
-        }
-        .floating-cart:hover { 
-            transform: translateY(-5px); 
-            background-color: var(--dark-green); 
-            color: var(--white);
-        }
-        .floating-cart:hover svg { fill: var(--white); }
+        /* --- ПЛАВАЮЩИЕ ЭЛЕМЕНТЫ (CART & TELEGRAM) --- */
         
-        .floating-cart svg { width: 24px; height: 24px; fill: var(--dark-green); transition: fill 0.3s; }
-        
-        .cart-btn-content { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; }
-        .cart-btn-qty { font-size: 12px; font-weight: bold; opacity: 0.8; }
-        .cart-btn-price { font-size: 16px; font-weight: 900; }
-
-        /* Анимация подпрыгивания при добавлении */
-        @keyframes bump {
-            0% { transform: scale(1); }
-            30% { transform: scale(1.15); }
-            100% { transform: scale(1); }
+        /* Кнопка Telegram */
+        .floating-tg { 
+            position: fixed; bottom: 32px; right: 32px; width: 56px; height: 56px; 
+            background: #24A1DE; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            box-shadow: 0 12px 24px rgba(36, 161, 222, 0.3); z-index: 1000; 
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); text-decoration: none;
         }
-        .floating-cart.bump { animation: bump 0.3s ease; }
+        .floating-tg:hover { transform: scale(1.1) translateY(-4px); }
+        .floating-tg svg { width: 26px; height: 26px; fill: #FFFFFF; margin-right: 2px; }
 
-        /* --- ВЫДВИЖНАЯ КОРЗИНА --- */
+        /* Плавающая корзина (Стильная темная таблетка) */
+        .floating-cart {
+            position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+            background: var(--text-main); color: var(--white); 
+            padding: 12px 24px; border-radius: 100px; border: none; cursor: pointer;
+            display: flex; align-items: center; gap: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2); z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0; visibility: hidden; transform: translate(-50%, 20px); font-family: inherit;
+        }
+        .floating-cart.show { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+        .floating-cart:hover { transform: translate(-50%, -4px); background: var(--accent); }
+        
+        .cart-icon-wrap { position: relative; display: flex; align-items: center; }
+        .cart-icon-wrap svg { width: 22px; height: 22px; fill: var(--white); }
+        .cart-badge { position: absolute; top: -8px; right: -12px; background: var(--accent); color: var(--white); font-size: 11px; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        
+        .cart-info { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2; }
+        .cart-info-text { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 500; }
+        .cart-info-price { font-size: 16px; font-weight: 700; }
+
+        /* --- ВЫЕЗЖАЮЩАЯ КОРЗИНА (SIDEBAR) --- */
         .cart-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1999;
-            opacity: 0; visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); z-index: 1998;
+            opacity: 0; visibility: hidden; transition: all 0.3s;
         }
         .cart-overlay.active { opacity: 1; visibility: visible; }
 
-        .cart-sidebar {
-            position: fixed; top: 0; right: 0; height: 100vh; width: 400px; max-width: 100%;
-            background: var(--white);
-            z-index: 2000;
-            transform: translateX(100%);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex; flex-direction: column;
-            box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+        .cart-drawer {
+            position: fixed; top: 0; right: 0; width: 100%; max-width: 420px; height: 100%;
+            background: var(--white); z-index: 1999;
+            transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex; flex-direction: column; box-shadow: -20px 0 60px rgba(0,0,0,0.1);
         }
-        .cart-sidebar.active { transform: translateX(0); }
+        .cart-drawer.active { transform: translateX(0); }
 
-        .cart-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 25px; border-bottom: 1px solid #eee; }
-        .cart-header h3 { margin: 0; font-size: 22px; color: var(--dark-green); }
-        .close-cart-btn { background: none; border: none; font-size: 30px; cursor: pointer; color: #888; line-height: 1; transition: color 0.2s; }
-        .close-cart-btn:hover { color: #d9534f; }
+        .cart-header { padding: 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+        .cart-header h3 { font-size: 24px; }
+        .close-cart { background: none; border: none; cursor: pointer; color: var(--text-main); padding: 8px; transition: transform 0.2s; }
+        .close-cart:hover { transform: rotate(90deg); }
+        .close-cart svg { width: 24px; height: 24px; fill: currentColor; }
 
-        .cart-body { flex-grow: 1; overflow-y: auto; padding: 20px 25px; }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; }
-        .cart-item-info { flex-grow: 1; text-align: left; padding-right: 15px; }
-        .cart-item-title { font-weight: bold; font-size: 15px; color: var(--dark-green); margin-bottom: 4px; }
-        .cart-item-price { color: #666; font-size: 14px; }
-        .cart-item-controls { display: flex; align-items: center; gap: 8px; }
-        .cart-qty-btn { background: var(--kraft-bg); border: 1px solid #ccc; border-radius: 5px; width: 30px; height: 30px; cursor: pointer; font-weight: bold; color: var(--dark-green); font-size: 16px; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
-        .cart-qty-btn:hover { background: var(--light-green); color: white; border-color: var(--light-green); }
-        .cart-item-remove { background: none; border: none; color: #d9534f; cursor: pointer; font-size: 24px; line-height: 1; margin-left: 5px; opacity: 0.7; transition: 0.2s; }
-        .cart-item-remove:hover { opacity: 1; transform: scale(1.1); }
+        .cart-items { flex-grow: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 24px; }
+        
+        .cart-item { display: flex; gap: 16px; align-items: center; }
+        .cart-item-img { width: 64px; height: 64px; border-radius: 12px; background: var(--bg-color); flex-shrink: 0; }
+        .cart-item-info { flex-grow: 1; }
+        .cart-item-title { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+        .cart-item-price { font-size: 14px; color: var(--text-muted); }
+        
+        .cart-controls { display: flex; align-items: center; gap: 12px; margin-top: 8px; }
+        .cart-qty-btn { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: 600; transition: all 0.2s; }
+        .cart-qty-btn:hover { border-color: var(--text-main); background: var(--text-main); color: var(--white); }
+        .cart-qty-val { font-size: 14px; font-weight: 600; width: 20px; text-align: center; }
+        .cart-remove { background: none; border: none; cursor: pointer; color: #D9534F; opacity: 0.6; transition: opacity 0.2s; margin-left: auto; }
+        .cart-remove:hover { opacity: 1; }
+        .cart-remove svg { width: 18px; height: 18px; fill: currentColor; }
 
-        .cart-footer { padding: 20px 25px; border-top: 2px solid var(--light-green); background: var(--kraft-bg); }
-        .cart-total { text-align: right; font-size: 22px; font-weight: bold; margin-bottom: 15px; color: var(--dark-green); }
-        .cart-footer .btn { width: 100%; border-radius: 8px; }
+        .cart-footer { padding: 24px; border-top: 1px solid var(--border); background: var(--bg-color); }
+        .cart-total-row { display: flex; justify-content: space-between; font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+        .cart-footer .btn { width: 100%; }
 
         /* --- МОДАЛЬНОЕ ОКНО ПОЛИТИКИ --- */
-        .privacy-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 3000; align-items: center; justify-content: center; }
+        .privacy-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 3000; align-items: center; justify-content: center; }
         .privacy-modal.active { display: flex; }
-        .privacy-content { background: var(--white); width: 90%; max-width: 700px; border-radius: 15px; padding: 30px; position: relative; max-height: 80vh; display: flex; flex-direction: column; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-        .privacy-content h3 { font-size: 20px; margin-bottom: 15px; }
-        .privacy-text { overflow-y: auto; max-height: 60vh; padding-right: 10px; font-size: 14px; line-height: 1.6; color: #444; }
-        .privacy-text p { margin-bottom: 10px; }
-        .privacy-text ul { margin-bottom: 10px; padding-left: 20px; }
-        .privacy-text a { color: var(--dark-green); font-weight: bold; }
+        .privacy-content { background: var(--white); width: 90%; max-width: 700px; border-radius: 24px; padding: 40px; position: relative; max-height: 80vh; display: flex; flex-direction: column; }
+        .privacy-text { overflow-y: auto; font-size: 14px; color: var(--text-muted); margin-top: 20px; padding-right: 10px; }
+        .privacy-text p { margin-bottom: 12px; }
 
-        /* --- СВЕРНУТАЯ ШАПКА --- */
-        header.shrink-header { padding: 5px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        header.shrink-header .header-top { max-height: 0; opacity: 0; margin-bottom: 0; }
-        header.shrink-header .nav-menu { padding-top: 0; border-top-color: transparent; }
-
-        /* =========================================
-           МОБИЛЬНАЯ ВЕРСИЯ
-           ========================================= */
-        @media (max-width: 900px) {
-            .nav-menu { gap: 20px; }
-            .nav-actions-group { flex-direction: column; gap: 15px; width: 100%; justify-content: center; }
-            .messenger-block { padding-left: 0; border-left: none; width: 100%; justify-content: center; padding-top: 15px; border-top: 1px solid #eee; }
-            .delivery-grid { grid-template-columns: 1fr; gap: 20px; }
+        /* --- АДАПТИВНОСТЬ --- */
+        @media (max-width: 992px) {
+            .nav-links { display: none; }
+            .about-grid, .delivery-grid { grid-template-columns: 1fr; }
+            .about-image { height: 300px; }
+            .hero h1 { font-size: 40px; }
         }
 
         @media (max-width: 768px) {
-            .hero { padding: 40px 0; }
-            .hero-buttons .btn { padding: 12px 20px; font-size: 14px; }
-            .about-grid { grid-template-columns: 1fr; }
-            .about-image { height: 250px; order: -1; }
-            .form-wrapper { padding: 20px; }
-            .site-logo { height: 60px; }
-            .logo-text { font-size: 32px; }
-            .logo-subtext { font-size: 26px; }
-            .header-top { gap: 10px; }
-            .nav-menu { flex-wrap: wrap; gap: 15px; padding-top: 10px; }
-            .messenger-label { display: none; }
-            .category-title { font-size: 28px; margin-bottom: 25px; }
-            .category-title .svg-icon { width: 30px; height: 30px; }
+            .header-inner { height: 70px; }
+            .logo-img { height: 40px; }
+            .logo-title { font-size: 16px; }
+            .header-phone { display: none; }
             
-            .floating-tg { bottom: 20px; right: 20px; width: 50px; height: 50px; }
+            .hero { padding: 120px 0 60px 0; }
+            .hero h1 { font-size: 32px; }
+            .hero-actions { flex-direction: column; }
             
-            /* Компактная кнопка корзины на мобильных */
-            .floating-cart { bottom: 20px; left: 20px; padding: 8px 15px 8px 12px; }
-            .floating-cart svg { width: 20px; height: 20px; }
-            .cart-btn-price { font-size: 14px; }
-            .cart-btn-qty { font-size: 10px; }
-
-            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .product-card { border-bottom-width: 3px; border-radius: 10px; }
-            .product-img-placeholder { height: 110px; font-size: 12px; }
-            .product-info { padding: 10px; }
-            .product-card h3 { font-size: 15px; margin-bottom: 5px; }
-            .product-card p { font-size: 11px; margin-bottom: 8px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-            .weight-selector { gap: 4px; margin-bottom: 8px; flex-wrap: wrap; }
-            .weight-btn { padding: 3px 6px; font-size: 10px; border-radius: 10px; }
-            .new-price { font-size: 14px; }
-            .new-price span { font-size: 10px; }
-            .order-btn { padding: 6px !important; font-size: 11px !important; border-radius: 15px !important; }
-            .badge { font-size: 9px; padding: 3px 8px; top: 5px; left: 5px; transform: none; }
-            .qty-control { gap: 4px; margin-bottom: 6px; }
-            .qty-btn { width: 22px; height: 22px; font-size: 14px; }
-            .qty-input { width: 20px; font-size: 14px; }
-            .in-cart-indicator { font-size: 10px; margin-bottom: 4px; }
-
-            header.shrink-header .nav-actions-group { flex-direction: row; justify-content: space-between; align-items: center; gap: 10px; padding-top: 5px; }
-            header.shrink-header .messenger-block { padding-top: 0; border-top: none; width: auto; gap: 8px; }
-            header.shrink-header .messenger-phone { font-size: 14px; }
-
-            /* МОБИЛЬНАЯ КОРЗИНА (КАК ВЫПАДАЮЩИЙ СПИСОК) */
-            .cart-sidebar {
-                position: fixed;
-                bottom: 85px;
-                left: 20px;
-                right: 20px;
-                top: auto;
-                width: auto;
-                height: auto;
-                max-height: 60vh;
-                border-radius: 15px;
-                transform: translateY(20px);
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s ease;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            /* Корзина на мобильных (как Bottom Sheet) */
+            .cart-drawer {
+                top: auto; bottom: 0; max-width: 100%; height: 80vh;
+                border-radius: 24px 24px 0 0; transform: translateY(100%);
             }
-            .cart-sidebar.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-            /* Убираем затемнение фона на мобильных */
-            .cart-overlay { display: none; }
+            .cart-drawer.active { transform: translateY(0); }
             
-            .cart-header { padding: 15px; }
-            .cart-header h3 { font-size: 18px; }
-            .cart-body { padding: 15px; max-height: 40vh; }
-            .cart-footer { padding: 15px; }
+            .floating-cart { bottom: 24px; padding: 10px 20px; gap: 12px; width: calc(100% - 120px); justify-content: center; }
+            .floating-tg { bottom: 24px; right: 24px; width: 48px; height: 48px; }
+            .floating-tg svg { width: 22px; height: 22px; }
+            
+            .contact-section { padding: 60px 0; border-radius: 24px 24px 0 0; }
         }
     </style>
 </head>
 <body>
 
+    <!-- ШАПКА -->
     <header id="main-header">
-        <div class="container">
-            <div class="header-top">
-                <img src="logo.png" alt="Раздольненские традиции" class="site-logo">
-                <div>
-                    <div class="logo-text">Раздольненские</div>
-                    <div class="logo-subtext">традиции</div>
+        <div class="container header-inner">
+            <a href="#" class="logo-wrapper">
+                <img src="logo.png" alt="Раздольненские традиции" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-title">Раздольненские</span>
+                    <span class="logo-sub">традиции</span>
                 </div>
-            </div>
-            <nav class="nav-menu">
-                <a href="#frips" class="nav-link">
-                    <svg class="svg-icon" viewBox="0 0 448 512"><path d="M224 112c-8.8 0-16-7.2-16-16V80c0-44.2 35.8-80 80-80h16c8.8 0 16 7.2 16 16v16c0 44.2-35.8 80-80 80h-16zM0 288c0-76.3 35.7-160 112-160 27.3 0 59.7 10.3 82.7 19.3 18.8 7.3 39.9 7.3 58.7 0 22.9-8.9 55.4-19.3 82.7-19.3 76.3 0 112 83.7 112 160 0 128-80 224-160 224-16.5 0-38.1-6.6-51.5-11.3-8.1-2.8-16.9-2.8-25 0-13.4 4.7-35 11.3-51.5 11.3C80 512 0 416 0 288z"/></svg>
-                    Фрипсы
-                </a>
-                <a href="#pastila" class="nav-link">
-                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19,3H5C3.9,3 3,3.9 3,5V19C3,20.1 3.9,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.9 20.1,3 19,3M19,19H5V5H19V19M8,7H16V9H8V7M8,11H16V13H8V11M8,15H13V17H8V15Z"/></svg>
-                    Пастила
-                </a>
-                <a href="#suhofrukty" class="nav-link">
-                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12,2C9.5,2 7.5,3.5 6.5,5.5C5.5,7.5 5.5,9.5 6,11.5C6.5,13.5 7.5,15.5 9,17C10.5,18.5 12,19 13.5,19C15,19 16.5,18.5 18,17C19.5,15.5 20.5,13.5 21,11.5C21.5,9.5 21.5,7.5 20.5,5.5C19.5,3.5 17.5,2 15,2H12M12,4H15C16.5,4 17.5,5 18,6.5C18.5,8 18.5,9.5 18,11C17.5,12.5 16.5,14 15.5,15C14.5,16 13.5,16.5 12.5,16.5C11.5,16.5 10.5,16 9.5,15C8.5,14 7.5,12.5 7,11C6.5,9.5 6.5,8 7,6.5C7.5,5 8.5,4 10,4H12Z"/></svg>
-                    Сухофрукты
-                </a>
-                
-                <div class="nav-actions-group">
-                    <div class="messenger-block">
-                        <span class="messenger-label">Заказ через мессенджеры:</span>
-                        
-                        <a href="https://t.me/MiShcko" target="_blank" class="messenger-icon" title="Telegram">
-                            <svg viewBox="0 0 100 100">
-                                <circle cx="50" cy="50" r="50" fill="#24A1DE"/>
-                                <path fill="#FFFFFF" transform="translate(10, 10) scale(3.33)" d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701-.322 4.749c.474 0 .683-.217.949-.474l2.257-2.196 4.711 3.48c.868.48 1.49.233 1.706-.804l3.083-14.52c.316-1.26-.48-1.828-1.366-1.424z"/>
-                            </svg>
-                        </a>
-                        
-                        <a href="https://max.ru/u/f9LHodD0cOLpSdBpWLR43PqkVcQcaySgZN2YwHq0m8QRS7amARFqKpnJiDY" target="_blank" class="messenger-icon" title="Max">
-                            <svg viewBox="0 0 100 100">
-                                <defs>
-                                    <linearGradient id="maxGradient" x1="10%" y1="10%" x2="90%" y2="90%">
-                                        <stop offset="0%" stop-color="#00E5FF" />
-                                        <stop offset="35%" stop-color="#0055FF" />
-                                        <stop offset="75%" stop-color="#A500FF" />
-                                        <stop offset="100%" stop-color="#FF0099" />
-                                    </linearGradient>
-                                </defs>
-                                <path d="M50,5 C74.9,5 95,25.1 95,50 C95,74.9 74.9,95 50,95 C39.4,95 29.6,91.2 22,84.9 L5,95 L12.1,77.1 C7.8,69.1 5,59.9 5,50 C5,25.1 25.1,5 50,5 Z" fill="url(#maxGradient)"/>
-                                <circle cx="50" cy="48" r="21" fill="#FFFFFF"/>
-                            </svg>
-                        </a>
-                        
-                        <a href="tel:+79064287571" class="messenger-phone">+7 (906) 428-75-71</a>
-                    </div>
-                </div>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="#frips">Фрипсы</a>
+                <a href="#pastila">Пастила</a>
+                <a href="#suhofrukty">Сухофрукты</a>
             </nav>
+            
+            <div class="header-contacts">
+                <div class="messenger-icons">
+                    <a href="https://t.me/MiShcko" target="_blank" title="Telegram">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="50" fill="#24A1DE"/>
+                            <path fill="#FFFFFF" transform="translate(10, 10) scale(3.33)" d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701-.322 4.749c.474 0 .683-.217.949-.474l2.257-2.196 4.711 3.48c.868.48 1.49.233 1.706-.804l3.083-14.52c.316-1.26-.48-1.828-1.366-1.424z"/>
+                        </svg>
+                    </a>
+                    <a href="https://max.ru/u/f9LHodD0cOLpSdBpWLR43PqkVcQcaySgZN2YwHq0m8QRS7amARFqKpnJiDY" target="_blank" title="Max">
+                        <svg viewBox="0 0 100 100">
+                            <defs>
+                                <linearGradient id="maxGradient" x1="10%" y1="10%" x2="90%" y2="90%">
+                                    <stop offset="0%" stop-color="#00E5FF" />
+                                    <stop offset="35%" stop-color="#0055FF" />
+                                    <stop offset="75%" stop-color="#A500FF" />
+                                    <stop offset="100%" stop-color="#FF0099" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M50,5 C74.9,5 95,25.1 95,50 C95,74.9 74.9,95 50,95 C39.4,95 29.6,91.2 22,84.9 L5,95 L12.1,77.1 C7.8,69.1 5,59.9 5,50 C5,25.1 25.1,5 50,5 Z" fill="url(#maxGradient)"/>
+                            <circle cx="50" cy="48" r="21" fill="#FFFFFF"/>
+                        </svg>
+                    </a>
+                </div>
+                <a href="tel:+79064287571" class="header-phone">+7 (906) 428-75-71</a>
+            </div>
         </div>
     </header>
 
+    <!-- ГЛАВНЫЙ ЭКРАН -->
     <section class="hero">
         <div class="container">
-            <h1 class="hero-title">Натуральные лакомства ручной работы</h1>
-            <p class="hero-subtitle">Фрипсы, пастила и сухофрукты без сахара, консервантов и красителей</p>
-            <p class="hero-subtitle-small">Сделано с любовью и заботой о вашем здоровье</p>
-            
-            <div class="hero-buttons">
-                <a href="#frips" class="btn">Фрипсы</a>
-                <a href="#pastila" class="btn">Пастила</a>
-                <a href="#suhofrukty" class="btn">Сухофрукты</a>
+            <h1>Натуральные лакомства<br>ручной работы</h1>
+            <p>Фрипсы, пастила и сухофрукты без сахара, консервантов и красителей. Сделано с любовью и заботой о вашем здоровье.</p>
+            <div class="hero-actions">
+                <a href="#frips" class="btn btn--primary">Смотреть каталог</a>
+                <a href="#about" class="btn btn--ghost">О нас</a>
             </div>
         </div>
     </section>
 
+    <!-- КАТАЛОГ -->
     <div class="container">
-        <section id="frips" class="category-section">
-            <h2 class="category-title">
-                <svg class="svg-icon" viewBox="0 0 448 512"><path d="M224 112c-8.8 0-16-7.2-16-16V80c0-44.2 35.8-80 80-80h16c8.8 0 16 7.2 16 16v16c0 44.2-35.8 80-80 80h-16zM0 288c0-76.3 35.7-160 112-160 27.3 0 59.7 10.3 82.7 19.3 18.8 7.3 39.9 7.3 58.7 0 22.9-8.9 55.4-19.3 82.7-19.3 76.3 0 112 83.7 112 160 0 128-80 224-160 224-16.5 0-38.1-6.6-51.5-11.3-8.1-2.8-16.9-2.8-25 0-13.4 4.7-35 11.3-51.5 11.3C80 512 0 416 0 288z"/></svg>
-                Наши фрипсы
-            </h2>
+        <section id="frips" class="category-block">
+            <h2 class="section-title">Фрипсы</h2>
             <div class="product-grid" id="grid-frips"></div>
         </section>
 
-        <section id="pastila" class="category-section">
-            <h2 class="category-title">
-                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19,3H5C3.9,3 3,3.9 3,5V19C3,20.1 3.9,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.9 20.1,3 19,3M19,19H5V5H19V19M8,7H16V9H8V7M8,11H16V13H8V11M8,15H13V17H8V15Z"/></svg>
-                Наша пастила
-            </h2>
+        <section id="pastila" class="category-block">
+            <h2 class="section-title">Пастила</h2>
             <div class="product-grid" id="grid-pastila"></div>
         </section>
 
-        <section id="suhofrukty" class="category-section">
-            <h2 class="category-title">
-                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12,2C9.5,2 7.5,3.5 6.5,5.5C5.5,7.5 5.5,9.5 6,11.5C6.5,13.5 7.5,15.5 9,17C10.5,18.5 12,19 13.5,19C15,19 16.5,18.5 18,17C19.5,15.5 20.5,13.5 21,11.5C21.5,9.5 21.5,7.5 20.5,5.5C19.5,3.5 17.5,2 15,2H12M12,4H15C16.5,4 17.5,5 18,6.5C18.5,8 18.5,9.5 18,11C17.5,12.5 16.5,14 15.5,15C14.5,16 13.5,16.5 12.5,16.5C11.5,16.5 10.5,16 9.5,15C8.5,14 7.5,12.5 7,11C6.5,9.5 6.5,8 7,6.5C7.5,5 8.5,4 10,4H12Z"/></svg>
-                Наши сухофрукты
-            </h2>
+        <section id="suhofrukty" class="category-block">
+            <h2 class="section-title">Сухофрукты</h2>
             <div class="product-grid" id="grid-suhofrukty"></div>
         </section>
     </div>
 
-    <section class="about">
+    <!-- О НАС -->
+    <section id="about" class="about-section">
         <div class="container about-grid">
             <div class="about-text">
-                <h2>Сделано с душой в селе Раздольное</h2>
+                <h2>Сделано с душой<br>в селе Раздольное</h2>
                 <p>Мы — семейное производство, которое с любовью создает натуральные продукты. Мы не используем химикаты, сахар или консерванты. Только отборные фрукты и ягоды.</p>
                 <p>Наши фрипсы сушатся при низкой температуре, чтобы сохранить максимум витаминов. А пастила готовится по старинным рецептам без добавления сахара. Это идеальный перекус для всей семьи.</p>
             </div>
-            <div class="about-image" title="Наше село"></div>
+            <div class="about-image" title="Наше производство"></div>
         </div>
     </section>
 
-    <section class="delivery-payment">
-        <div class="container">
-            <div class="delivery-grid">
-                <div class="delivery-card">
-                    <h3><svg class="svg-icon" viewBox="0 0 24 24"><path d="M18,18.5A1.5,1.5 0 0,1 16.5,17A1.5,1.5 0 0,1 18,15.5A1.5,1.5 0 0,1 19.5,17A1.5,1.5 0 0,1 18,18.5M6,18.5A1.5,1.5 0 0,1 4.5,17A1.5,1.5 0 0,1 6,15.5A1.5,1.5 0 0,1 7.5,17A1.5,1.5 0 0,1 6,18.5M20,8H17V4H3C1.89,4 1,4.89 1,6V17H3A3,3 0 0,0 6,20A3,3 0 0,0 9,17H15A3,3 0 0,0 18,20A3,3 0 0,0 21,17H23V12L20,8M19,9.5L21.5,12.5H17V9.5H19Z"/></svg> Доставка</h3>
-                    <ul>
-                        <li><strong>По России:</strong> Почта России или СДЭК (от 300 ₽).</li>
-                        <li><strong>По г. Ростов-на-Дону:</strong> Курьером — 300 ₽, бесплатно от 1500 ₽.</li>
-                        <li><strong>Самовывоз:</strong> Скидка 5% (ул. Миронова 12/7).</li>
-                        <li>Отправка заказов осуществляется в течение 1-2 рабочих дней.</li>
-                    </ul>
-                </div>
-                <div class="delivery-card">
-                    <h3><svg class="svg-icon" viewBox="0 0 24 24"><path d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg> Оплата</h3>
-                    <ul>
-                        <li><strong>При получении:</strong> Наличными или картой курьеру.</li>
-                        <li><strong>Переводом:</strong> На карту Сбербанка или по СБП.</li>
-                        <li>Все чеки и документы предоставляются по запросу.</li>
-                    </ul>
-                </div>
+    <!-- ДОСТАВКА И ОПЛАТА -->
+    <section class="delivery-section">
+        <div class="container delivery-grid">
+            <div class="delivery-card">
+                <h3>Доставка</h3>
+                <ul>
+                    <li><strong>По России:</strong> Почта России или СДЭК (от 300 ₽).</li>
+                    <li><strong>По г. Ростов-на-Дону:</strong> Курьером — 300 ₽, бесплатно от 1500 ₽.</li>
+                    <li><strong>Самовывоз:</strong> Скидка 5% (ул. Миронова 12/7).</li>
+                    <li>Отправка заказов осуществляется в течение 1-2 рабочих дней.</li>
+                </ul>
+            </div>
+            <div class="delivery-card">
+                <h3>Оплата</h3>
+                <ul>
+                    <li><strong>При получении:</strong> Наличными или картой курьеру.</li>
+                    <li><strong>Переводом:</strong> На карту Сбербанка или по СБП.</li>
+                    <li>Все чеки и документы предоставляются по запросу.</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <section class="contact-form" id="order-form">
-        <div class="container">
-            <h2 class="section-title">Оформить заказ</h2>
-            <p class="subtitle">Оставьте свой номер телефона, и мы перезвоним вам в течение 15 минут для подтверждения заказа и расчета доставки.</p>
+    <!-- ФОРМА ЗАКАЗА -->
+    <section class="contact-section" id="order-form">
+        <div class="container contact-container">
+            <h2>Оформить заказ</h2>
+            <p>Оставьте свой номер телефона, и мы перезвоним вам в течение 15 минут для подтверждения заказа и расчета доставки.</p>
             
-            <div class="form-wrapper">
-                <h3>Оформление заказа</h3>
+            <form id="callback-form" class="form-grid">
+                <div class="form-cart-summary" id="form-cart-summary" style="display:none; background: rgba(255,255,255,0.1); padding: 16px; border-radius: 12px; margin-bottom: 20px; font-size: 14px; text-align: left; border: 1px solid rgba(255,255,255,0.1);"></div>
+
+                <div class="form-group">
+                    <label>Способ получения</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="delivery" value="rostov" checked>
+                            <span class="radio-custom"></span>
+                            <span>Доставка по г. Ростов-на-Дону (300 р., от 1500 р. — бесплатно)</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="delivery" value="pickup">
+                            <span class="radio-custom"></span>
+                            <span>Самовывоз (скидка 5%) ул. Миронова 12/7</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="delivery" value="other">
+                            <span class="radio-custom"></span>
+                            <span>Доставка в другой город</span>
+                        </label>
+                    </div>
+                    <div id="other-city-block" style="display:none; margin-top:16px;">
+                        <input type="text" id="city-input" placeholder="Укажите ваш город">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" name="name" placeholder="Например, Иван" required>
+                </div>
                 
-                <form id="callback-form">
-                    
-                    <div class="form-cart-summary" id="form-cart-summary"></div>
+                <div class="form-group">
+                    <label for="phone">Номер телефона *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+                </div>
 
-                    <div class="delivery-options">
-                        <h4>Способ получения</h4>
-                        <label><input type="radio" name="delivery" value="rostov" checked> Доставка по г. Ростов-на-Дону (300 р., от 1500 р. — бесплатно!)</label>
-                        <label><input type="radio" name="delivery" value="pickup"> Самовывоз (скидка 5%) ул. Миронова 12/7</label>
-                        <label><input type="radio" name="delivery" value="other"> Доставка в другой город</label>
-                        
-                        <div id="other-city-block" style="display:none; margin-top:10px;">
-                            <input type="text" id="city-input" placeholder="Укажите ваш город" style="width:100%; padding:8px; border-radius:5px; border:1px solid #ccc;">
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label for="comment">Комментарий</label>
+                    <textarea id="comment" name="comment" rows="3" placeholder="Например: позвонить после 18:00 или уточнить состав"></textarea>
+                </div>
+                
+                <label class="checkbox-label">
+                    <input type="checkbox" id="consent" name="consent" required>
+                    <span>Я даю согласие на <a href="#" id="open-privacy">обработку персональных данных</a></span>
+                </label>
 
-                    <div class="input-group">
-                        <label for="name">Ваше имя</label>
-                        <input type="text" id="name" name="name" placeholder="Например, Иван" required>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="phone">Номер телефона *</label>
-                        <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="comment">Комментарий</label>
-                        <textarea id="comment" name="comment" rows="3" placeholder="Например: позвонить после 18:00 или уточнить состав"></textarea>
-                    </div>
-                    
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="consent" name="consent" required>
-                        <label for="consent">Я даю согласие на <a href="#" id="open-privacy">обработку персональных данных</a></label>
-                    </div>
-
-                    <button type="submit" class="btn" id="submit-btn">Отправить заявку</button>
-                    
-                    <div class="success-message" id="success-message">Спасибо! Ваша заявка принята. Мы скоро перезвоним!</div>
-                    <div class="error-message" id="error-message">Произошла ошибка при отправке. Пожалуйста, попробуйте позвонить нам напрямую.</div>
-                </form>
-            </div>
+                <button type="submit" class="btn" id="submit-btn">Отправить заявку</button>
+                
+                <div id="success-message" style="display:none; background: rgba(255,255,255,0.15); color: #fff; padding: 16px; border-radius: 12px; font-weight: 600; text-align: center;">Спасибо! Ваша заявка принята. Мы скоро перезвоним!</div>
+                <div id="error-message" style="display:none; background: rgba(217, 83, 79, 0.2); color: #ffb3b3; padding: 16px; border-radius: 12px; font-weight: 600; text-align: center;">Произошла ошибка при отправке. Пожалуйста, попробуйте позвонить нам напрямую.</div>
+            </form>
         </div>
     </section>
 
+    <!-- ПОДВАЛ -->
     <footer>
         <div class="container">
-            <p>&copy; <span id="current-year">2024</span> Раздольненские традиции. Натуральные продукты из села.</p>
+            <p>&copy; <span id="current-year"></span> Раздольненские традиции. Натуральные продукты из села.</p>
             <p>Самозанятый [Ваше ФИО] | Доставка по всей России</p>
             <p>Телефон: +7 (906) 428-75-71</p>
         </div>
     </footer>
 
-    <!-- ПРЕМИАЛЬНАЯ КНОПКА КОРЗИНЫ -->
-    <button class="floating-cart" id="cart-btn" title="Открыть корзину">
-        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
-        <div class="cart-btn-content">
-            <span class="cart-btn-qty" id="cart-btn-text">Корзина пуста</span>
-            <span class="cart-btn-price" id="cart-btn-price" style="display: none;"></span>
+    <!-- ПЛАВАЮЩИЕ ЭЛЕМЕНТЫ -->
+    <button class="floating-cart" id="cart-btn">
+        <div class="cart-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+            <span class="cart-badge" id="cart-badge">0</span>
+        </div>
+        <div class="cart-info">
+            <span class="cart-info-text">В корзине</span>
+            <span class="cart-info-price" id="cart-price">0 ₽</span>
         </div>
     </button>
 
-    <!-- ВЫДВИЖНАЯ КОРЗИНА (SIDEBAR) -->
+    <a href="https://t.me/MiShcko" class="floating-tg" target="_blank" title="Написать в Telegram">
+        <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="50" fill="#24A1DE"/>
+            <path fill="#FFFFFF" transform="translate(10, 10) scale(3.33)" d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701-.322 4.749c.474 0 .683-.217.949-.474l2.257-2.196 4.711 3.48c.868.48 1.49.233 1.706-.804l3.083-14.52c.316-1.26-.48-1.828-1.366-1.424z"/>
+        </svg>
+    </a>
+
+    <!-- ВЫЕЗЖАЮЩАЯ КОРЗИНА -->
     <div class="cart-overlay" id="cart-overlay"></div>
-    <aside class="cart-sidebar" id="cart-sidebar">
+    <aside class="cart-drawer" id="cart-drawer">
         <div class="cart-header">
-            <h3>Ваша корзина</h3>
-            <button class="close-cart-btn" id="close-cart">&times;</button>
+            <h3>Корзина</h3>
+            <button class="close-cart" id="close-cart">
+                <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+            </button>
         </div>
-        <div class="cart-body" id="cart-items">
-            <p style="text-align:center; color:#888; padding: 20px 0;">Корзина пуста</p>
+        <div class="cart-items" id="cart-items">
+            <p style="text-align:center; color:#888; margin-top:40px;">Ваша корзина пока пуста</p>
         </div>
         <div class="cart-footer">
-            <div class="cart-total">Итого: <span id="cart-total-price">0</span> ₽</div>
-            <button class="btn" id="checkout-btn">Перейти к оформлению</button>
+            <div class="cart-total-row">
+                <span>Итого:</span>
+                <span id="cart-total">0 ₽</span>
+            </div>
+            <button class="btn btn--primary" id="checkout-btn">Перейти к оформлению</button>
         </div>
     </aside>
 
     <!-- МОДАЛЬНОЕ ОКНО ПОЛИТИКИ -->
     <div class="privacy-modal" id="privacy-modal">
         <div class="privacy-content">
-            <button class="close-cart-btn" id="close-privacy" style="position: absolute; top: 15px; right: 15px;">&times;</button>
-            <h3>Согласие на обработку персональных данных</h3>
+            <button class="close-cart" id="close-privacy" style="position: absolute; top: 20px; right: 20px;">
+                <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+            </button>
+            <h2 style="font-family:'Playfair Display', serif; margin-bottom:16px;">Согласие на обработку данных</h2>
             <div class="privacy-text">
                 <p>Настоящим я, действуя свободно, своей волей и в своем интересе, в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных», даю согласие физическому лицу, применяющему специальный налоговый режим «Налог на профессиональный доход» (самозанятому) <strong>[Ваше ФИО]</strong>, ИНН <strong>[Ваш ИНН]</strong> (далее — «Оператор», сайт «Раздольненские традиции»), на обработку моих персональных данных на следующих условиях:</p>
                 
@@ -621,36 +579,17 @@
         </div>
     </div>
 
-    <a href="https://t.me/MiShcko" class="floating-tg" target="_blank" title="Написать в Telegram">
-        <svg viewBox="0 0 24 24">
-            <path fill="#FFFFFF" d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701-.322 4.749c.474 0 .683-.217.949-.474l2.257-2.196 4.711 3.48c.868.48 1.49.233 1.706-.804l3.083-14.52c.316-1.26-.48-1.828-1.366-1.424z"/>
-        </svg>
-    </a>
-
     <script>
-        // ДИНАМИЧЕСКИЙ ГОД В ФУТЕРЕ
+        // Установка года
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // 1. ИСПРАВЛЕННАЯ ЛОГИКА СВОРАЧИВАНИЯ (БЕЗ ТРЯСКИ)
-        let lastScrollTop = 0;
+        // 1. ЛОГИКА ШАПКИ ПРИ СКРОЛЛЕ
         const header = document.getElementById('main-header');
-        let ticking = false;
-
-        window.addEventListener('scroll', function() {
-            if (!ticking) {
-                window.requestAnimationFrame(function() {
-                    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                    
-                    if (scrollTop > 100 && scrollTop > lastScrollTop) {
-                        header.classList.add('shrink-header');
-                    } else if (scrollTop < 80 && scrollTop < lastScrollTop) {
-                        header.classList.remove('shrink-header');
-                    }
-                    
-                    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-                    ticking = false;
-                });
-                ticking = true;
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
         });
 
@@ -661,13 +600,13 @@
                 { name: "Банановые", desc: "Сладкие и питательные снеки из отборных бананов.", price: 100, unit: "г", weights: [30, 50, 100], image: "" },
                 { name: "Апельсиновые", desc: "Яркий цитрусовый вкус. Источник витамина С.", price: 120, unit: "г", weights: [30, 50, 100], image: "" },
                 { name: "Клубничные", desc: "Нежный ягодный вкус. Любимый перекус детей.", price: 150, unit: "г", weights: [30, 50, 100], image: "" },
-                { name: "Подарочный набор Ассорти", desc: "5 разных вкусов фрипсов в красивой упаковке. Выберите объем: 150 г (5 вкусов по 30 г) или 300 г (5 вкусов по 60 г).", price: 120, unit: "г", weights: [150, 300], image: "", badge: "Хит продаж" }
+                { name: "Подарочный набор Ассорти", desc: "5 разных вкусов фрипсов в красивой упаковке. Выберите объем: 150 г или 300 г.", price: 120, unit: "г", weights: [150, 300], image: "", badge: "Хит продаж" }
             ],
             pastila: [
-                { name: "Классическая", desc: "Домашняя пастила по старинным рецептам. Лист весит 400 г, размер 28х28 см.", price: 450, unit: "лист", hideWeights: true, image: "" },
-                { name: "Ягодная", desc: "Нежный вкус лесных ягод. Лист весит 400 г, размер 28х28 см.", price: 500, unit: "лист", hideWeights: true, image: "" },
-                { name: "Яблочная", desc: "Кисло-сладкая пастила из зеленых яблок. Лист весит 400 г, размер 28х28 см.", price: 480, unit: "лист", hideWeights: true, image: "" },
-                { name: "Клюквенная", desc: "Пикантная кислинка и насыщенный вкус. Лист весит 400 г, размер 28х28 см.", price: 520, unit: "лист", hideWeights: true, image: "" }
+                { name: "Классическая", desc: "Домашняя пастила по старинным рецептам. Лист 400 г, размер 28х28 см.", price: 450, unit: "лист", hideWeights: true, image: "" },
+                { name: "Ягодная", desc: "Нежный вкус лесных ягод. Лист 400 г, размер 28х28 см.", price: 500, unit: "лист", hideWeights: true, image: "" },
+                { name: "Яблочная", desc: "Кисло-сладкая пастила из зеленых яблок. Лист 400 г.", price: 480, unit: "лист", hideWeights: true, image: "" },
+                { name: "Клюквенная", desc: "Пикантная кислинка и насыщенный вкус. Лист 400 г.", price: 520, unit: "лист", hideWeights: true, image: "" }
             ],
             suhofrukty: [
                 { name: "Курага", desc: "Отборная сладкая курага, вяленая на солнце.", price: 80, unit: "г", weights: [30, 50, 100], image: "" },
@@ -683,9 +622,6 @@
             if (!container) return;
             
             container.innerHTML = catalog[categoryKey].map((product, index) => {
-                const imgHTML = product.image 
-                    ? `<div class="product-img" style="background-image: url('${product.image}');"></div>` 
-                    : `<div class="product-img-placeholder">Фото</div>`;
                 const badgeHTML = product.badge ? `<div class="badge">${product.badge}</div>` : '';
                 
                 const unit = product.unit || 'г';
@@ -711,27 +647,25 @@
                 ` : '';
 
                 const priceDisplay = hasWeights 
-                    ? `<span class="new-price">${defaultPrice} ₽ <span>/ ${defaultWeight} ${unit}</span></span>`
-                    : `<span class="new-price">${defaultPrice} ₽ <span>/ ${unit}</span></span>`;
+                    ? `${defaultPrice} ₽ <span>/ ${defaultWeight} ${unit}</span>`
+                    : `${defaultPrice} ₽ <span>/ ${unit}</span>`;
                 
                 return `
                 <div class="product-card" data-id="${categoryKey}_${index}" data-unit="${unit}" data-has-weights="${hasWeights}" data-product-name="${product.name}">
-                    ${badgeHTML}
-                    ${imgHTML}
+                    <div class="product-image">
+                        ${badgeHTML}
+                        Фото товара
+                    </div>
                     <div class="product-info">
-                        <h3>${product.name}</h3>
-                        <p>${product.desc}</p>
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-desc">${product.desc}</p>
                         ${weightSelectorHTML}
-                        <div class="price" data-base-price="${product.price}">${priceDisplay}</div>
-                        
-                        <div class="qty-control">
-                            <button class="qty-btn qty-minus">−</button>
-                            <input type="text" class="qty-input" value="1" readonly>
-                            <button class="qty-btn qty-plus">+</button>
+                        <div class="product-bottom">
+                            <div class="price" data-base-price="${product.price}">${priceDisplay}</div>
+                            <button class="add-btn order-btn" title="Добавить в корзину">
+                                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            </button>
                         </div>
-
-                        <button class="btn order-btn" style="padding: 10px; font-size: 14px; margin-top: auto;">В корзину</button>
-                        <div class="in-cart-indicator"></div>
                     </div>
                 </div>
                 `;
@@ -744,27 +678,26 @@
 
         // 4. ЛОГИКА КОРЗИНЫ
         let cart = [];
-        const cartSidebar = document.getElementById('cart-sidebar');
+        const cartDrawer = document.getElementById('cart-drawer');
         const cartOverlay = document.getElementById('cart-overlay');
         const cartItemsContainer = document.getElementById('cart-items');
         
+        // Элементы новой корзины
         const cartBtn = document.getElementById('cart-btn');
-        const cartBtnText = document.getElementById('cart-btn-text');
-        const cartBtnPrice = document.getElementById('cart-btn-price');
-        const cartTotalEl = document.getElementById('cart-total-price');
+        const cartBadge = document.getElementById('cart-badge');
+        const cartPriceEl = document.getElementById('cart-price');
+        const cartTotalEl = document.getElementById('cart-total');
         const formCartSummary = document.getElementById('form-cart-summary');
 
-        // Открытие/закрытие корзины (с учетом мобильной специфики)
+        // Открытие/закрытие корзины
         function openCart() {
-            cartSidebar.classList.add('active');
-            if (window.innerWidth > 768) {
-                cartOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden'; 
-            }
+            cartDrawer.classList.add('active');
+            cartOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
         }
 
         function closeCart() {
-            cartSidebar.classList.remove('active');
+            cartDrawer.classList.remove('active');
             cartOverlay.classList.remove('active');
             document.body.style.overflow = ''; 
         }
@@ -787,7 +720,7 @@
         document.getElementById('close-privacy').addEventListener('click', () => privacyModal.classList.remove('active'));
         privacyModal.addEventListener('click', (e) => { if(e.target === privacyModal) privacyModal.classList.remove('active'); });
 
-        // Обработка кнопок в карточках товаров
+        // Обработка выбора веса и добавления
         document.querySelectorAll('.product-card').forEach(card => {
             const weightBtns = card.querySelectorAll('.weight-btn');
             const priceEl = card.querySelector('.price');
@@ -796,10 +729,6 @@
             
             const unit = card.dataset.unit;
             const hasWeights = card.dataset.hasWeights === 'true';
-            
-            const qtyInput = card.querySelector('.qty-input');
-            const qtyPlus = card.querySelector('.qty-plus');
-            const qtyMinus = card.querySelector('.qty-minus');
 
             let currentWeight = hasWeights ? parseInt(weightBtns[0].dataset.weight) : 1;
             let currentPrice = parseInt(priceEl.dataset.basePrice);
@@ -815,33 +744,22 @@
                         
                         currentPrice = Math.round((basePrice / 30) * currentWeight / 10) * 10;
                         
-                        priceEl.innerHTML = `<span class="new-price">${currentPrice} ₽ <span>/ ${currentWeight} ${unit}</span></span>`;
+                        priceEl.innerHTML = `${currentPrice} ₽ <span>/ ${currentWeight} ${unit}</span>`;
                         updateProductCards();
                     });
                 });
             }
 
-            qtyPlus.addEventListener('click', () => {
-                let val = parseInt(qtyInput.value) || 1;
-                if (val < 99) qtyInput.value = val + 1;
-            });
-
-            qtyMinus.addEventListener('click', () => {
-                let val = parseInt(qtyInput.value) || 1;
-                if (val > 1) qtyInput.value = val - 1;
-            });
-
             orderBtn.addEventListener('click', () => {
-                const qty = parseInt(qtyInput.value) || 1;
-                addToCart(productName, currentWeight, currentPrice, unit, qty);
+                addToCart(productName, currentWeight, currentPrice, unit, 1);
                 
-                qtyInput.value = 1;
-                const originalText = orderBtn.innerText;
-                orderBtn.innerText = "Добавлено ✓";
-                orderBtn.style.backgroundColor = "var(--light-green)";
+                // Визуальная обратная связь на кнопке (галочка)
+                const originalHTML = orderBtn.innerHTML;
+                orderBtn.innerHTML = '<svg viewBox="0 0 24 24" style="fill:#4A5D4E"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+                orderBtn.style.background = '#E8F5E9';
                 setTimeout(() => {
-                    orderBtn.innerText = originalText;
-                    orderBtn.style.backgroundColor = "";
+                    orderBtn.innerHTML = originalHTML;
+                    orderBtn.style.background = '';
                 }, 1500);
             });
         });
@@ -855,10 +773,6 @@
                 cart.push({ id, name, weight, unit, price, quantity: qty });
             }
             updateCartUI();
-            
-            // Анимация "подпрыгивания" плашки корзины при добавлении
-            cartBtn.classList.add('bump');
-            setTimeout(() => cartBtn.classList.remove('bump'), 300);
         }
 
         function updateProductCards() {
@@ -866,7 +780,6 @@
                 const productName = card.dataset.productName;
                 const unit = card.dataset.unit;
                 const hasWeights = card.dataset.hasWeights === 'true';
-                const inCartIndicator = card.querySelector('.in-cart-indicator');
                 
                 let weight = 1;
                 if (hasWeights) {
@@ -877,11 +790,13 @@
                 const id = unit === 'лист' ? `${productName}` : `${productName}_${weight}${unit}`;
                 const item = cart.find(i => i.id === id);
                 
+                const addBtn = card.querySelector('.add-btn');
                 if (item) {
-                    inCartIndicator.textContent = `В корзине: ${item.quantity} шт.`;
-                    inCartIndicator.style.display = 'block';
+                    addBtn.style.background = '#4A5D4E'; 
+                    addBtn.querySelector('svg').style.fill = '#fff';
                 } else {
-                    inCartIndicator.style.display = 'none';
+                    addBtn.style.background = ''; 
+                    addBtn.querySelector('svg').style.fill = '';
                 }
             });
         }
@@ -958,19 +873,20 @@
             const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
             const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
-            // Обновляем премиальную кнопку в углу
+            // Обновляем плавающую кнопку
+            cartBadge.innerText = totalQty;
+            cartPriceEl.innerText = `${totalPrice} ₽`;
+            
             if (totalQty > 0) {
-                cartBtnText.innerText = `Корзина (${totalQty})`;
-                cartBtnPrice.innerText = `${totalPrice} ₽`;
-                cartBtnPrice.style.display = 'block';
+                cartBtn.classList.add('show');
             } else {
-                cartBtnText.innerText = 'Корзина пуста';
-                cartBtnPrice.style.display = 'none';
+                cartBtn.classList.remove('show');
             }
             
+            // Отрисовка списка товаров
             if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p style="text-align:center; color:#888; padding: 20px 0;">Корзина пуста</p>';
-                cartTotalEl.innerText = '0';
+                cartItemsContainer.innerHTML = '<p style="text-align:center; color:#888; margin-top:40px;">Ваша корзина пока пуста</p>';
+                cartTotalEl.innerText = '0 ₽';
                 formCartSummary.style.display = 'none';
                 updateDeliveryAndTotals();
                 updateProductCards();
@@ -978,28 +894,30 @@
             }
             
             let itemsHTML = '';
-            
             cart.forEach((item) => {
                 const weightDisplay = item.unit === 'лист' ? item.unit : `${item.weight} ${item.unit}`;
                 
                 itemsHTML += `
                     <div class="cart-item">
+                        <div class="cart-item-img"></div>
                         <div class="cart-item-info">
-                            <div class="cart-item-title">${item.name} (${weightDisplay})</div>
-                            <div class="cart-item-price">${item.price} ₽ × ${item.quantity} шт.</div>
+                            <div class="cart-item-title">${item.name} <span style="font-weight:400; color:#888;">(${weightDisplay})</span></div>
+                            <div class="cart-item-price">${item.price} ₽</div>
+                            <div class="cart-controls">
+                                <button class="cart-qty-btn" onclick="changeQty('${item.id}', -1)">−</button>
+                                <span class="cart-qty-val">${item.quantity}</span>
+                                <button class="cart-qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+                            </div>
                         </div>
-                        <div class="cart-item-controls">
-                            <button class="cart-qty-btn" onclick="changeQty('${item.id}', -1)">-</button>
-                            <span>${item.quantity}</span>
-                            <button class="cart-qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
-                            <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">&times;</button>
-                        </div>
+                        <button class="cart-remove" onclick="removeFromCart('${item.id}')">
+                            <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+                        </button>
                     </div>
                 `;
             });
             
             cartItemsContainer.innerHTML = itemsHTML;
-            cartTotalEl.innerText = totalPrice;
+            cartTotalEl.innerText = `${totalPrice} ₽`;
             
             updateDeliveryAndTotals();
             updateProductCards();
