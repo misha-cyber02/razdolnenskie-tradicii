@@ -58,18 +58,19 @@
         }
         header.scrolled { border-bottom: 1px solid var(--border); background: rgba(249, 248, 246, 0.95); }
         
-        .header-inner { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        /* Увеличенная шапка для ПК */
+        .header-inner { display: flex; justify-content: space-between; align-items: center; height: 96px; }
         
         .logo-wrapper { display: flex; align-items: center; gap: 16px; text-decoration: none; color: var(--text-main); }
-        .logo-img { height: 54px; width: auto; mix-blend-mode: multiply; }
+        .logo-img { height: 64px; width: auto; mix-blend-mode: multiply; }
         
         .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
-        .logo-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; letter-spacing: 0.5px; }
-        .logo-sub { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); font-weight: 800; }
+        .logo-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; letter-spacing: 0.5px; }
+        .logo-sub { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); font-weight: 800; }
 
-        .nav-links { display: flex; gap: 32px; }
+        .nav-links { display: flex; gap: 36px; }
         .nav-links a { 
-            text-decoration: none; color: var(--text-main); font-size: 15px; font-weight: 500; 
+            text-decoration: none; color: var(--text-main); font-size: 16px; font-weight: 500; 
             position: relative; transition: color 0.3s;
         }
         .nav-links a::after {
@@ -78,22 +79,21 @@
         }
         .nav-links a:hover::after { width: 100%; }
 
-        .header-contacts { display: flex; align-items: center; gap: 20px; }
+        .header-contacts { display: flex; align-items: center; gap: 24px; }
         
-        /* Телефон в шапке */
+        .messenger-icons { display: flex; gap: 12px; }
+        .messenger-icons a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--white); border: 1px solid var(--border); transition: transform 0.2s, border-color 0.2s; }
+        .messenger-icons a:hover { transform: scale(1.05); border-color: var(--text-main); }
+        .messenger-icons svg { width: 20px; height: 20px; }
+
         .header-phone { 
-            font-weight: 800; font-size: 16px; text-decoration: none; color: var(--text-main); 
+            font-weight: 800; font-size: 18px; text-decoration: none; color: var(--text-main); 
             transition: color 0.2s;
         }
         .header-phone:hover { color: var(--accent); }
-        
-        .messenger-icons { display: flex; gap: 12px; }
-        .messenger-icons a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--white); border: 1px solid var(--border); transition: transform 0.2s, border-color 0.2s; }
-        .messenger-icons a:hover { transform: scale(1.05); border-color: var(--text-main); }
-        .messenger-icons svg { width: 18px; height: 18px; }
 
         /* --- ГЛАВНЫЙ ЭКРАН (HERO) --- */
-        .hero { padding: 160px 0 80px 0; text-align: center; }
+        .hero { padding: 180px 0 80px 0; text-align: center; }
         .hero h1 { 
             font-size: clamp(40px, 6vw, 76px); line-height: 1.05; margin-bottom: 24px; 
             letter-spacing: -1px; 
@@ -102,7 +102,11 @@
             font-size: clamp(16px, 2vw, 22px); color: var(--text-muted); 
             max-width: 700px; margin: 0 auto 48px auto; font-weight: 400;
         }
+        
         .hero-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+        
+        /* Мобильные кнопки (скрыты на ПК) */
+        .mobile-only { display: none; }
 
         /* --- КАТАЛОГ (PRODUCTS) --- */
         .section-title { text-align: center; font-size: 40px; margin-bottom: 60px; letter-spacing: -0.5px; }
@@ -322,17 +326,36 @@
         }
 
         @media (max-width: 768px) {
-            .header-inner { height: 70px; }
-            .logo-img { height: 44px; }
-            .logo-text { display: none; } /* Скрываем текст, оставляем только лого */
+            .header-inner { height: 76px; }
+            .logo-img { height: 48px; }
+            .logo-text { display: none; } 
             
-            /* Делаем телефон крупным и заметным */
-            .header-phone { display: block; font-size: 16px; font-weight: 800; }
-            .messenger-icons { display: none; } /* Скрываем иконки в шапке, так как есть плавающая кнопка */
+            /* На мобильных показываем иконки и номер телефона рядом */
+            .header-contacts { gap: 12px; }
+            .messenger-icons { display: flex; gap: 8px; }
+            .messenger-icons a { width: 32px; height: 32px; }
+            .messenger-icons svg { width: 16px; height: 16px; }
+            .header-phone { display: block; font-size: 15px; font-weight: 800; }
             
-            .hero { padding: 120px 0 60px 0; }
+            .hero { padding: 120px 0 40px 0; }
             .hero h1 { font-size: 32px; }
-            .hero-actions { flex-direction: column; }
+            .hero p { margin-bottom: 30px; }
+            
+            /* Скрываем ПК-кнопки, показываем мобильные */
+            .desktop-only { display: none; }
+            .mobile-only { 
+                display: grid; 
+                grid-template-columns: repeat(3, 1fr); 
+                gap: 8px; 
+                padding: 0 10px;
+            }
+            .mobile-only .btn { 
+                padding: 12px 4px; 
+                font-size: 12px; 
+                width: 100%; 
+                text-align: center;
+                border-radius: 12px;
+            }
             
             /* Сетка на мобильных 2x2 */
             .product-grid { 
@@ -340,7 +363,6 @@
                 gap: 12px; 
             }
             
-            /* Уменьшаем карточки, чтобы помещались */
             .product-card { padding: 10px; border-radius: 16px; }
             .product-image { margin-bottom: 12px; border-radius: 12px; font-size: 10px; }
             .product-title { font-size: 14px; margin-bottom: 4px; }
@@ -356,7 +378,6 @@
             .add-btn { width: 32px; height: 32px; }
             .add-btn svg { width: 16px; height: 16px; }
             
-            /* Корзина на мобильных (как Bottom Sheet) */
             .cart-drawer {
                 top: auto; bottom: 0; max-width: 100%; height: 80vh;
                 border-radius: 24px 24px 0 0; transform: translateY(100%);
@@ -392,7 +413,6 @@
             </nav>
             
             <div class="header-contacts">
-                <a href="tel:+79064287571" class="header-phone">+7 (906) 428-75-71</a>
                 <div class="messenger-icons">
                     <a href="https://t.me/MiShcko" target="_blank" title="Telegram">
                         <svg viewBox="0 0 100 100">
@@ -415,6 +435,7 @@
                         </svg>
                     </a>
                 </div>
+                <a href="tel:+79064287571" class="header-phone">+7 (906) 428-75-71</a>
             </div>
         </div>
     </header>
@@ -424,9 +445,18 @@
         <div class="container">
             <h1>Натуральные лакомства<br>ручной работы</h1>
             <p>Фрипсы, пастила и сухофрукты без сахара, консервантов и красителей. Сделано с любовью и заботой о вашем здоровье.</p>
-            <div class="hero-actions">
+            
+            <!-- Кнопки для ПК -->
+            <div class="hero-actions desktop-only">
                 <a href="#frips" class="btn btn--primary">Смотреть каталог</a>
                 <a href="#about" class="btn btn--ghost">О нас</a>
+            </div>
+
+            <!-- Кнопки для мобильных (3 в ряд) -->
+            <div class="hero-actions-mobile mobile-only">
+                <a href="#frips" class="btn btn--primary">Фрипсы</a>
+                <a href="#pastila" class="btn btn--primary">Пастила</a>
+                <a href="#suhofrukty" class="btn btn--primary">Сухофрукты</a>
             </div>
         </div>
     </section>
