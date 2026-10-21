@@ -22,6 +22,7 @@
             --secondary: #3A4A3D;
             --border: #E8E6E1;
             --white: #FFFFFF;
+            --green: #4A5D4E;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -58,7 +59,6 @@
         }
         header.scrolled { border-bottom: 1px solid var(--border); background: rgba(249, 248, 246, 0.95); }
         
-        /* Увеличенная шапка для ПК */
         .header-inner { display: flex; justify-content: space-between; align-items: center; height: 96px; }
         
         .logo-wrapper { display: flex; align-items: center; gap: 16px; text-decoration: none; color: var(--text-main); }
@@ -104,8 +104,6 @@
         }
         
         .hero-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
-        
-        /* Мобильные кнопки (скрыты на ПК) */
         .mobile-only { display: none; }
 
         /* --- КАТАЛОГ (PRODUCTS) --- */
@@ -151,33 +149,43 @@
         .weight-btn:hover { border-color: var(--text-main); color: var(--text-main); }
         .weight-btn.active { background: var(--text-main); color: var(--white); border-color: var(--text-main); }
 
-        .qty-control { 
-            display: flex; align-items: center; justify-content: space-between; 
-            border: 1px solid var(--border); border-radius: 100px; padding: 4px; margin-bottom: 16px; height: 44px;
-        }
-        .qty-btn { 
-            width: 34px; height: 34px; border-radius: 50%; border: none; background: transparent; 
-            cursor: pointer; display: flex; align-items: center; justify-content: center; 
-            font-size: 18px; color: var(--text-main); transition: background 0.2s;
-        }
-        .qty-btn:hover { background: var(--bg-color); }
-        .qty-input { 
-            width: 40px; text-align: center; border: none; background: transparent; 
-            font-weight: 600; font-size: 15px; color: var(--text-main); font-family: inherit;
+        .product-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: auto; gap: 12px;}
+        .price { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.2; }
+        .price span { font-size: 12px; font-weight: 500; color: var(--text-muted); display: block;}
+        
+        /* НОВАЯ КНОПКА ДОБАВЛЕНИЯ И СТЕППЕР */
+        .action-container {
+            display: flex; justify-content: flex-end; align-items: center; min-width: 120px;
         }
 
-        .product-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
-        .price { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
-        .price span { font-size: 13px; font-weight: 500; color: var(--text-muted); }
-        
         .add-btn {
-            width: 48px; height: 48px; border-radius: 50%; background: var(--bg-color);
-            border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
-            transition: background 0.2s, transform 0.2s;
+            width: 100%; height: 48px; border-radius: 100px; background: var(--bg-color);
+            border: 1px solid var(--border); cursor: pointer; 
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            font-size: 14px; font-weight: 700; color: var(--text-main); font-family: inherit;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .add-btn svg { width: 20px; height: 20px; fill: var(--text-main); transition: fill 0.2s; }
-        .add-btn:hover { background: var(--text-main); transform: scale(1.05); }
+        .add-btn svg { width: 18px; height: 18px; fill: var(--text-main); }
+        .add-btn:hover { background: var(--text-main); color: var(--white); border-color: var(--text-main); }
         .add-btn:hover svg { fill: var(--white); }
+
+        /* Степпер (счетчик) */
+        .stepper {
+            display: none; align-items: center; justify-content: space-between;
+            width: 100%; height: 48px; border-radius: 100px;
+            background: var(--text-main); color: var(--white); padding: 4px;
+            animation: fadeIn 0.3s ease;
+        }
+        .stepper.active { display: flex; }
+        .stepper-btn { 
+            width: 36px; height: 36px; border-radius: 50%; border: none; background: transparent; 
+            cursor: pointer; display: flex; align-items: center; justify-content: center; 
+            font-size: 20px; color: var(--white); transition: background 0.2s;
+        }
+        .stepper-btn:hover { background: rgba(255,255,255,0.2); }
+        .stepper-val { font-weight: 700; font-size: 16px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
         /* --- БЛОК О НАС --- */
         .about-section { padding: 100px 0; background: var(--white); }
@@ -330,7 +338,6 @@
             .logo-img { height: 48px; }
             .logo-text { display: none; } 
             
-            /* На мобильных показываем иконки и номер телефона рядом */
             .header-contacts { gap: 12px; }
             .messenger-icons { display: flex; gap: 8px; }
             .messenger-icons a { width: 32px; height: 32px; }
@@ -341,7 +348,6 @@
             .hero h1 { font-size: 32px; }
             .hero p { margin-bottom: 30px; }
             
-            /* Скрываем ПК-кнопки, показываем мобильные */
             .desktop-only { display: none; }
             .mobile-only { 
                 display: grid; 
@@ -357,7 +363,6 @@
                 border-radius: 12px;
             }
             
-            /* Сетка на мобильных 2x2 */
             .product-grid { 
                 grid-template-columns: repeat(2, 1fr); 
                 gap: 12px; 
@@ -369,15 +374,18 @@
             .product-desc { font-size: 11px; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
             .weight-selector { gap: 4px; margin-bottom: 8px; flex-wrap: wrap; }
             .weight-btn { padding: 6px 0; font-size: 10px; border-radius: 6px; }
-            .qty-control { height: 32px; margin-bottom: 8px; padding: 2px; }
-            .qty-btn { width: 24px; height: 24px; font-size: 14px; }
-            .qty-input { width: 20px; font-size: 12px; }
-            .product-bottom { gap: 4px; }
-            .price { font-size: 16px; }
-            .price span { font-size: 10px; }
-            .add-btn { width: 32px; height: 32px; }
-            .add-btn svg { width: 16px; height: 16px; }
             
+            .product-bottom { flex-direction: column; align-items: stretch; gap: 8px; }
+            .price { font-size: 16px; text-align: center; }
+            .price span { display: inline; font-size: 11px; }
+            
+            .action-container { min-width: 100%; }
+            .add-btn { height: 36px; font-size: 12px; padding: 0 10px; }
+            .add-btn svg { width: 14px; height: 14px; }
+            .stepper { height: 36px; }
+            .stepper-btn { width: 28px; height: 28px; font-size: 16px; }
+            .stepper-val { font-size: 14px; }
+
             .cart-drawer {
                 top: auto; bottom: 0; max-width: 100%; height: 80vh;
                 border-radius: 24px 24px 0 0; transform: translateY(100%);
@@ -446,13 +454,11 @@
             <h1>Натуральные лакомства<br>ручной работы</h1>
             <p>Фрипсы, пастила и сухофрукты без сахара, консервантов и красителей. Сделано с любовью и заботой о вашем здоровье.</p>
             
-            <!-- Кнопки для ПК -->
             <div class="hero-actions desktop-only">
                 <a href="#frips" class="btn btn--primary">Смотреть каталог</a>
                 <a href="#about" class="btn btn--ghost">О нас</a>
             </div>
 
-            <!-- Кнопки для мобильных (3 в ряд) -->
             <div class="hero-actions-mobile mobile-only">
                 <a href="#frips" class="btn btn--primary">Фрипсы</a>
                 <a href="#pastila" class="btn btn--primary">Пастила</a>
@@ -732,18 +738,19 @@
                         <h3 class="product-title">${product.name}</h3>
                         <p class="product-desc">${product.desc}</p>
                         ${weightSelectorHTML}
-                        
-                        <div class="qty-control">
-                            <button class="qty-btn qty-minus">−</button>
-                            <input type="text" class="qty-input" value="1" readonly>
-                            <button class="qty-btn qty-plus">+</button>
-                        </div>
 
                         <div class="product-bottom">
                             <div class="price" data-base-price="${product.price}">${priceDisplay}</div>
-                            <button class="add-btn order-btn" title="Добавить в корзину">
-                                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-                            </button>
+                            
+                            <!-- Кнопка добавления / Степпер -->
+                            <div class="action-container">
+                                <button class="add-btn">В корзину</button>
+                                <div class="stepper">
+                                    <button class="stepper-btn stepper-minus">−</button>
+                                    <span class="stepper-val">1</span>
+                                    <button class="stepper-btn stepper-plus">+</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -796,22 +803,28 @@
         document.getElementById('close-privacy').addEventListener('click', () => privacyModal.classList.remove('active'));
         privacyModal.addEventListener('click', (e) => { if(e.target === privacyModal) privacyModal.classList.remove('active'); });
 
+        // ЛОГИКА УМНОГО СТЕППЕРА В КАРТОЧКАХ
         document.querySelectorAll('.product-card').forEach(card => {
             const weightBtns = card.querySelectorAll('.weight-btn');
             const priceEl = card.querySelector('.price');
-            const orderBtn = card.querySelector('.order-btn');
             const productName = card.dataset.productName;
-            
             const unit = card.dataset.unit;
             const hasWeights = card.dataset.hasWeights === 'true';
-            
-            const qtyInput = card.querySelector('.qty-input');
-            const qtyPlus = card.querySelector('.qty-plus');
-            const qtyMinus = card.querySelector('.qty-minus');
+
+            const addBtn = card.querySelector('.add-btn');
+            const stepper = card.querySelector('.stepper');
+            const stepperMinus = card.querySelector('.stepper-minus');
+            const stepperPlus = card.querySelector('.stepper-plus');
+            const stepperVal = card.querySelector('.stepper-val');
 
             let currentWeight = hasWeights ? parseInt(weightBtns[0].dataset.weight) : 1;
             let currentPrice = parseInt(priceEl.dataset.basePrice);
 
+            function getItemId() {
+                return unit === 'лист' ? `${productName}` : `${productName}_${currentWeight}${unit}`;
+            }
+
+            // Смена веса
             if (hasWeights) {
                 weightBtns.forEach(btn => {
                     btn.addEventListener('click', () => {
@@ -820,39 +833,49 @@
                         
                         currentWeight = parseInt(btn.dataset.weight);
                         const basePrice = parseInt(card.querySelector('.weight-selector').dataset.price);
-                        
                         currentPrice = Math.round((basePrice / 30) * currentWeight / 10) * 10;
                         
                         priceEl.innerHTML = `${currentPrice} ₽ <span>/ ${currentWeight} ${unit}</span>`;
-                        updateProductCards();
+                        updateCardUI(); // Обновляем кнопку/степпер под новый вес
                     });
                 });
             }
 
-            qtyPlus.addEventListener('click', () => {
-                let val = parseInt(qtyInput.value) || 1;
-                if (val < 99) qtyInput.value = val + 1;
+            // Клик по "В корзину"
+            addBtn.addEventListener('click', () => {
+                addToCart(productName, currentWeight, currentPrice, unit, 1);
+                updateCardUI();
             });
 
-            qtyMinus.addEventListener('click', () => {
-                let val = parseInt(qtyInput.value) || 1;
-                if (val > 1) qtyInput.value = val - 1;
+            // Клик по "+" в степпере
+            stepperPlus.addEventListener('click', () => {
+                changeQty(getItemId(), 1);
+                updateCardUI();
             });
 
-            orderBtn.addEventListener('click', () => {
-                const qty = parseInt(qtyInput.value) || 1;
-                addToCart(productName, currentWeight, currentPrice, unit, qty);
-                
-                qtyInput.value = 1;
-
-                const originalHTML = orderBtn.innerHTML;
-                orderBtn.innerHTML = '<svg viewBox="0 0 24 24" style="fill:#4A5D4E"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
-                orderBtn.style.background = '#E8F5E9';
-                setTimeout(() => {
-                    orderBtn.innerHTML = originalHTML;
-                    orderBtn.style.background = '';
-                }, 1500);
+            // Клик по "-" в степпере
+            stepperMinus.addEventListener('click', () => {
+                changeQty(getItemId(), -1);
+                updateCardUI();
             });
+
+            function updateCardUI() {
+                const id = getItemId();
+                const item = cart.find(i => i.id === id);
+                if (item && item.quantity > 0) {
+                    addBtn.style.display = 'none';
+                    stepper.classList.add('active');
+                    stepperVal.textContent = item.quantity;
+                } else {
+                    addBtn.style.display = 'flex';
+                    stepper.classList.remove('active');
+                }
+            }
+
+            // Инициализация карточки при загрузке
+            updateCardUI();
+            // Сохраняем функцию обновления в data-атрибут, чтобы вызывать при глобальных изменениях
+            card.updateUI = updateCardUI;
         });
 
         function addToCart(name, weight, price, unit, qty = 1) {
@@ -864,32 +887,6 @@
                 cart.push({ id, name, weight, unit, price, quantity: qty });
             }
             updateCartUI();
-        }
-
-        function updateProductCards() {
-            document.querySelectorAll('.product-card').forEach(card => {
-                const productName = card.dataset.productName;
-                const unit = card.dataset.unit;
-                const hasWeights = card.dataset.hasWeights === 'true';
-                
-                let weight = 1;
-                if (hasWeights) {
-                    const activeBtn = card.querySelector('.weight-btn.active');
-                    if (activeBtn) weight = parseInt(activeBtn.dataset.weight);
-                }
-                
-                const id = unit === 'лист' ? `${productName}` : `${productName}_${weight}${unit}`;
-                const item = cart.find(i => i.id === id);
-                
-                const addBtn = card.querySelector('.add-btn');
-                if (item) {
-                    addBtn.style.background = '#4A5D4E'; 
-                    addBtn.querySelector('svg').style.fill = '#fff';
-                } else {
-                    addBtn.style.background = ''; 
-                    addBtn.querySelector('svg').style.fill = '';
-                }
-            });
         }
 
         function updateDeliveryAndTotals() {
@@ -964,6 +961,7 @@
             const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
             const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
+            // Обновляем плавающую кнопку
             cartBadge.innerText = totalQty;
             cartPriceEl.innerText = `${totalPrice} ₽`;
             
@@ -973,12 +971,17 @@
                 cartBtn.classList.remove('show');
             }
             
+            // Обновляем все карточки на странице
+            document.querySelectorAll('.product-card').forEach(card => {
+                if (card.updateUI) card.updateUI();
+            });
+
+            // Отрисовка списка товаров в выезжающей корзине
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = '<p style="text-align:center; color:#888; margin-top:40px;">Ваша корзина пока пуста</p>';
                 cartTotalEl.innerText = '0 ₽';
                 formCartSummary.style.display = 'none';
                 updateDeliveryAndTotals();
-                updateProductCards();
                 return;
             }
             
@@ -1009,7 +1012,6 @@
             cartTotalEl.innerText = `${totalPrice} ₽`;
             
             updateDeliveryAndTotals();
-            updateProductCards();
         }
 
         window.changeQty = function(id, diff) {
@@ -1130,8 +1132,9 @@
             }
         });
 
+        // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', function() {
-            updateProductCards();
+            updateCartUI();
             updateDeliveryAndTotals();
         });
     </script>
