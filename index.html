@@ -203,12 +203,46 @@
         .floating-tg:hover { transform: scale(1.1); background-color: #1c85b9; }
         .floating-tg svg { width: 35px; height: 35px; fill: white; }
 
-        .floating-cart { position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px; background-color: var(--dark-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1000; cursor: pointer; transition: transform 0.3s, background 0.3s; border: none; }
-        .floating-cart:hover { transform: scale(1.1); background-color: var(--accent); }
-        .floating-cart svg { width: 30px; height: 30px; fill: white; }
-        .cart-badge { position: absolute; top: -5px; right: -5px; background: #d9534f; color: white; border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
+        /* --- НОВАЯ ПРЕМИАЛЬНАЯ КНОПКА КОРЗИНЫ --- */
+        .floating-cart { 
+            position: fixed; bottom: 30px; left: 30px; 
+            background-color: var(--white); 
+            color: var(--dark-green);
+            border-radius: 50px; 
+            padding: 10px 20px 10px 15px;
+            display: flex; align-items: center; gap: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15); 
+            z-index: 1000; cursor: pointer; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            border: 2px solid var(--dark-green);
+            font-family: inherit;
+        }
+        .floating-cart:hover { 
+            transform: translateY(-5px); 
+            background-color: var(--dark-green); 
+            color: var(--white);
+        }
+        .floating-cart:hover svg { fill: var(--white); }
+        
+        .floating-cart svg { width: 24px; height: 24px; fill: var(--dark-green); transition: fill 0.3s; }
+        
+        .cart-btn-content {
+            display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1;
+        }
+        .cart-btn-qty { font-size: 12px; font-weight: bold; opacity: 0.8; }
+        .cart-btn-price { font-size: 16px; font-weight: 900; }
 
-        /* --- НОВАЯ ВЫДВИЖНАЯ КОРЗИНА (SIDEBAR) --- */
+        /* Анимация подпрыгивания при добавлении */
+        @keyframes bump {
+            0% { transform: scale(1); }
+            30% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+        .floating-cart.bump {
+            animation: bump 0.3s ease;
+        }
+
+        /* --- ВЫДВИЖНАЯ КОРЗИНА --- */
         .cart-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.5);
@@ -273,8 +307,7 @@
 
         /* --- СВЕРНУТАЯ ШАПКА --- */
         header.shrink-header {
-            padding: 5px 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 5px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         header.shrink-header .header-top {
             max-height: 0; opacity: 0; margin-bottom: 0;
@@ -310,9 +343,14 @@
             .messenger-label { display: none; }
             .category-title { font-size: 28px; margin-bottom: 25px; }
             .category-title .svg-icon { width: 30px; height: 30px; }
+            
             .floating-tg { bottom: 20px; right: 20px; width: 50px; height: 50px; }
-            .floating-cart { bottom: 20px; left: 20px; width: 50px; height: 50px; }
-            .cart-badge { width: 20px; height: 20px; font-size: 11px; }
+            
+            /* Компактная кнопка корзины на мобильных */
+            .floating-cart { bottom: 20px; left: 20px; padding: 8px 15px 8px 12px; }
+            .floating-cart svg { width: 20px; height: 20px; }
+            .cart-btn-price { font-size: 14px; }
+            .cart-btn-qty { font-size: 10px; }
 
             .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .product-card { border-bottom-width: 3px; border-radius: 10px; }
@@ -530,12 +568,16 @@
         </div>
     </footer>
 
+    <!-- НОВАЯ ПРЕМИАЛЬНАЯ КНОПКА КОРЗИНЫ -->
     <button class="floating-cart" id="cart-btn" title="Открыть корзину">
         <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
-        <span class="cart-badge" id="cart-count">0</span>
+        <div class="cart-btn-content">
+            <span class="cart-btn-qty" id="cart-btn-text">Корзина пуста</span>
+            <span class="cart-btn-price" id="cart-btn-price" style="display: none;"></span>
+        </div>
     </button>
 
-    <!-- ВЫДВИЖНАЯ КОРЗИНА -->
+    <!-- ВЫДВИЖНАЯ КОРЗИНА (SIDEBAR) -->
     <div class="cart-overlay" id="cart-overlay"></div>
     <aside class="cart-sidebar" id="cart-sidebar">
         <div class="cart-header">
@@ -696,7 +738,7 @@
         renderProducts('pastila', 'grid-pastila');
         renderProducts('suhofrukty', 'grid-suhofrukty');
 
-        // 4. ЛОГИКА КОРЗИНЫ (SIDEBAR)
+        // 4. ЛОГИКА КОРЗИНЫ
         let cart = [];
         const cartSidebar = document.getElementById('cart-sidebar');
         const cartOverlay = document.getElementById('cart-overlay');
@@ -704,21 +746,26 @@
         const cartCountEl = document.getElementById('cart-count');
         const cartTotalEl = document.getElementById('cart-total-price');
         const formCartSummary = document.getElementById('form-cart-summary');
+        
+        // Элементы новой плашки в углу
+        const cartBtn = document.getElementById('cart-btn');
+        const cartBtnText = document.getElementById('cart-btn-text');
+        const cartBtnPrice = document.getElementById('cart-btn-price');
 
         // Открытие/закрытие корзины
         function openCart() {
             cartSidebar.classList.add('active');
             cartOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Блокируем скролл страницы
+            document.body.style.overflow = 'hidden'; 
         }
 
         function closeCart() {
             cartSidebar.classList.remove('active');
             cartOverlay.classList.remove('active');
-            document.body.style.overflow = ''; // Возвращаем скролл
+            document.body.style.overflow = ''; 
         }
 
-        document.getElementById('cart-btn').addEventListener('click', openCart);
+        cartBtn.addEventListener('click', openCart);
         document.getElementById('close-cart').addEventListener('click', closeCart);
         cartOverlay.addEventListener('click', closeCart);
         
@@ -804,7 +851,10 @@
                 cart.push({ id, name, weight, unit, price, quantity: qty });
             }
             updateCartUI();
-            openCart(); // Автоматически открываем корзину при добавлении!
+            
+            // Анимация "подпрыгивания" плашки корзины при добавлении
+            cartBtn.classList.add('bump');
+            setTimeout(() => cartBtn.classList.remove('bump'), 300);
         }
 
         function updateProductCards() {
@@ -905,6 +955,16 @@
             const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
             cartCountEl.innerText = totalQty;
+            
+            // Обновляем премиальную кнопку в углу
+            if (totalQty > 0) {
+                cartBtnText.innerText = `Корзина (${totalQty})`;
+                cartBtnPrice.innerText = `${totalPrice} ₽`;
+                cartBtnPrice.style.display = 'block';
+            } else {
+                cartBtnText.innerText = 'Корзина пуста';
+                cartBtnPrice.style.display = 'none';
+            }
             
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = '<p style="text-align:center; color:#888; padding: 20px 0;">Корзина пуста</p>';
